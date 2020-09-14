@@ -1,11 +1,18 @@
 
 import dependencies.BuildDependencies
+import dependencies.TestDependencies
 
 plugins {
     id(BuildPlugins.COMMON_ANDROID_LIBRARY)
+    id(BuildPlugins.KOTLIN_ALL_OPEN)
     kotlin(BuildPlugins.KOTLIN_ANDROID)
     kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
     kotlin(BuildPlugins.KOTLIN_KAPT)
+}
+
+allOpen{
+    //So you can mock classes without opening them
+    annotation("io.audioshinigami.core.annotations.OpenClass")
 }
 
 android {
@@ -34,5 +41,14 @@ dependencies {
     implementation(BuildDependencies.MOSHI_KTX)
 
     kapt(BuildDependencies.ROOM_KAPT)
+
+    // Tests
+    testImplementation(TestDependencies.JUNIT5_API)
+    testImplementation(TestDependencies.JUNIT_PLATFORM)
+    testImplementation(TestDependencies.TRUTH)
+    testImplementation(TestDependencies.MOCKITO)
+    testImplementation(TestDependencies.HAMCREST)
+
+    testRuntimeOnly(TestDependencies.JUNIT5_ENGINE)
 
 }

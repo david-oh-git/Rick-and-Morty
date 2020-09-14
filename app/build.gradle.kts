@@ -7,6 +7,7 @@ plugins {
     kotlin(BuildPlugins.KOTLIN_ANDROID)
     kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
     kotlin(BuildPlugins.KOTLIN_KAPT)
+//    kotlin(BuildPlugins.KOTLIN_ALL_OPEN)
 }
 
 android {

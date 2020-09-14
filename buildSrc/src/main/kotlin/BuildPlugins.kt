@@ -8,4 +8,5 @@ object BuildPlugins {
     const val KOTLIN_ANDROID = "android"
     const val KOTLIN_ANDROID_EXTENSIONS = "android.extensions"
     const val KOTLIN_KAPT = "kapt"
+    const val KOTLIN_ALL_OPEN = "kotlin-allopen"
 }

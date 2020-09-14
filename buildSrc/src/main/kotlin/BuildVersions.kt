@@ -17,7 +17,12 @@ object BuildVersions {
 
     // Tests
     const val JUNIT = "4.13"
+    const val JUNIT5 = "5.7.0"
+    const val JUNIT_PLATFORM = "1.7.0"
     const val ANDROIDX_JUNIT = "1.1.2"
     const val ESPRESSO = "3.3.0"
     const val NAVIGATION_TESTING = NAVIGATION
+    const val TRUTH = "1.0.1"
+    const val MOCKITO = "2.19.0"
+    const val HAMCREST = "2.2"
 }
