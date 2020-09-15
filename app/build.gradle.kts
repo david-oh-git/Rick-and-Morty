@@ -77,6 +77,7 @@ dependencies {
     implementation(BuildDependencies.CORE_KTX)
     implementation(BuildDependencies.APPCOMPAT)
     implementation(BuildDependencies.CONSTRAINT_LAYOUT)
+    implementation(BuildDependencies.NAVIGATION_FRAGMENT)
 
     testImplementation(TestDependencies.JUNIT)
     androidTestImplementation(TestDependencies.ANDROIDX_JUNIT)
