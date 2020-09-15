@@ -12,4 +12,7 @@ object TestDependencies {
     const val TRUTH = "com.google.truth:truth:${BuildVersions.TRUTH}"
     const val MOCKITO = "org.mockito:mockito-core:${BuildVersions.MOCKITO}"
     const val HAMCREST = "org.hamcrest:hamcrest:${BuildVersions.HAMCREST}"
+    const val ARCH_CORE = "androidx.arch.core:core-testing:${BuildVersions.ARCH_CORE}"
+    const val COROUTINE_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${BuildVersions.COROUTINE}"
+    const val MOCKITO_ = "com.nhaarman.mockitokotlin2:mockito-kotlin:${BuildVersions.MOCKITO_}"
 }

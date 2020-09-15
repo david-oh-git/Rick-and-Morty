@@ -25,4 +25,7 @@ object BuildVersions {
     const val TRUTH = "1.0.1"
     const val MOCKITO = "2.19.0"
     const val HAMCREST = "2.2"
+    const val ARCH_CORE = "2.1.0"
+    const val COROUTINE = "1.3.7"
+    const val MOCKITO_ = "2.2.0"
 }

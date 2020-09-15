@@ -46,8 +46,10 @@ dependencies {
     testImplementation(TestDependencies.JUNIT5_API)
     testImplementation(TestDependencies.JUNIT_PLATFORM)
     testImplementation(TestDependencies.TRUTH)
-    testImplementation(TestDependencies.MOCKITO)
+    testImplementation(TestDependencies.MOCKITO_)
     testImplementation(TestDependencies.HAMCREST)
+    testImplementation(TestDependencies.COROUTINE_TEST)
+    testImplementation(TestDependencies.ARCH_CORE)
 
     testRuntimeOnly(TestDependencies.JUNIT5_ENGINE)
 
