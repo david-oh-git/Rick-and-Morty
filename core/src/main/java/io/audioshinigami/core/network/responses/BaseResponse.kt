@@ -12,5 +12,5 @@ data class BaseResponse<T>(
     val code: Any,
     val status: String,
     val message: String,
-    val data: SingleResponse<T>
+    val data: SingleDataResponse<T>
 )

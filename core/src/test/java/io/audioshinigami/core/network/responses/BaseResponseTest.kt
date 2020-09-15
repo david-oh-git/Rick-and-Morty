@@ -16,10 +16,10 @@ internal class BaseResponseTest {
         val status = "Ok"
         val message = "Success"
         
-        val data: SingleResponse<String> = mock( SingleResponse::class.java, "FAKE RESPONSE")
-            as SingleResponse<String>
+        val data: SingleDataResponse<String> = mock( SingleDataResponse::class.java, "FAKE RESPONSE")
+            as SingleDataResponse<String>
 
-        // Act:
+        // Act: create BaseResponse instance
         val baseResponse = BaseResponse(
             code = code,
             status = status,
@@ -27,7 +27,7 @@ internal class BaseResponseTest {
             data = data
         )
 
-        // Assert:
+        // Assert: Attributes values are accurate
         assertThat(code).isEqualTo( baseResponse.code)
         assertThat(status).isEqualTo(baseResponse.status)
         assertThat(message).isEqualTo(baseResponse.message)

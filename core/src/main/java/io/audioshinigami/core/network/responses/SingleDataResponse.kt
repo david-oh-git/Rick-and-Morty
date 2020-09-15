@@ -8,6 +8,6 @@ import io.audioshinigami.core.annotations.OpenForTesting
  * @param data Single item received from API.
  */
 @OpenForTesting
-data class SingleResponse<T>(
+data class SingleDataResponse<T>(
     val data: T
 )
