@@ -1,6 +1,8 @@
-include(":core")
+
 include(
-    ":app"
+    ":app",
+    ":core",
+    ":features:home"
 )
 
 rootProject.name = "Project M"

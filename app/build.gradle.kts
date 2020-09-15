@@ -68,6 +68,10 @@ android {
             java.srcDir("src/androidTest/kotlin")
         }
     }
+
+    dynamicFeatures = mutableSetOf(
+        BuildModules.Features.HOME
+    )
 }
 
 dependencies {
