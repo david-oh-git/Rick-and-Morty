@@ -2,7 +2,8 @@
 include(
     ":app",
     ":core",
-    ":features:home"
+    ":features:home",
+    ":shared:ui"
 )
 
 rootProject.name = "Project M"
