@@ -3,12 +3,10 @@
 //apply plugin: 'kotlin-android-extensions'
 
 
-
 plugins {
     id(BuildPlugins.ANDROID_LIBRARY)
     kotlin(BuildPlugins.KOTLIN_ANDROID)
     kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
-//    kotlin(BuildPlugins.KOTLIN_KAPT)
 }
 
 android {

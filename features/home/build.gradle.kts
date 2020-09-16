@@ -41,6 +41,7 @@ android {
 dependencies {
 
     implementation( project(BuildModules.APP))
+    implementation( project(BuildModules.UI))
 
     implementation(BuildDependencies.NAVIGATION_FRAGMENT)
     implementation(BuildDependencies.CONSTRAINT_LAYOUT)
