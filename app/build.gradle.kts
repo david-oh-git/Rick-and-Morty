@@ -40,6 +40,7 @@ android {
     }
 
     buildFeatures {
+        viewBinding = true
         dataBinding = true
     }
 
@@ -77,11 +78,17 @@ android {
 dependencies {
     implementation( fileTree( mapOf( "dir" to "libs", "include" to  listOf("*.jar")  )))
 
+
     implementation(BuildDependencies.KOTLIN)
+    implementation(BuildDependencies.KOTLIN_REFLECT
+    )
     implementation(BuildDependencies.CORE_KTX)
     implementation(BuildDependencies.APPCOMPAT)
     implementation(BuildDependencies.CONSTRAINT_LAYOUT)
     implementation(BuildDependencies.NAVIGATION_FRAGMENT)
+    implementation(BuildDependencies.PLAY_CORE)
+    implementation(BuildDependencies.DYNAMIC_FEATURES)
+    implementation(BuildDependencies.MATERIAL_COMPONENTS)
 
     testImplementation(TestDependencies.JUNIT)
     androidTestImplementation(TestDependencies.ANDROIDX_JUNIT)

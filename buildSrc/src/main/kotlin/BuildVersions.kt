@@ -1,5 +1,6 @@
 object BuildVersions {
 
+    const val DYNAMIC_FEATURES = "2.3.0"
     const val KOTLIN = "1.4.0"
     const val KOTLIN_COROUTINES_ANDROID = "1.3.4"
     const val CONSTRAIN_LAYOUT = "2.0.1"
@@ -12,7 +13,9 @@ object BuildVersions {
     const val HTTP_LOGGING = "4.2.2"
     const val MOSHI = "1.9.2"
     const val TIMBER = "4.7.1"
-
+    const val ANDROIDX_LEGACY = "1.0.0"
+    const val PLAY_CORE = "1.8.0"
+    const val DATABINDING = "4.0.1"
     const val MATERIAL_COMPONENTS = "1.2.0"
 
     // Tests

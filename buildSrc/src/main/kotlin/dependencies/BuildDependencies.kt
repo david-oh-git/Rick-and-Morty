@@ -2,7 +2,12 @@ package dependencies
 
 object BuildDependencies {
 
+    const val DYNAMIC_FEATURES = "androidx.navigation:navigation-dynamic-features-fragment:${BuildVersions.DYNAMIC_FEATURES}"
+    const val DATABINDING = "androidx.databinding:databinding-adapters:${BuildVersions.DATABINDING}"
+    const val PLAY_CORE = "com.google.android.play:core:${BuildVersions.PLAY_CORE}"
+    const val ANDROIDX_LEGACY = "androidx.legacy:legacy-support-v4:${BuildVersions.ANDROIDX_LEGACY}"
     const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib:${BuildVersions.KOTLIN}"
+    const val KOTLIN_REFLECT = "org.jetbrains.kotlin:kotlin-reflect:${BuildVersions.KOTLIN}"
     const val APPCOMPAT = "androidx.appcompat:appcompat:${BuildVersions.APPCOMPAT}"
     const val CORE_KTX = "androidx.core:core-ktx:${BuildVersions.CORE_KTX}"
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${BuildVersions.CONSTRAIN_LAYOUT}"
