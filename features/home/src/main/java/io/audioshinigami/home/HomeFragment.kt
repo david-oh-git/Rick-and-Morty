@@ -34,4 +34,9 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun setupBottomNavigationBar(){
+
+
+    }
+
 }
