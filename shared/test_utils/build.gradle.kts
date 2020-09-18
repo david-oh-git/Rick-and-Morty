@@ -1,17 +1,12 @@
-//apply plugin: "com.android.dynamic-feature"
-//apply plugin: 'kotlin-android'
-//apply plugin: 'kotlin-android-extensions'
 
-import dependencies.BuildDependencies
+import dependencies.TestDependencies
 
 plugins {
-    id(BuildPlugins.ANDROID_DYNAMIC_FEATURE)
-    id("kotlin-android")
+    id(BuildPlugins.ANDROID_LIBRARY)
     kotlin(BuildPlugins.KOTLIN_ANDROID)
     kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
-    kotlin(BuildPlugins.KOTLIN_KAPT)
-
 }
+
 android {
     compileSdkVersion(BuildAndroidConfig.COMPILE_SDK_VERSION)
     buildToolsVersion(BuildAndroidConfig.BUILD_TOOLS_VERSION)
@@ -19,10 +14,21 @@ android {
     defaultConfig {
         minSdkVersion(BuildAndroidConfig.MIN_SDK_VERSION)
         targetSdkVersion(BuildAndroidConfig.TARGET_SDK_VERSION)
+        versionCode = BuildAndroidConfig.VERSION_CODE
+        versionName = BuildAndroidConfig.VERSION_NAME
 
         testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
     }
 
+
+    sourceSets {
+        getByName("main") {
+            java.srcDir("src/main/kotlin")
+        }
+        getByName("test") {
+            java.srcDir("src/test/kotlin")
+        }
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -32,21 +38,14 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-
-    buildFeatures.viewBinding = true
-    buildFeatures.dataBinding = true
-
 }
 
 dependencies {
 
-    implementation( project(BuildModules.APP))
-    implementation( project(BuildModules.Features.UI))
+    implementation(TestDependencies.COROUTINE_TEST)
+    implementation(TestDependencies.JUNIT5_API)
+    implementation(TestDependencies.JUNIT_PLATFORM)
+    implementation(TestDependencies.JUNIT_VINTAGE)
 
-    implementation(BuildDependencies.NAVIGATION_FRAGMENT)
-    implementation(BuildDependencies.CONSTRAINT_LAYOUT)
-    implementation(BuildDependencies.MATERIAL_COMPONENTS)
-    implementation(BuildDependencies.APPCOMPAT)
-
-    kapt(BuildDependencies.DATABINDING)
+    runtimeOnly(TestDependencies.JUNIT5_ENGINE)
 }

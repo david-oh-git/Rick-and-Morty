@@ -2,7 +2,7 @@ object BuildVersions {
 
     const val DYNAMIC_FEATURES = "2.3.0"
     const val KOTLIN = "1.4.0"
-    const val KOTLIN_COROUTINES_ANDROID = "1.3.4"
+    const val KOTLIN_COROUTINES = "1.3.9"
     const val CONSTRAIN_LAYOUT = "2.0.1"
     const val CORE_KTX = "1.3.1"
     const val APPCOMPAT = "1.2.0"
@@ -17,6 +17,8 @@ object BuildVersions {
     const val PLAY_CORE = "1.8.0"
     const val DATABINDING = "4.0.1"
     const val MATERIAL_COMPONENTS = "1.2.0"
+    const val PAGING_KTX = "2.1.2"
+    const val DAGGER_HILT = "2.28-alpha"
 
     // Tests
     const val JUNIT = "4.13"
@@ -31,4 +33,5 @@ object BuildVersions {
     const val ARCH_CORE = "2.1.0"
     const val COROUTINE = "1.3.7"
     const val MOCKITO_ = "2.2.0"
+    const val MOCKK = "1.9.3"
 }

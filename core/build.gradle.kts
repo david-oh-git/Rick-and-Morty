@@ -32,6 +32,8 @@ android {
 
 dependencies {
 
+    implementation(BuildDependencies.KOTLIN)
+    implementation(BuildDependencies.KOTLIN_REFLECT)
     implementation(BuildDependencies.ROOM_DB)
     implementation(BuildDependencies.ROOM_KTX)
     implementation(BuildDependencies.RETROFIT)

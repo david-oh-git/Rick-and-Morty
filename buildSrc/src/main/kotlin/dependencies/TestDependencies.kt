@@ -15,4 +15,5 @@ object TestDependencies {
     const val ARCH_CORE = "androidx.arch.core:core-testing:${BuildVersions.ARCH_CORE}"
     const val COROUTINE_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${BuildVersions.COROUTINE}"
     const val MOCKITO_ = "com.nhaarman.mockitokotlin2:mockito-kotlin:${BuildVersions.MOCKITO_}"
+    const val MOCKK = "io.mockk:mockk:${BuildVersions.MOCKK}"
 }

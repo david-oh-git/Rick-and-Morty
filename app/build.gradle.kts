@@ -72,7 +72,8 @@ android {
 
     dynamicFeatures = mutableSetOf(
         BuildModules.Features.HOME,
-        BuildModules.Features.CHARACTERS_LIST
+        BuildModules.Features.CHARACTERS_LIST,
+        BuildModules.Features.UI
     )
 }
 
@@ -81,8 +82,9 @@ dependencies {
 
 
     implementation(BuildDependencies.KOTLIN)
-    implementation(BuildDependencies.KOTLIN_REFLECT
-    )
+    implementation(BuildDependencies.KOTLIN_REFLECT)
+    implementation(BuildDependencies.KOTLIN_COROUTINES_ANDROID)
+    implementation(BuildDependencies.KOTLIN_COROUTINES_CORE)
     implementation(BuildDependencies.CORE_KTX)
     implementation(BuildDependencies.APPCOMPAT)
     implementation(BuildDependencies.CONSTRAINT_LAYOUT)

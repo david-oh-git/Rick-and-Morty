@@ -2,6 +2,9 @@ package dependencies
 
 object BuildDependencies {
 
+    const val DAGGER_HILT = "com.google.dagger:hilt-android:${BuildVersions.DAGGER_HILT}"
+    const val DAGGER_HILT_KAPT = "com.google.dagger:hilt-android-compiler:${BuildVersions.DAGGER_HILT}"
+    const val PAGING_KTX = "androidx.paging:paging-runtime-ktx:${BuildVersions.PAGING_KTX}"
     const val DYNAMIC_FEATURES = "androidx.navigation:navigation-dynamic-features-fragment:${BuildVersions.DYNAMIC_FEATURES}"
     const val DATABINDING = "androidx.databinding:databinding-adapters:${BuildVersions.DATABINDING}"
     const val PLAY_CORE = "com.google.android.play:core:${BuildVersions.PLAY_CORE}"
@@ -23,7 +26,7 @@ object BuildDependencies {
     const val MOSHI = "com.squareup.moshi:moshi:${BuildVersions.MOSHI}"
     const val MOSHI_KTX = "com.squareup.moshi:moshi-kotlin:${BuildVersions.MOSHI}"
     const val MATERIAL_COMPONENTS = "com.google.android.material:material:${BuildVersions.MATERIAL_COMPONENTS}"
-    const val KOTLIN_COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${BuildVersions.KOTLIN_COROUTINES_ANDROID}"
-
+    const val KOTLIN_COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${BuildVersions.KOTLIN_COROUTINES}"
+    val KOTLIN_COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${BuildVersions.KOTLIN_COROUTINES}"
 
 }

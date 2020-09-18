@@ -1,5 +1,7 @@
 package io.audioshinigami.core.network.responses
 
+import io.audioshinigami.core.annotations.OpenForTesting
+
 /**
  * Network response for list of data type [T]
  *
@@ -8,6 +10,7 @@ package io.audioshinigami.core.network.responses
  * @param message Detailed description if API call fails.
  * @param data The results by API call.
  */
+@OpenForTesting
 data class BaseListResponse<T>(
     val code: Any,
     val status: String,

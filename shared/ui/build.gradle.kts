@@ -1,10 +1,6 @@
-//apply plugin: 'com.android.library'
-//apply plugin: 'kotlin-android'
-//apply plugin: 'kotlin-android-extensions'
-
 
 plugins {
-    id(BuildPlugins.ANDROID_LIBRARY)
+    id(BuildPlugins.ANDROID_DYNAMIC_FEATURE)
     kotlin(BuildPlugins.KOTLIN_ANDROID)
     kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
 }
@@ -16,8 +12,6 @@ android {
     defaultConfig {
         minSdkVersion(BuildAndroidConfig.MIN_SDK_VERSION)
         targetSdkVersion(BuildAndroidConfig.TARGET_SDK_VERSION)
-        versionCode = BuildAndroidConfig.VERSION_CODE
-        versionName = BuildAndroidConfig.VERSION_NAME
 
         testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
     }
@@ -44,4 +38,5 @@ android {
 
 dependencies {
 
+    implementation( project(BuildModules.APP))
 }
