@@ -1,4 +1,6 @@
 
+import dependencies.BuildDependencies
+
 plugins {
     id(BuildPlugins.ANDROID_DYNAMIC_FEATURE)
     kotlin(BuildPlugins.KOTLIN_ANDROID)
@@ -39,4 +41,7 @@ android {
 dependencies {
 
     implementation( project(BuildModules.APP))
+
+    implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
+    implementation(BuildDependencies.TIMBER)
 }

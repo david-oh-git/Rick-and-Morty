@@ -3,12 +3,17 @@ package io.audioshinigami.chracters_list.list.paging
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import androidx.paging.PageKeyedDataSource.LoadInitialCallback
+import androidx.paging.PageKeyedDataSource.*
 import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.core.network.repositories.RickAndMortyRepository
+import io.audioshinigami.core.network.responses.BaseListResponse
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.test_utils.MainCoroutineRule
+import io.mockk.Called
 import io.mockk.MockKAnnotations
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
@@ -52,11 +57,11 @@ internal class CharactersPageDataSourceTest {
     @InjectMockKs(injectImmutable = true, overrideValues = true)
     lateinit var dataSource: CharactersPageDataSource
 
-    private var scope = CoroutineScope(Dispatchers.Unconfined)
+    private var scope = CoroutineScope(Dispatchers.Main)
 
     @Before
     fun init(){
-        MockKAnnotations.init(this)
+        MockKAnnotations.init(this, relaxUnitFun = true)
     }
 
     @Test
@@ -64,6 +69,7 @@ internal class CharactersPageDataSourceTest {
         val params = mockk<PageKeyedDataSource.LoadInitialParams<Int>>()
         val callback = mockk<LoadInitialCallback<Int, Character>>()
         dataSource.loadInitial(params, callback)
+
 
         verify { networkState.postValue(NetworkState.Loading()) }
     }
@@ -78,4 +84,120 @@ internal class CharactersPageDataSourceTest {
         verify { networkState.postValue(NetworkState.Error()) }
     }
 
+    @Test
+    fun loadInitial_WithSuccessEmptyData_ShouldPostEmptySuccessState() {
+        val params = PageKeyedDataSource.LoadInitialParams<Int>(100, false)
+        val callback = mockk<LoadInitialCallback<Int, Character>>(relaxed = true)
+        val emptyData = emptyList<Character>()
+        val response = mockk<BaseListResponse<Character>>()
+
+        coEvery { repository.getCharacters(any()) } returns response
+
+        dataSource.loadInitial(params, callback)
+
+        coVerify { repository.getCharacters(0) }
+        verify { callback.onResult(emptyData, null, PAGE_MAX_ELEMENTS) }
+        verify {
+            networkState.postValue(
+                NetworkState.Success(
+                    isAdditional = false,
+                    isEmptyResponse = true
+                )
+            )
+        }
+    }
+
+    @Test
+    fun loadInitial_WithSuccessData_ShouldPostNonEmptySuccessState() {
+        val params = PageKeyedDataSource.LoadInitialParams<Int>(0, true)
+        val callback = mockk<LoadInitialCallback<Int, Character>>(relaxed = true)
+        val data = listOf(mockk<Character>())
+        val response = mockk<BaseListResponse<Character>>()
+
+        coEvery { repository.getCharacters(any()) } returns response
+
+        dataSource.loadInitial(params, callback)
+
+        coVerify { repository.getCharacters(0) }
+        verify { callback.onResult(data, null, PAGE_MAX_ELEMENTS) }
+        verify { networkState.postValue(NetworkState.Success()) }
+    }
+
+    @Test
+    fun loadAfter_ShouldPostAdditionalLoadingState() {
+        val params = mockk<LoadParams<Int>>()
+        val callback = mockk<LoadCallback<Int, Character>>()
+        dataSource.loadAfter(params, callback)
+
+        verify { networkState.postValue(NetworkState.Loading(true)) }
+    }
+
+    @Test
+    fun loadAfter_WithError_ShouldPostAdditionalErrorState() {
+        val params = LoadParams(0, 0)
+        val callback = mockk<LoadCallback<Int, Character>>()
+        dataSource.loadAfter(params, callback)
+
+        Assert.assertNotNull(retry)
+        verify { networkState.postValue(NetworkState.Error(true)) }
+    }
+
+    @Test
+    fun loadAfter_WithSuccessEmptyData_ShouldPostAdditionalEmptySuccessState() {
+        val paramKey = 100
+        val params = LoadParams(paramKey, 0)
+        val callback = mockk<LoadCallback<Int, Character>>(relaxed = true)
+        val emptyData = emptyList<Character>()
+        val response = mockk<BaseListResponse<Character>>()
+
+        coEvery { repository.getCharacters(any()) } returns response
+
+        dataSource.loadAfter(params, callback)
+
+        coVerify { repository.getCharacters(paramKey) }
+        verify { callback.onResult(emptyData, paramKey + PAGE_MAX_ELEMENTS) }
+        verify {
+            networkState.postValue(
+                NetworkState.Success(
+                    isAdditional = true,
+                    isEmptyResponse = true
+                )
+            )
+        }
+    }
+
+    @Test
+    fun loadAfter_WithSuccessData_ShouldPostAdditionalNonEmptySuccessState() {
+        val paramKey = 0
+        val params = LoadParams(paramKey, 0)
+        val callback = mockk<LoadCallback<Int, Character>>(relaxed = true)
+        val data = listOf(mockk<Character>())
+        val response = mockk<BaseListResponse<Character>>()
+
+        coEvery { repository.getCharacters(any()) } returns response
+
+        dataSource.loadAfter(params, callback)
+
+        coVerify { repository.getCharacters(paramKey) }
+        verify { callback.onResult(data, paramKey + PAGE_MAX_ELEMENTS) }
+        verify {
+            networkState.postValue(
+                NetworkState.Success(
+                    isAdditional = true,
+                    isEmptyResponse = false
+                )
+            )
+        }
+    }
+
+    @Test
+    fun loadBefore_ShouldDoNothing() {
+        val params = mockk<LoadParams<Int>>()
+        val callback = mockk<LoadCallback<Int, Character>>()
+        dataSource.loadBefore(params, callback)
+
+        verify { params wasNot Called }
+        verify { callback wasNot Called }
+    }
+    
 }

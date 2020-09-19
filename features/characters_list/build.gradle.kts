@@ -53,6 +53,9 @@ dependencies {
     implementation(BuildDependencies.PAGING_KTX)
     implementation(BuildDependencies.TIMBER)
     implementation(BuildDependencies.DAGGER_HILT)
+    implementation(BuildDependencies.NAVIGATION_FRAGMENT)
+    implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
+    implementation(BuildDependencies.VIEWMODEL)
 
     kapt(BuildDependencies.DATABINDING)
     kapt(BuildDependencies.DAGGER_HILT_KAPT)

@@ -2,6 +2,9 @@ package dependencies
 
 object BuildDependencies {
 
+    const val LIVEDATA_KTX = "androidx.lifecycle:lifecycle-livedata-ktx:${BuildVersions.LIFECYCLE}"
+    const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:${BuildVersions.LIFECYCLE}"
+    const val LIFECYCLE_EXTENSIONS = "androidx.lifecycle:lifecycle-extensions:${BuildVersions.LIFECYCLE}"
     const val DAGGER_HILT = "com.google.dagger:hilt-android:${BuildVersions.DAGGER_HILT}"
     const val DAGGER_HILT_KAPT = "com.google.dagger:hilt-android-compiler:${BuildVersions.DAGGER_HILT}"
     const val PAGING_KTX = "androidx.paging:paging-runtime-ktx:${BuildVersions.PAGING_KTX}"
