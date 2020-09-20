@@ -20,6 +20,7 @@ object BuildVersions {
     const val PAGING_KTX = "2.1.2"
     const val DAGGER_HILT = "2.28-alpha"
     const val LIFECYCLE = "2.2.0"
+    const val COIL = "0.13.0"
 
     // Tests
     const val JUNIT = "4.13"

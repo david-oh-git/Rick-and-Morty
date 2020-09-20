@@ -2,6 +2,7 @@ package dependencies
 
 object BuildDependencies {
 
+    const val COIL = "io.coil-kt:coil:${BuildVersions.COIL}"
     const val LIVEDATA_KTX = "androidx.lifecycle:lifecycle-livedata-ktx:${BuildVersions.LIFECYCLE}"
     const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:${BuildVersions.LIFECYCLE}"
     const val LIFECYCLE_EXTENSIONS = "androidx.lifecycle:lifecycle-extensions:${BuildVersions.LIFECYCLE}"

@@ -8,6 +8,7 @@ plugins {
 repositories {
     google()
     jcenter()
+    mavenCentral()
 }
 
 kotlinDslPluginOptions {

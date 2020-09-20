@@ -5,6 +5,7 @@ plugins {
     id(BuildPlugins.ANDROID_DYNAMIC_FEATURE)
     kotlin(BuildPlugins.KOTLIN_ANDROID)
     kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
+    kotlin(BuildPlugins.KOTLIN_KAPT)
 }
 
 android {
@@ -44,4 +45,5 @@ dependencies {
 
     implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
     implementation(BuildDependencies.TIMBER)
+    implementation(BuildDependencies.COIL)
 }
