@@ -2,6 +2,7 @@ package dependencies
 
 object BuildDependencies {
 
+    const val RECYCLE_VIEW = "androidx.recyclerview:recyclerview:${BuildVersions.RECYCLE_VIEW}"
     const val COIL = "io.coil-kt:coil:${BuildVersions.COIL}"
     const val LIVEDATA_KTX = "androidx.lifecycle:lifecycle-livedata-ktx:${BuildVersions.LIFECYCLE}"
     const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:${BuildVersions.LIFECYCLE}"
@@ -31,6 +32,6 @@ object BuildDependencies {
     const val MOSHI_KTX = "com.squareup.moshi:moshi-kotlin:${BuildVersions.MOSHI}"
     const val MATERIAL_COMPONENTS = "com.google.android.material:material:${BuildVersions.MATERIAL_COMPONENTS}"
     const val KOTLIN_COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${BuildVersions.KOTLIN_COROUTINES}"
-    val KOTLIN_COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${BuildVersions.KOTLIN_COROUTINES}"
+    const val KOTLIN_COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${BuildVersions.KOTLIN_COROUTINES}"
 
 }

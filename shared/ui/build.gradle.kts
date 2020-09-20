@@ -46,4 +46,5 @@ dependencies {
     implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
     implementation(BuildDependencies.TIMBER)
     implementation(BuildDependencies.COIL)
+    implementation(BuildDependencies.RECYCLE_VIEW)
 }
