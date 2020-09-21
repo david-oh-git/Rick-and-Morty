@@ -37,6 +37,7 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
 }
 
 dependencies {
@@ -47,4 +48,5 @@ dependencies {
     implementation(BuildDependencies.TIMBER)
     implementation(BuildDependencies.COIL)
     implementation(BuildDependencies.RECYCLE_VIEW)
+    implementation(BuildDependencies.PAGING_KTX)
 }
