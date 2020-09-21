@@ -192,7 +192,7 @@ internal class CharactersListViewModelTest {
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
 
-        viewModel.refreshCharacterList()
+        viewModel.refreshLoadedCharacterList()
 
 
         verify { dataSourceFactory.refresh() }

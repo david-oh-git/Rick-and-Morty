@@ -71,6 +71,7 @@ dependencies {
     testImplementation(TestDependencies.COROUTINE_TEST)
     testImplementation(TestDependencies.ARCH_CORE)
     testImplementation(TestDependencies.MOCKK)
+    implementation(BuildDependencies.SWIPE_REFRESH_LAYOUT)
 
     testRuntimeOnly(TestDependencies.JUNIT5_ENGINE)
 }

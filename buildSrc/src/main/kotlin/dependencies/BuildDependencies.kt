@@ -2,6 +2,7 @@ package dependencies
 
 object BuildDependencies {
 
+    const val SWIPE_REFRESH_LAYOUT = "androidx.swiperefreshlayout:swiperefreshlayout:${BuildVersions.SWIPE_REFRESH_LAYOUT}"
     const val RECYCLE_VIEW = "androidx.recyclerview:recyclerview:${BuildVersions.RECYCLE_VIEW}"
     const val COIL = "io.coil-kt:coil:${BuildVersions.COIL}"
     const val LIVEDATA_KTX = "androidx.lifecycle:lifecycle-livedata-ktx:${BuildVersions.LIFECYCLE}"

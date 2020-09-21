@@ -3,4 +3,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="list_error_msg">Error fetching character</string>
     <string name="retry_btn">Retry</string>
+    <string name="characters_list_error_text">Error ! Cant obtain character list.</string>
+    <string name="characters_list_empty_text">There are no characters to displays.</string>
 </resources>

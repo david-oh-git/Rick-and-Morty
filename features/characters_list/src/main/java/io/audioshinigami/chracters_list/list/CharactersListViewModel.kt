@@ -56,7 +56,7 @@ class CharactersListViewModel(
         }
     }
 
-    fun refreshCharacterList(){
+    fun refreshLoadedCharacterList(){
         dataSourceFactory.refresh()
     }
 

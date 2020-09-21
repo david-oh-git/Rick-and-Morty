@@ -22,6 +22,7 @@ object BuildVersions {
     const val LIFECYCLE = "2.2.0"
     const val COIL = "0.13.0"
     const val RECYCLE_VIEW = "1.1.0"
+    const val SWIPE_REFRESH_LAYOUT = "1.1.0"
 
     // Tests
     const val JUNIT = "4.13"
