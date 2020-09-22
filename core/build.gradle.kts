@@ -41,8 +41,10 @@ dependencies {
     implementation(BuildDependencies.HTTP_LOGGING)
     implementation(BuildDependencies.MOSHI)
     implementation(BuildDependencies.MOSHI_KTX)
+    implementation(BuildDependencies.DAGGER_HILT)
 
     kapt(BuildDependencies.ROOM_KAPT)
+    kapt(BuildDependencies.DAGGER_HILT_KAPT)
 
     // Tests
     testImplementation(TestDependencies.JUNIT5_API)

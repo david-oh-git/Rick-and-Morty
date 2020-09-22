@@ -14,17 +14,17 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
-
+import javax.inject.Inject
 
 const val PAGE_INIT_ELEMENT = 0
 const val PAGE_MAX_ELEMENTS = 20
 
 @ExperimentalCoroutinesApi
-open class CharactersPageDataSource(
+open class CharactersPageDataSource @Inject constructor(
     @VisibleForTesting(otherwise = PRIVATE )
     val repository: RickAndMortyRepository,
     @VisibleForTesting(otherwise = PRIVATE )
-    val scope: CoroutineScope,
+    val scope: CoroutineScope
 
 ): PageKeyedDataSource<Int, Character>() {
 
@@ -40,6 +40,7 @@ open class CharactersPageDataSource(
     ) {
         networkState.postValue( NetworkState.Loading())
         networkStateFlow.value = NetworkState.Loading()
+
 
         scope.launch(
             CoroutineExceptionHandler { _, throwable ->

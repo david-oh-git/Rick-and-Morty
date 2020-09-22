@@ -50,7 +50,7 @@ internal class RickAndMortyRepositoryTest {
     fun getCharacter() = runBlockingTest {
         val characterId = 12L
         val capturedId = argumentCaptor<Long>()
-        rickAndMortyRepository.getCharater(characterId)
+        rickAndMortyRepository.getCharacter(characterId)
 
         verify(service).getCharacter(capturedId.capture())
 

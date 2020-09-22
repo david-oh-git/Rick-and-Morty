@@ -5,8 +5,9 @@ import androidx.annotation.VisibleForTesting.PRIVATE
 import io.audioshinigami.core.network.responses.BaseResponse
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.core.network.services.RickAndMortyService
+import javax.inject.Inject
 
-class RickAndMortyRepository(
+class RickAndMortyRepository @Inject constructor(
     @VisibleForTesting(otherwise = PRIVATE )
     internal val service: RickAndMortyService
 ) {
@@ -16,7 +17,7 @@ class RickAndMortyRepository(
      *
      * @param id The character's id.
      */
-    suspend fun getCharater(id: Long): BaseResponse<Character> =
+    suspend fun getCharacter(id: Long): BaseResponse<Character> =
         service.getCharacter(id)
 
     /**

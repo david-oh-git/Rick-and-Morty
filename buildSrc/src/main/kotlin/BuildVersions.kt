@@ -23,6 +23,7 @@ object BuildVersions {
     const val COIL = "0.13.0"
     const val RECYCLE_VIEW = "1.1.0"
     const val SWIPE_REFRESH_LAYOUT = "1.1.0"
+    const val HILT_VIEWMODEL = "1.0.0-alpha01"
 
     // Tests
     const val JUNIT = "4.13"

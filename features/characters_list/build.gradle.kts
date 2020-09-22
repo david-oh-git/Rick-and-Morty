@@ -56,8 +56,10 @@ dependencies {
     implementation(BuildDependencies.NAVIGATION_FRAGMENT)
     implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
     implementation(BuildDependencies.VIEWMODEL)
+    implementation(BuildDependencies.HILT_VIEWMODEL)
 
     kapt(BuildDependencies.DATABINDING)
+    kapt(BuildDependencies.HILT_VIEWMODEL_KAPT)
     kapt(BuildDependencies.DAGGER_HILT_KAPT)
 
     // Tests

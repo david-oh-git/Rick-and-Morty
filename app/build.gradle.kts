@@ -4,6 +4,7 @@ import dependencies.TestDependencies
 
 plugins {
     id(BuildPlugins.ANDROID_APPLICATION)
+    id(BuildPlugins.DAGGER_HILT_PLUGIN)
     kotlin(BuildPlugins.KOTLIN_ANDROID)
     kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
     kotlin(BuildPlugins.KOTLIN_KAPT)
@@ -92,6 +93,10 @@ dependencies {
     implementation(BuildDependencies.PLAY_CORE)
     implementation(BuildDependencies.DYNAMIC_FEATURES)
     implementation(BuildDependencies.MATERIAL_COMPONENTS)
+    implementation(BuildDependencies.DAGGER_HILT)
+    implementation(BuildDependencies.TIMBER)
+
+    kapt(BuildDependencies.DAGGER_HILT_KAPT)
 
     testImplementation(TestDependencies.JUNIT)
     androidTestImplementation(TestDependencies.ANDROIDX_JUNIT)

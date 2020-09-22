@@ -26,6 +26,9 @@ class CharactersListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding = FragmentCharactersListBinding.inflate(inflater)
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+        }
         return binding.root
     }
 

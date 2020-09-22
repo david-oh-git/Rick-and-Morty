@@ -6,13 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import io.audioshinigami.core.network.responses.characters.Character
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import javax.inject.Inject
 import javax.inject.Provider
 
 /**
  *  Factory for data source,
  */
 @ExperimentalCoroutinesApi
-class CharactersPageDataSourceFactory(
+class CharactersPageDataSourceFactory @Inject constructor(
     @VisibleForTesting(otherwise = PRIVATE)
     val providerDataSource: Provider<CharactersPageDataSource>
 ): DataSource.Factory<Int, Character>() {

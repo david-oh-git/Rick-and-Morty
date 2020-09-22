@@ -2,6 +2,7 @@ package io.audioshinigami.chracters_list.list
 
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.VisibleForTesting.PRIVATE
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
@@ -12,7 +13,7 @@ import io.audioshinigami.ui.livedata.SingleLiveData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
-class CharactersListViewModel(
+class CharactersListViewModel @ViewModelInject constructor(
     @VisibleForTesting(otherwise = PRIVATE)
     val dataSourceFactory: CharactersPageDataSourceFactory
 ): ViewModel() {
