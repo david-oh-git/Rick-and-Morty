@@ -5,6 +5,7 @@ object BuildPlugins {
     const val ANDROID_LIBRARY = "com.android.library"
     const val COMMON_ANDROID_LIBRARY = "com.android.library"
     const val DAGGER_HILT_PLUGIN = "dagger.hilt.android.plugin"
+    const val NAVIGATION_SAFE_ARGS = "androidx.navigation.safeargs.kotlin"
 
     const val KOTLIN_ANDROID = "android"
     const val KOTLIN_ANDROID_EXTENSIONS = "android.extensions"

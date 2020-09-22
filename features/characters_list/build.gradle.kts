@@ -72,6 +72,7 @@ dependencies {
     testImplementation(TestDependencies.ARCH_CORE)
     testImplementation(TestDependencies.MOCKK)
     implementation(BuildDependencies.SWIPE_REFRESH_LAYOUT)
+    implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
 
     testRuntimeOnly(TestDependencies.JUNIT5_ENGINE)
 }

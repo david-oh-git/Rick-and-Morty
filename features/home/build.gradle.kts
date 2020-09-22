@@ -42,6 +42,7 @@ dependencies {
 
     implementation( project(BuildModules.APP))
     implementation( project(BuildModules.Features.UI))
+    implementation( project(BuildModules.Features.CHARACTERS_LIST))
 
     implementation(BuildDependencies.NAVIGATION_FRAGMENT)
     implementation(BuildDependencies.CONSTRAINT_LAYOUT)
