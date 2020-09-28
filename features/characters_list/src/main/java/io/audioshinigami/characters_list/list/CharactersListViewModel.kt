@@ -1,19 +1,19 @@
-package io.audioshinigami.chracters_list.list
+package io.audioshinigami.characters_list.list
 
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.VisibleForTesting.PRIVATE
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
-import io.audioshinigami.chracters_list.list.paging.CharactersPageDataSourceFactory
-import io.audioshinigami.chracters_list.list.paging.PAGE_MAX_ELEMENTS
+import io.audioshinigami.characters_list.list.paging.CharactersPageDataSourceFactory
+import io.audioshinigami.characters_list.list.paging.PAGE_MAX_ELEMENTS
 import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.ui.livedata.SingleLiveData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
-class CharactersListViewModel @ViewModelInject constructor(
+class CharactersListViewModel @Inject constructor(
     @VisibleForTesting(otherwise = PRIVATE)
     val dataSourceFactory: CharactersPageDataSourceFactory
 ): ViewModel() {

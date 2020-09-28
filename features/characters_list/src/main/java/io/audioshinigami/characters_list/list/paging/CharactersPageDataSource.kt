@@ -1,9 +1,10 @@
-package io.audioshinigami.chracters_list.list.paging
+package io.audioshinigami.characters_list.list.paging
 
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.VisibleForTesting.PRIVATE
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
+import io.audioshinigami.characters_list.list.di.CorotineScopeIo
 import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.core.network.repositories.RickAndMortyRepository
 import io.audioshinigami.core.network.responses.BaseListResponse
@@ -24,7 +25,7 @@ open class CharactersPageDataSource @Inject constructor(
     @VisibleForTesting(otherwise = PRIVATE )
     val repository: RickAndMortyRepository,
     @VisibleForTesting(otherwise = PRIVATE )
-    val scope: CoroutineScope
+    @CorotineScopeIo val scope: CoroutineScope
 
 ): PageKeyedDataSource<Int, Character>() {
 

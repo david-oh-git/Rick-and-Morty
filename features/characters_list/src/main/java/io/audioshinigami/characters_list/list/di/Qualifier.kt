@@ -1,4 +1,4 @@
-package io.audioshinigami.chracters_list.list.di
+package io.audioshinigami.characters_list.list.di
 
 import javax.inject.Qualifier
 

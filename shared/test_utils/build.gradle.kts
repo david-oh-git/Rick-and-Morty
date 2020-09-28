@@ -5,6 +5,7 @@ plugins {
     id(BuildPlugins.ANDROID_LIBRARY)
     kotlin(BuildPlugins.KOTLIN_ANDROID)
     kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
+    kotlin(BuildPlugins.KOTLIN_KAPT)
 }
 
 android {
@@ -38,6 +39,8 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+    buildFeatures.dataBinding = true
 }
 
 dependencies {

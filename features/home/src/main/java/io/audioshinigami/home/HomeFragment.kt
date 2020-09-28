@@ -11,6 +11,11 @@ import io.audioshinigami.home.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+
+    private val navGraphIds = listOf(
+        R.navigation.nav_characters_list_graph
+    )
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +37,8 @@ class HomeFragment : Fragment() {
         when(requireActivity()){
             is AppCompatActivity -> (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
         }
+
+
     }
 
     private fun setupBottomNavigationBar(){

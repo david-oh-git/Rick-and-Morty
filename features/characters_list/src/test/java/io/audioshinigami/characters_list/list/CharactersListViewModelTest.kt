@@ -1,11 +1,11 @@
-package io.audioshinigami.chracters_list.list
+package io.audioshinigami.characters_list.list
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.google.common.truth.Truth.assertThat
-import io.audioshinigami.chracters_list.list.paging.CharactersPageDataSource
-import io.audioshinigami.chracters_list.list.paging.CharactersPageDataSourceFactory
+import io.audioshinigami.characters_list.list.paging.CharactersPageDataSource
+import io.audioshinigami.characters_list.list.paging.CharactersPageDataSourceFactory
 import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.test_utils.MainCoroutineRule
 import io.mockk.MockKAnnotations

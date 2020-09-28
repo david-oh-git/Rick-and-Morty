@@ -2,10 +2,10 @@
 import dependencies.BuildDependencies
 
 plugins {
-    id(BuildPlugins.ANDROID_DYNAMIC_FEATURE)
-    kotlin(BuildPlugins.KOTLIN_ANDROID)
-    kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
-    kotlin(BuildPlugins.KOTLIN_KAPT)
+    id(BuildPlugins.ANDROID_LIBRARY)
+    id("kotlin-android")
+    id("kotlin-android-extensions")
+    id("kotlin-kapt")
 }
 
 android {
@@ -38,15 +38,16 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
+    buildFeatures.dataBinding = true
+
 }
 
 dependencies {
-
-    implementation( project(BuildModules.APP))
 
     implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
     implementation(BuildDependencies.TIMBER)
     implementation(BuildDependencies.COIL)
     implementation(BuildDependencies.RECYCLE_VIEW)
     implementation(BuildDependencies.PAGING_KTX)
+    implementation(BuildDependencies.APPCOMPAT)
 }

@@ -1,7 +1,7 @@
-package io.audioshinigami.chracters_list.list.adapter.viewholders
+package io.audioshinigami.characters_list.list.adapter.viewholders
 
 import android.view.LayoutInflater
-import io.audioshinigami.chracters_list.databinding.ListItemLoadingBinding
+import io.audioshinigami.characters_list.databinding.ListItemLoadingBinding
 import io.audioshinigami.ui.base.BaseViewHolder
 
 /**

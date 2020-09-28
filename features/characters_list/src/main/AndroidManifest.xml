@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="io.audioshinigami.chracters_list">
+    package="io.audioshinigami.characters_list">
 
     <dist:module
         dist:instant="true"
@@ -10,4 +10,5 @@
         </dist:delivery>
         <dist:fusing dist:include="false" />
     </dist:module>
+
 </manifest>

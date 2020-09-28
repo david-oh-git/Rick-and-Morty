@@ -1,4 +1,4 @@
-package io.audioshinigami.chracters_list.list.paging
+package io.audioshinigami.characters_list.list.paging
 
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.VisibleForTesting.PRIVATE

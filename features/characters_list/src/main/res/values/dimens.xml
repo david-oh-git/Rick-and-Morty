@@ -3,4 +3,5 @@
     <dimen name="character_list_item_card_radius">5dp</dimen>
     <dimen name="character_list_item_card_elevation">5dp</dimen>
     <dimen name="characters_list_loading_size">50dp</dimen>
+    <dimen name="characters_list_item_padding">2dp</dimen>
 </resources>

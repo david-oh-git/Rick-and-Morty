@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="io.audioshinigami.chracters_list.list.CharactersListViewModel" />
+            type="io.audioshinigami.characters_list.list.CharactersListViewModel" />
 
     </data>
 

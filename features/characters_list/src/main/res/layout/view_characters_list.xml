@@ -7,13 +7,13 @@
 
         <variable
             name="viewState"
-            type="io.audioshinigami.chracters_list.list.CharactersListViewState" />
+            type="io.audioshinigami.characters_list.list.CharactersListViewState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:visible="@{viewState.isLoaded || viewState.addLoading || viewState.addError || viewState.NoMoreElements}">
+        app:visible="@{viewState.isLoaded || viewState.addLoading || viewState.addError || viewState.NoMoreElements}" >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/characters_list"
@@ -21,8 +21,8 @@
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="@integer/characters_list_spans"
-            app:itemDecorationSpacing="@{@dimen/characters_list_item_padding}"
-            tools:listitem="@layout/list_item_character" />
+            tools:listitem="@layout/list_item_character"
+            app:itemDecorationSpacing="@{@dimen/characters_list_item_padding}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -28,6 +28,8 @@ android {
         testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
     }
 
+    buildFeatures.dataBinding = true
+
 }
 
 dependencies {

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <data>
 
@@ -10,11 +12,12 @@
 
         <variable
             name="viewModel"
-            type="io.audioshinigami.chracters_list.list.CharactersListViewModel" />
+            type="io.audioshinigami.characters_list.list.CharactersListViewModel" />
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:onClick="@{ () -> viewModel.openCharacterDetail(character.id)}"
+        android:onClick="@{ () -> viewModel.openCharacterDetail( character.id) }"
         app:cardCornerRadius="@dimen/character_list_item_card_radius"
         app:cardElevation="@dimen/character_list_item_card_elevation"
         android:layout_width="match_parent"
@@ -30,7 +33,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/character_name"
-                app:imageUrl="@{ character.image }"
+                app:url="@{ character.image }"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 

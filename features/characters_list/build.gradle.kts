@@ -9,7 +9,6 @@ plugins {
     kotlin(BuildPlugins.KOTLIN_ANDROID)
     kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
     kotlin(BuildPlugins.KOTLIN_KAPT)
-
 }
 
 android {
@@ -32,7 +31,6 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
-    buildFeatures.viewBinding = true
     buildFeatures.dataBinding = true
 
 }
@@ -40,7 +38,6 @@ android {
 dependencies {
 
     implementation( project(BuildModules.APP))
-    implementation( project(BuildModules.Features.UI))
     implementation( project(BuildModules.CORE))
 
 
@@ -58,7 +55,6 @@ dependencies {
     implementation(BuildDependencies.VIEWMODEL)
     implementation(BuildDependencies.HILT_VIEWMODEL)
 
-    kapt(BuildDependencies.DATABINDING)
     kapt(BuildDependencies.HILT_VIEWMODEL_KAPT)
     kapt(BuildDependencies.DAGGER_HILT_KAPT)
 

@@ -1,8 +1,8 @@
-package io.audioshinigami.chracters_list.list.adapter.viewholders
+package io.audioshinigami.characters_list.list.adapter.viewholders
 
 import android.view.LayoutInflater
-import io.audioshinigami.chracters_list.databinding.ListItemCharacterBinding
-import io.audioshinigami.chracters_list.list.CharactersListViewModel
+import io.audioshinigami.characters_list.databinding.ListItemCharacterBinding
+import io.audioshinigami.characters_list.list.CharactersListViewModel
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.base.BaseViewHolder
 
@@ -24,5 +24,6 @@ class CharacterViewHolder(
             character = _character
             executePendingBindings()
         }
+
     }
 }

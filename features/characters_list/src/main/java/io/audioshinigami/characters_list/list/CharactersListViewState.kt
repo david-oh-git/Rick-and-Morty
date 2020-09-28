@@ -1,4 +1,4 @@
-package io.audioshinigami.chracters_list.list
+package io.audioshinigami.characters_list.list
 
 import io.audioshinigami.ui.BaseViewState
 

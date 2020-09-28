@@ -1,4 +1,4 @@
-package io.audioshinigami.chracters_list.list.paging
+package io.audioshinigami.characters_list.list.paging
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData

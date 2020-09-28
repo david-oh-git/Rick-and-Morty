@@ -33,7 +33,6 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
-    buildFeatures.viewBinding = true
     buildFeatures.dataBinding = true
 
 }
@@ -41,7 +40,6 @@ android {
 dependencies {
 
     implementation( project(BuildModules.APP))
-    implementation( project(BuildModules.Features.UI))
     implementation( project(BuildModules.Features.CHARACTERS_LIST))
 
     implementation(BuildDependencies.NAVIGATION_FRAGMENT)
@@ -49,5 +47,5 @@ dependencies {
     implementation(BuildDependencies.MATERIAL_COMPONENTS)
     implementation(BuildDependencies.APPCOMPAT)
 
-    kapt(BuildDependencies.DATABINDING)
+
 }

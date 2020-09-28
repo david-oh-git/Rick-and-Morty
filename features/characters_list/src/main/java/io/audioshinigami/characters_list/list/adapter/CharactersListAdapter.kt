@@ -1,14 +1,14 @@
-package io.audioshinigami.chracters_list.list.adapter
+package io.audioshinigami.characters_list.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import io.audioshinigami.chracters_list.list.CharactersListViewModel
-import io.audioshinigami.chracters_list.list.adapter.viewholders.CharacterViewHolder
-import io.audioshinigami.chracters_list.list.adapter.viewholders.ErrorViewHolder
-import io.audioshinigami.chracters_list.list.adapter.viewholders.LoadingViewHolder
+import io.audioshinigami.characters_list.list.CharactersListViewModel
+import io.audioshinigami.characters_list.list.adapter.viewholders.CharacterViewHolder
+import io.audioshinigami.characters_list.list.adapter.viewholders.ErrorViewHolder
+import io.audioshinigami.characters_list.list.adapter.viewholders.LoadingViewHolder
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.base.BasePagedListAdapter
 import javax.inject.Inject

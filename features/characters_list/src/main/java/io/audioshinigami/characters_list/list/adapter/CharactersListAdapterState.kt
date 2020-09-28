@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.audioshinigami.chracters_list.list.adapter
+package io.audioshinigami.characters_list.list.adapter
 
 
 /**

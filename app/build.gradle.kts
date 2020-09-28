@@ -73,19 +73,17 @@ android {
 
     dynamicFeatures = mutableSetOf(
         BuildModules.Features.HOME,
-        BuildModules.Features.CHARACTERS_LIST,
-        BuildModules.Features.UI
+        BuildModules.Features.CHARACTERS_LIST
     )
 }
 
 dependencies {
     implementation( fileTree( mapOf( "dir" to "libs", "include" to  listOf("*.jar")  )))
 
+    api( project(BuildModules.Features.UI))
 
     implementation(BuildDependencies.KOTLIN)
     implementation(BuildDependencies.KOTLIN_REFLECT)
-    implementation(BuildDependencies.KOTLIN_COROUTINES_ANDROID)
-    implementation(BuildDependencies.KOTLIN_COROUTINES_CORE)
     implementation(BuildDependencies.CORE_KTX)
     implementation(BuildDependencies.APPCOMPAT)
     implementation(BuildDependencies.CONSTRAINT_LAYOUT)
@@ -95,7 +93,7 @@ dependencies {
     implementation(BuildDependencies.MATERIAL_COMPONENTS)
     implementation(BuildDependencies.DAGGER_HILT)
     implementation(BuildDependencies.TIMBER)
-
+    
     kapt(BuildDependencies.DAGGER_HILT_KAPT)
 
     testImplementation(TestDependencies.JUNIT)

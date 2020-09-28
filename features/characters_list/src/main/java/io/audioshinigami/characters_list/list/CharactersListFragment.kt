@@ -1,14 +1,15 @@
-package io.audioshinigami.chracters_list.list
+package io.audioshinigami.characters_list.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.paging.PagedList
-import io.audioshinigami.chracters_list.databinding.FragmentCharactersListBinding
-import io.audioshinigami.chracters_list.list.adapter.CharactersListAdapter
-import io.audioshinigami.chracters_list.list.adapter.CharactersListAdapterState
+import io.audioshinigami.characters_list.databinding.FragmentCharactersListBinding
+import io.audioshinigami.characters_list.list.adapter.CharactersListAdapter
+import io.audioshinigami.characters_list.list.adapter.CharactersListAdapterState
 import io.audioshinigami.core.network.responses.characters.Character
 
 /**
@@ -20,6 +21,8 @@ class CharactersListFragment : Fragment() {
 
     lateinit var viewAdapter: CharactersListAdapter
 
+    private val _viewModel: CharactersListViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +31,10 @@ class CharactersListFragment : Fragment() {
         val binding = FragmentCharactersListBinding.inflate(inflater)
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
+            viewModel = _viewModel
         }
+
+
         return binding.root
     }
 
