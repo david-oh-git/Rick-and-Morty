@@ -7,7 +7,6 @@ import timber.log.Timber
 @HiltAndroidApp
 class RickAndMortyApp: Application() {
 
-
     override fun onCreate() {
         super.onCreate()
 

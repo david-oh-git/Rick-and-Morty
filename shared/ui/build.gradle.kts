@@ -50,4 +50,6 @@ dependencies {
     implementation(BuildDependencies.RECYCLE_VIEW)
     implementation(BuildDependencies.PAGING_KTX)
     implementation(BuildDependencies.APPCOMPAT)
+    implementation(BuildDependencies.NAVIGATION_FRAGMENT)
+    implementation(BuildDependencies.MATERIAL_COMPONENTS)
 }

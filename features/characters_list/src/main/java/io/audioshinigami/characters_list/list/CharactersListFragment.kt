@@ -1,5 +1,6 @@
 package io.audioshinigami.characters_list.list
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.paging.PagedList
 import io.audioshinigami.characters_list.databinding.FragmentCharactersListBinding
 import io.audioshinigami.characters_list.list.adapter.CharactersListAdapter
 import io.audioshinigami.characters_list.list.adapter.CharactersListAdapterState
+import io.audioshinigami.characters_list.list.di.inject
 import io.audioshinigami.core.network.responses.characters.Character
 
 /**
@@ -22,6 +24,12 @@ class CharactersListFragment : Fragment() {
     lateinit var viewAdapter: CharactersListAdapter
 
     private val _viewModel: CharactersListViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

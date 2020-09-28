@@ -10,7 +10,7 @@ plugins {
     kotlin(BuildPlugins.KOTLIN_ANDROID)
     kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
     kotlin(BuildPlugins.KOTLIN_KAPT)
-
+    id(BuildPlugins.DAGGER_HILT_PLUGIN)
 }
 android {
     compileSdkVersion(BuildAndroidConfig.COMPILE_SDK_VERSION)
@@ -43,9 +43,15 @@ dependencies {
     implementation( project(BuildModules.Features.CHARACTERS_LIST))
 
     implementation(BuildDependencies.NAVIGATION_FRAGMENT)
+    implementation(BuildDependencies.NAVIGATION_UI)
     implementation(BuildDependencies.CONSTRAINT_LAYOUT)
     implementation(BuildDependencies.MATERIAL_COMPONENTS)
     implementation(BuildDependencies.APPCOMPAT)
+    implementation(BuildDependencies.DAGGER_HILT)
+    implementation(BuildDependencies.HILT_VIEWMODEL)
+
+    kapt(BuildDependencies.HILT_VIEWMODEL_KAPT)
+    kapt(BuildDependencies.DAGGER_HILT_KAPT)
 
 
 }

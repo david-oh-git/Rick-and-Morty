@@ -7,5 +7,4 @@ import dagger.hilt.android.components.ActivityComponent
 
 @EntryPoint
 @InstallIn(ActivityComponent::class)
-interface AppComponent {
-}
+interface AppComponent

@@ -5,10 +5,10 @@ import dependencies.TestDependencies
 plugins {
     id(BuildPlugins.ANDROID_DYNAMIC_FEATURE)
     id("kotlin-android")
-    id(BuildPlugins.DAGGER_HILT_PLUGIN)
     kotlin(BuildPlugins.KOTLIN_ANDROID)
     kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
     kotlin(BuildPlugins.KOTLIN_KAPT)
+    id(BuildPlugins.DAGGER_HILT_PLUGIN)
 }
 
 android {
