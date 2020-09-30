@@ -50,15 +50,18 @@ open class CharactersPageDataSource @Inject constructor(
                 }
                 networkState.postValue(NetworkState.Error() )
                 networkStateFlow.value = NetworkState.Error()
-                Timber.d("Error loading data. \n Error msg: ${throwable.message}")
-                Timber.d("Error :\n ${throwable.printStackTrace()}")
             }
 
         ) {
             val response = repository.getCharacters(PAGE_INIT_ELEMENT)
-            callback.onResult(response.results, null , PAGE_MAX_ELEMENTS)
-            networkState.postValue( NetworkState.Success( isEmptyResponse = response.results.isEmpty()))
-            networkStateFlow.value = NetworkState.Success( isEmptyResponse = response.results.isEmpty() )
+            val data = response.results
+
+            Timber.d("Size of result is ${data.size}")
+            callback.onResult(data, null , PAGE_MAX_ELEMENTS)
+
+            networkState.postValue( NetworkState.Success( isEmptyResponse = data.isEmpty() ))
+            networkStateFlow.value = NetworkState.Success( isEmptyResponse = data.isEmpty() )
+
         }
     }
 
@@ -78,9 +81,16 @@ open class CharactersPageDataSource @Inject constructor(
 
         ) {
             val response = repository.getCharacters(params.key)
-            callback.onResult(response.results, params.key + 1)
-            networkState.postValue( NetworkState.Success( isEmptyResponse = response.results.isEmpty()))
-            networkStateFlow.value = NetworkState.Success( isEmptyResponse = response.results.isEmpty() )
+            val data =  response.results
+            callback.onResult(data, params.key + 1)
+
+            networkState.postValue( NetworkState.Success(
+                true,data.isEmpty() )
+            )
+            networkStateFlow.value = NetworkState.Success(
+                true, data.isEmpty()
+            )
+
         }
     }
 

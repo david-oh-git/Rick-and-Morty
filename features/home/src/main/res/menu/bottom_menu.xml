@@ -7,10 +7,12 @@
         android:title="@string/home_tab_charactes" />
 
     <item
+        android:visible="false"
         android:icon="@drawable/ic_episodes"
         android:title="@string/home_tab_episodes"/>
 
     <item
+        android:visible="false"
         android:icon="@drawable/ic_locations"
         android:title="@string/home_tab_locations" />
 

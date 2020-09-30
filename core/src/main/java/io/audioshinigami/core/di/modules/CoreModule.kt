@@ -1,4 +1,4 @@
-package io.audioshinigami.core.di
+package io.audioshinigami.core.di.modules
 
 import dagger.Module
 import dagger.Provides

@@ -10,9 +10,9 @@ import io.audioshinigami.characters_list.list.paging.PAGE_MAX_ELEMENTS
 import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.ui.livedata.SingleLiveData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import timber.log.Timber
 import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
 class CharactersListViewModel @Inject constructor(
     @VisibleForTesting(otherwise = PRIVATE)
     val dataSourceFactory: CharactersPageDataSourceFactory
@@ -27,6 +27,7 @@ class CharactersListViewModel @Inject constructor(
     val data = LivePagedListBuilder(dataSourceFactory, PAGE_MAX_ELEMENTS).build()
     val state = Transformations.map(networkState) {
 
+        Timber.d("state is $it")
         when(it){
 
             is NetworkState.Success -> {
@@ -39,6 +40,14 @@ class CharactersListViewModel @Inject constructor(
                 }
             }
 
+            is NetworkState.Loading -> {
+                if(it.isAdditional){
+                    CharactersListViewState.AddLoading
+                }else{
+                    CharactersListViewState.Loading
+                }
+            }
+
             is NetworkState.Error -> {
                 if(it.isAdditional){
                     CharactersListViewState.AddError
@@ -47,13 +56,7 @@ class CharactersListViewModel @Inject constructor(
                 }
             }
 
-            is NetworkState.Loading -> {
-                if(it.isAdditional){
-                    CharactersListViewState.AddLoading
-                }else{
-                    CharactersListViewState.Loading
-                }
-            }
+
         }
     }
 

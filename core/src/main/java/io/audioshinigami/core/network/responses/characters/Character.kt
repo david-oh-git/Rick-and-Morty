@@ -30,7 +30,7 @@ data class Character(
     val origin: BaseLocation,
     val location: BaseLocation,
     val image: String,
-    val episode: List<EndPoint>,
+    val episode: List<String>,
     val url: String,
     val created: String
 )

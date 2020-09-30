@@ -10,6 +10,7 @@ allprojects {
 
 }
 
+
 tasks.register("clean").configure {
     delete(rootProject.buildDir)
 }

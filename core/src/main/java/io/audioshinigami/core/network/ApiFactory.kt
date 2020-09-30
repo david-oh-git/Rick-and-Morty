@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiFactory {
 
-    private val API_BASE_URL = "https://rickandmortyapi.com/api"
+    private val API_BASE_URL = "https://rickandmortyapi.com/api/"
 
     /**
      *  Provider method for [HttpLoggingInterceptor] for HTTP client

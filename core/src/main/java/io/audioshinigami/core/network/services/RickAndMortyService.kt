@@ -2,9 +2,11 @@ package io.audioshinigami.core.network.services
 
 import io.audioshinigami.core.network.responses.BaseListResponse
 import io.audioshinigami.core.network.responses.BaseResponse
+import io.audioshinigami.core.network.responses.DataResponse
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.core.network.responses.episodes.Episode
 import io.audioshinigami.core.network.responses.locations.Location
+import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -31,7 +33,7 @@ interface RickAndMortyService {
     @GET(CHARACTER_ENDPOINT)
     suspend fun getCharacters(
         @Query("page") page: Int
-    ): BaseListResponse<Character>
+    ): DataResponse<Character>
 
     /**
      *  Fetches a list of characters based on filter parameters
@@ -116,8 +118,8 @@ interface RickAndMortyService {
     ):BaseListResponse<Location>
 
     companion object {
-        private const val CHARACTER_ENDPOINT = "/character/"
-        private const val LOCATION_ENDPOINT = "/location/"
-        private const val EPISODE_ENDPOINT = "/episode"
+        private const val CHARACTER_ENDPOINT = "character/"
+        private const val LOCATION_ENDPOINT = "location/"
+        private const val EPISODE_ENDPOINT = "episode/"
     }
 }

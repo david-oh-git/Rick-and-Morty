@@ -80,6 +80,7 @@ android {
 dependencies {
     implementation( fileTree( mapOf( "dir" to "libs", "include" to  listOf("*.jar")  )))
 
+    implementation( project(BuildModules.CORE))
     api( project(BuildModules.Features.UI))
 
     implementation(BuildDependencies.KOTLIN)

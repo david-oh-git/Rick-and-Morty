@@ -26,6 +26,12 @@ internal enum class ItemView(val type: Int, val span: Int) {
     }
 }
 
+
+/**
+ * Adaptor for characters List data in a [RecyclerView], including computing
+ * diffs between Lists on a background thread.
+ *
+ */
 class CharactersListAdapter @Inject constructor(
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     val viewModel: CharactersListViewModel
