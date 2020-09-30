@@ -1,16 +1,12 @@
+import extentions.applyDefault
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 allprojects {
 
-    repositories {
-        google()
-        jcenter()
-    }
+    repositories.applyDefault()
 
+    plugins.apply(BuildPlugins.SPOTLESS)
+    plugins.apply(BuildPlugins.KTLINT)
 
-}
-
-
-tasks.register("clean").configure {
-    delete(rootProject.buildDir)
 }

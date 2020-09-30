@@ -10,13 +10,13 @@ internal class BaseResponseTest {
 
     @Test
     @DisplayName("When a BaseResponse class is created, its attributes should be correct")
-    fun createBaseResponse_CorrectAttributes(){
+    fun createBaseResponse_CorrectAttributes() {
         // Arrange
-        val code =  200
+        val code = 200
         val status = "Ok"
         val message = "Success"
-        
-        val data: SingleDataResponse<String> = mock( SingleDataResponse::class.java, "FAKE RESPONSE")
+
+        val data: SingleDataResponse<String> = mock(SingleDataResponse::class.java, "FAKE RESPONSE")
             as SingleDataResponse<String>
 
         // Act: create BaseResponse instance
@@ -28,10 +28,9 @@ internal class BaseResponseTest {
         )
 
         // Assert: Attributes values are accurate
-        assertThat(code).isEqualTo( baseResponse.code)
+        assertThat(code).isEqualTo(baseResponse.code)
         assertThat(status).isEqualTo(baseResponse.status)
         assertThat(message).isEqualTo(baseResponse.message)
         assertThat(data).isEqualTo(baseResponse.data)
-
     }
 }

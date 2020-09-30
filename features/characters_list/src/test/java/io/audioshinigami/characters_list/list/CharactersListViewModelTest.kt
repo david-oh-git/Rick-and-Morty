@@ -60,7 +60,7 @@ internal class CharactersListViewModelTest {
     }
 
     @Test
-    fun networkSuccessAdditionalEmptyCharacters_ShouldBeNoMoreElementsState(){
+    fun networkSuccessAdditionalEmptyCharacters_ShouldBeNoMoreElementsState() {
         val networkState = NetworkState.Success(
             isEmptyResponse = true,
             isAdditional = true
@@ -80,7 +80,7 @@ internal class CharactersListViewModelTest {
     }
 
     @Test
-    fun networkSuccessAdditionalCharacters_ShouldBeLoadedState(){
+    fun networkSuccessAdditionalCharacters_ShouldBeLoadedState() {
         val networkState = NetworkState.Success(
             isAdditional = true
         )
@@ -99,7 +99,7 @@ internal class CharactersListViewModelTest {
     }
 
     @Test
-    fun networkSuccessCharacters_ShouldBeLoadedState(){
+    fun networkSuccessCharacters_ShouldBeLoadedState() {
         val networkState = NetworkState.Success()
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
         val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
@@ -116,7 +116,7 @@ internal class CharactersListViewModelTest {
     }
 
     @Test
-    fun networkLoadingCharacters_ShouldBeLoadingState(){
+    fun networkLoadingCharacters_ShouldBeLoadingState() {
         val networkState = NetworkState.Loading()
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
         val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
@@ -133,7 +133,7 @@ internal class CharactersListViewModelTest {
     }
 
     @Test
-    fun networkAdditionalLoadingCharacters_ShouldBeAddLoadingState(){
+    fun networkAdditionalLoadingCharacters_ShouldBeAddLoadingState() {
         val networkState = NetworkState.Loading(
             isAdditional = true
         )
@@ -152,7 +152,7 @@ internal class CharactersListViewModelTest {
     }
 
     @Test
-    fun networkErrorCharacters_ShouldBeErrorState(){
+    fun networkErrorCharacters_ShouldBeErrorState() {
         val networkState = NetworkState.Error()
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
         val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
@@ -169,7 +169,7 @@ internal class CharactersListViewModelTest {
     }
 
     @Test
-    fun networkAdditionalErrorCharacters_ShouldBeAddErrorState(){
+    fun networkAdditionalErrorCharacters_ShouldBeAddErrorState() {
         val networkState = NetworkState.Error(
             isAdditional = true
         )
@@ -188,20 +188,18 @@ internal class CharactersListViewModelTest {
     }
 
     @Test
-    fun refreshCharacterList_ShouldInvokeDataSourceMethod(){
+    fun refreshCharacterList_ShouldInvokeDataSourceMethod() {
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
 
         viewModel.refreshLoadedCharacterList()
 
-
         verify { dataSourceFactory.refresh() }
         verify(exactly = 0) { dataSourceFactory.retry() }
-
     }
 
     @Test
-    fun retryCharacterList_ShouldInvokeDataSourceMethod(){
+    fun retryCharacterList_ShouldInvokeDataSourceMethod() {
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.retryAddCharactersList()
 
@@ -210,7 +208,7 @@ internal class CharactersListViewModelTest {
     }
 
     @Test
-    fun openCharacterDetail_ShouldSendAsEvent(){
+    fun openCharacterDetail_ShouldSendAsEvent() {
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.event.observeForever(eventObserver)

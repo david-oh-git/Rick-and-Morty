@@ -6,17 +6,17 @@ import io.audioshinigami.ui.BaseViewState
  * Different states of [HomeFragment]
  */
 
-sealed class HomeViewState: BaseViewState {
+sealed class HomeViewState : BaseViewState {
 
     /**
      * Fullscreen mode.
      */
-    object FullScreen: HomeViewState()
+    object FullScreen : HomeViewState()
 
     /**
      * Navigation screen mode with visible bottom bar.
      */
-    object NavigationScreen: HomeViewState()
+    object NavigationScreen : HomeViewState()
 
     /**
      *  Checks if current view is [FullScreen].

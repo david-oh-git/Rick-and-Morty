@@ -2,12 +2,11 @@ package io.audioshinigami.characters_list.list
 
 import io.audioshinigami.ui.BaseViewState
 
-
 /**
  * Different states for [CharactersListFragment].
  *
  */
-sealed class CharactersListViewState: BaseViewState {
+sealed class CharactersListViewState : BaseViewState {
 
     /**
      * Refreshing characters list.

@@ -5,7 +5,7 @@ import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 @HiltAndroidApp
-class RickAndMortyApp: Application() {
+class RickAndMortyApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -13,8 +13,8 @@ class RickAndMortyApp: Application() {
         initTimber()
     }
 
-    private fun initTimber(){
-        if( BuildConfig.DEBUG)
-            Timber.plant( Timber.DebugTree())
+    private fun initTimber() {
+        if (BuildConfig.DEBUG)
+            Timber.plant(Timber.DebugTree())
     }
 }

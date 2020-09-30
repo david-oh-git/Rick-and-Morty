@@ -14,7 +14,7 @@ sealed class NetworkState {
     data class Success(
         val isAdditional: Boolean = false,
         val isEmptyResponse: Boolean = false
-    ): NetworkState()
+    ) : NetworkState()
 
     /**
      * Network loading state.
@@ -23,7 +23,7 @@ sealed class NetworkState {
      */
     data class Loading(
         val isAdditional: Boolean = false
-    ): NetworkState()
+    ) : NetworkState()
 
     /**
      * Network error state.
@@ -32,7 +32,7 @@ sealed class NetworkState {
      */
     data class Error(
         val isAdditional: Boolean = false
-    ): NetworkState()
+    ) : NetworkState()
 
     /**
      * If current network state is [Success].

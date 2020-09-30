@@ -9,7 +9,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 
-
 @DisableInstallInCheck
 @Module
 class CharacterListModule {
@@ -17,6 +16,5 @@ class CharacterListModule {
     @Provides
     @FeatureScope
     @CorotineScopeIo
-    fun provideScopeIo(): CoroutineScope = CoroutineScope( Job() + Dispatchers.IO)
-
+    fun provideScopeIo(): CoroutineScope = CoroutineScope(Job() + Dispatchers.IO)
 }

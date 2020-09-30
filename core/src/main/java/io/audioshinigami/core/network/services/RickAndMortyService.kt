@@ -6,7 +6,6 @@ import io.audioshinigami.core.network.responses.DataResponse
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.core.network.responses.episodes.Episode
 import io.audioshinigami.core.network.responses.locations.Location
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -51,7 +50,7 @@ interface RickAndMortyService {
         @Query("species") species: String,
         @Query("type") type: String,
         @Query("gender") gender: String
-    ):BaseListResponse<Character>
+    ): BaseListResponse<Character>
 
     /**
      *  Fetches a single location from the API
@@ -84,7 +83,7 @@ interface RickAndMortyService {
         @Query("name") name: String,
         @Query("type") type: String,
         @Query("dimension") dimension: String
-    ):BaseListResponse<Location>
+    ): BaseListResponse<Location>
 
     /**
      *  Fetches a single episode from the API
@@ -115,7 +114,7 @@ interface RickAndMortyService {
     suspend fun findEpisodes(
         @Query("name") name: String,
         @Query("episode") episode: String
-    ):BaseListResponse<Location>
+    ): BaseListResponse<Location>
 
     companion object {
         private const val CHARACTER_ENDPOINT = "character/"

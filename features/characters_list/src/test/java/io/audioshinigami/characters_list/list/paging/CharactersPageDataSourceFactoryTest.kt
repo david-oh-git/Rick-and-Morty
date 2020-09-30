@@ -8,6 +8,7 @@ import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.same
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
+import javax.inject.Provider
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Assert
 import org.junit.Before
@@ -18,7 +19,6 @@ import org.mockito.InjectMocks
 import org.mockito.MockitoAnnotations
 import org.mockito.Spy
 import org.mockito.junit.MockitoJUnitRunner
-import javax.inject.Provider
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
@@ -41,7 +41,7 @@ class CharactersPageDataSourceFactoryTest {
     lateinit var dataSourceFactory: CharactersPageDataSourceFactory
 
     @Before
-    fun init(){
+    fun init() {
         MockitoAnnotations.initMocks(this)
     }
 

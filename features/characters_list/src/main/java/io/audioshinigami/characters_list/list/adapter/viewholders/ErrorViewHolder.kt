@@ -10,14 +10,14 @@ import io.audioshinigami.ui.base.BaseViewHolder
  */
 class ErrorViewHolder(
     inflater: LayoutInflater
-): BaseViewHolder<ListItemErrorBinding>(
+) : BaseViewHolder<ListItemErrorBinding>(
     ListItemErrorBinding.inflate(inflater)
 ) {
 
     /**
      *  Binding variables.
      */
-    fun bind(_viewModel: CharactersListViewModel){
+    fun bind(_viewModel: CharactersListViewModel) {
         binding.apply {
             viewModel = _viewModel
             executePendingBindings()

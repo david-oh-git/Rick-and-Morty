@@ -10,5 +10,4 @@ import io.audioshinigami.core.network.services.RickAndMortyService
 interface CoreComponent {
 
     val service: RickAndMortyService
-
 }

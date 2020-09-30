@@ -2,11 +2,13 @@ package io.audioshinigami.characters_list.list.paging
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import androidx.paging.PageKeyedDataSource
-import androidx.paging.PageKeyedDataSource.*
+import androidx.paging.PageKeyedDataSource.LoadCallback
+import androidx.paging.PageKeyedDataSource.LoadInitialCallback
+import androidx.paging.PageKeyedDataSource.LoadInitialParams
+import androidx.paging.PageKeyedDataSource.LoadParams
 import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.core.network.repositories.RickAndMortyRepository
-import io.audioshinigami.core.network.responses.BaseListResponse
+import io.audioshinigami.core.network.responses.DataResponse
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.test_utils.MainCoroutineRule
 import io.mockk.Called
@@ -42,7 +44,7 @@ internal class CharactersPageDataSourceTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
-    interface  Callback: () -> Unit
+    interface Callback : () -> Unit
 
     @MockK(relaxed = true)
     lateinit var repository: RickAndMortyRepository
@@ -59,23 +61,22 @@ internal class CharactersPageDataSourceTest {
     private var scope = CoroutineScope(Dispatchers.Main)
 
     @Before
-    fun init(){
+    fun init() {
         MockKAnnotations.init(this, relaxUnitFun = true)
     }
 
     @Test
     fun loadInitial_ShouldPostLoadingState() {
-        val params = mockk<PageKeyedDataSource.LoadInitialParams<Int>>()
+        val params = mockk<LoadInitialParams<Int>>()
         val callback = mockk<LoadInitialCallback<Int, Character>>()
         dataSource.loadInitial(params, callback)
-
 
         verify { networkState.postValue(NetworkState.Loading()) }
     }
 
     @Test
     fun loadInitial_WithError_ShouldPostErrorState() {
-        val params = mockk<PageKeyedDataSource.LoadInitialParams<Int>>()
+        val params = mockk<LoadInitialParams<Int>>()
         val callback = mockk<LoadInitialCallback<Int, Character>>()
         dataSource.loadInitial(params, callback)
 
@@ -85,10 +86,10 @@ internal class CharactersPageDataSourceTest {
 
     @Test
     fun loadInitial_WithSuccessEmptyData_ShouldPostEmptySuccessState() {
-        val params = PageKeyedDataSource.LoadInitialParams<Int>(100, false)
+        val params = LoadInitialParams<Int>(100, false)
         val callback = mockk<LoadInitialCallback<Int, Character>>(relaxed = true)
         val emptyData = emptyList<Character>()
-        val response = mockk<BaseListResponse<Character>>()
+        val response = mockk<DataResponse<Character>>()
 
         coEvery { repository.getCharacters(any()) } returns response
 
@@ -108,10 +109,10 @@ internal class CharactersPageDataSourceTest {
 
     @Test
     fun loadInitial_WithSuccessData_ShouldPostNonEmptySuccessState() {
-        val params = PageKeyedDataSource.LoadInitialParams<Int>(0, true)
+        val params = LoadInitialParams<Int>(0, true)
         val callback = mockk<LoadInitialCallback<Int, Character>>(relaxed = true)
         val data = listOf(mockk<Character>())
-        val response = mockk<BaseListResponse<Character>>()
+        val response = mockk<DataResponse<Character>>()
 
         coEvery { repository.getCharacters(any()) } returns response
 
@@ -147,7 +148,7 @@ internal class CharactersPageDataSourceTest {
         val params = LoadParams(paramKey, 0)
         val callback = mockk<LoadCallback<Int, Character>>(relaxed = true)
         val emptyData = emptyList<Character>()
-        val response = mockk<BaseListResponse<Character>>()
+        val response = mockk<DataResponse<Character>>()
 
         coEvery { repository.getCharacters(any()) } returns response
 
@@ -171,7 +172,7 @@ internal class CharactersPageDataSourceTest {
         val params = LoadParams(paramKey, 0)
         val callback = mockk<LoadCallback<Int, Character>>(relaxed = true)
         val data = listOf(mockk<Character>())
-        val response = mockk<BaseListResponse<Character>>()
+        val response = mockk<DataResponse<Character>>()
 
         coEvery { repository.getCharacters(any()) } returns response
 
@@ -198,5 +199,4 @@ internal class CharactersPageDataSourceTest {
         verify { params wasNot Called }
         verify { callback wasNot Called }
     }
-    
 }

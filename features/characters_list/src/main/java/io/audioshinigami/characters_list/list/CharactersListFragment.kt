@@ -15,8 +15,8 @@ import io.audioshinigami.characters_list.list.di.inject
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.extentions.gridLayoutManager
 import io.audioshinigami.ui.extentions.observe
-import timber.log.Timber
 import javax.inject.Inject
+import timber.log.Timber
 
 /**
  * [Fragment]
@@ -42,7 +42,8 @@ class CharactersListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -95,15 +96,12 @@ class CharactersListFragment : Fragment() {
         viewAdapter.submitList(viewData)
     }
 
-    private fun onViewEvent(viewEvent: CharactersListViewEvent){
-        when(viewEvent){
+    private fun onViewEvent(viewEvent: CharactersListViewEvent) {
+        when (viewEvent) {
             is CharactersListViewEvent.OpenCharacterDetail -> {
                 // TODO
                 Timber.d("*** Open character clicked ****")
             }
         }
     }
-
-
-
 }

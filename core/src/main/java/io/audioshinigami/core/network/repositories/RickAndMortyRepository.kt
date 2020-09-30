@@ -8,7 +8,7 @@ import io.audioshinigami.core.network.services.RickAndMortyService
 import javax.inject.Inject
 
 class RickAndMortyRepository @Inject constructor(
-    @VisibleForTesting(otherwise = PRIVATE )
+    @VisibleForTesting(otherwise = PRIVATE)
     internal val service: RickAndMortyService
 ) {
 
@@ -25,7 +25,7 @@ class RickAndMortyRepository @Inject constructor(
      *
      * @param page The page number of the request
      */
-    suspend fun getCharacters(page:Int) =
+    suspend fun getCharacters(page: Int) =
         service.getCharacters(page)
 
     /**
@@ -42,7 +42,7 @@ class RickAndMortyRepository @Inject constructor(
         species: String,
         type: String,
         gender: String
-    )=
+    ) =
         service.findCharacters(name, status, species, type, gender)
 
     /**
@@ -86,7 +86,7 @@ class RickAndMortyRepository @Inject constructor(
      *
      * @param page The page number of the request
      */
-    suspend fun getEpisodes(page:Int) = service.getEpisodes(page)
+    suspend fun getEpisodes(page: Int) = service.getEpisodes(page)
 
     /**
      * Fetches a list of locations by filtering with
@@ -98,6 +98,5 @@ class RickAndMortyRepository @Inject constructor(
     suspend fun findEpisodes(
         name: String,
         episodes: String
-    ) = service.findEpisodes(name,episodes)
-
+    ) = service.findEpisodes(name, episodes)
 }

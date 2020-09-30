@@ -11,7 +11,7 @@ import io.audioshinigami.core.annotations.OpenForTesting
  * @param prev Link to the previous pages if it exists.
  */
 @OpenForTesting
-data class Info (
+data class Info(
     val count: Int,
     val pages: Int,
     val next: String?,

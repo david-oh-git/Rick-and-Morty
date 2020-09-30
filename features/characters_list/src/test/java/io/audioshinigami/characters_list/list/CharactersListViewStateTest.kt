@@ -8,7 +8,7 @@ internal class CharactersListViewStateTest {
     lateinit var state: CharactersListViewState
 
     @Test
-    fun setStateAsRefreshing_ShouldBeSettled(){
+    fun setStateAsRefreshing_ShouldBeSettled() {
         state = CharactersListViewState.Refreshing
 
         assertThat(state.isRefreshing()).isTrue()
@@ -22,7 +22,7 @@ internal class CharactersListViewStateTest {
     }
 
     @Test
-    fun setStateAsAddError_ShouldBeSettled(){
+    fun setStateAsAddError_ShouldBeSettled() {
         state = CharactersListViewState.AddError
 
         assertThat(state.isAddError()).isTrue()
@@ -36,7 +36,7 @@ internal class CharactersListViewStateTest {
     }
 
     @Test
-    fun setStateAddLoading_ShouldBeSettled(){
+    fun setStateAddLoading_ShouldBeSettled() {
         state = CharactersListViewState.AddLoading
 
         assertThat(state.isRefreshing()).isFalse()
@@ -51,7 +51,7 @@ internal class CharactersListViewStateTest {
     }
 
     @Test
-    fun setStateAsEmpty_ShouldBeSettled(){
+    fun setStateAsEmpty_ShouldBeSettled() {
         state = CharactersListViewState.Empty
 
         assertThat(state.isRefreshing()).isFalse()
@@ -65,7 +65,7 @@ internal class CharactersListViewStateTest {
     }
 
     @Test
-    fun setStateAsNoMoreElements_ShouldBeSettled(){
+    fun setStateAsNoMoreElements_ShouldBeSettled() {
         state = CharactersListViewState.NoMoreElements
 
         assertThat(state.isRefreshing()).isFalse()
@@ -80,7 +80,7 @@ internal class CharactersListViewStateTest {
     }
 
     @Test
-    fun setStateAsError_ShouldBeSettled(){
+    fun setStateAsError_ShouldBeSettled() {
         state = CharactersListViewState.Error
 
         assertThat(state.isRefreshing()).isFalse()
@@ -95,7 +95,7 @@ internal class CharactersListViewStateTest {
     }
 
     @Test
-    fun setStateAsLoaded_ShouldBeSettled(){
+    fun setStateAsLoaded_ShouldBeSettled() {
         state = CharactersListViewState.Loaded
 
         assertThat(state.isRefreshing()).isFalse()
@@ -110,7 +110,7 @@ internal class CharactersListViewStateTest {
     }
 
     @Test
-    fun setStateAsLoading_ShouldBeSettled(){
+    fun setStateAsLoading_ShouldBeSettled() {
         state = CharactersListViewState.Loading
 
         assertThat(state.isRefreshing()).isFalse()

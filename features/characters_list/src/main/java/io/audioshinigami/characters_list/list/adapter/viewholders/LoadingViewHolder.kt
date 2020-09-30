@@ -9,6 +9,6 @@ import io.audioshinigami.ui.base.BaseViewHolder
  */
 class LoadingViewHolder(
     inflater: LayoutInflater
-): BaseViewHolder<ListItemLoadingBinding>(
+) : BaseViewHolder<ListItemLoadingBinding>(
     ListItemLoadingBinding.inflate(inflater)
 )

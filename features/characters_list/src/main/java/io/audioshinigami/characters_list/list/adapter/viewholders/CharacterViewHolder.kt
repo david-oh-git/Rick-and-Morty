@@ -11,19 +11,18 @@ import io.audioshinigami.ui.base.BaseViewHolder
  */
 class CharacterViewHolder(
     inflater: LayoutInflater
-):  BaseViewHolder<ListItemCharacterBinding>(
+) : BaseViewHolder<ListItemCharacterBinding>(
     ListItemCharacterBinding.inflate(inflater)
 ) {
 
     /**
      * Bind data variables for view holder.
      */
-    fun bind(_viewModel: CharactersListViewModel, _character: Character){
+    fun bind(_viewModel: CharactersListViewModel, _character: Character) {
         binding.apply {
             viewModel = _viewModel
             character = _character
             executePendingBindings()
         }
-
     }
 }

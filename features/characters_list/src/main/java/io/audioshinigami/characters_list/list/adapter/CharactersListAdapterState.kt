@@ -16,7 +16,6 @@
 
 package io.audioshinigami.characters_list.list.adapter
 
-
 /**
  * Different states for [CharactersListAdapter].
  */

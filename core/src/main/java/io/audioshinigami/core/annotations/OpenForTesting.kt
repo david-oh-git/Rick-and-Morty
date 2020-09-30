@@ -6,7 +6,6 @@ package io.audioshinigami.core.annotations
 @Target(AnnotationTarget.ANNOTATION_CLASS)
 annotation class OpenClass
 
-
 /**
  *  Annotate class if you want it open in debug builds.
  */

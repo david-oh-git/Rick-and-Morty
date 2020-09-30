@@ -7,7 +7,7 @@ import io.audioshinigami.projectm.di.AppComponent
 internal fun inject(target: HomeFragment) =
     DaggerHomeComponent
         .factory()
-        .create( appComponent(target) )
+        .create(appComponent(target))
         .inject(target)
 
 private fun appComponent(fragment: HomeFragment): AppComponent =

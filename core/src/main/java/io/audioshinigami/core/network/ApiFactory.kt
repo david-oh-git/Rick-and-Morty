@@ -17,7 +17,7 @@ object ApiFactory {
      *  @return Instance of http interceptor
      */
     private fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
-         HttpLoggingInterceptor().apply { level =  HttpLoggingInterceptor.Level.BODY}
+        HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
 
     /**
      *  Provides instance of [OkHttpClient]
@@ -26,8 +26,8 @@ object ApiFactory {
      */
     private fun provideHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {
         val clientBuilder = OkHttpClient.Builder()
-        if( BuildConfig.DEBUG){
-            clientBuilder.addInterceptor( interceptor)
+        if (BuildConfig.DEBUG) {
+            clientBuilder.addInterceptor(interceptor)
         }
         return clientBuilder.build()
     }
@@ -41,7 +41,7 @@ object ApiFactory {
         Retrofit.Builder()
             .baseUrl(API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .client( provideHttpClient( provideHttpLoggingInterceptor() ))
+            .client(provideHttpClient(provideHttpLoggingInterceptor()))
             .build()
 
     fun provideRickAndMortyService() =

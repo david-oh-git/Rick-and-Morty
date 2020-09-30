@@ -9,17 +9,16 @@ import io.audioshinigami.characters_list.list.paging.CharactersPageDataSourceFac
 import io.audioshinigami.characters_list.list.paging.PAGE_MAX_ELEMENTS
 import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.ui.livedata.SingleLiveData
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import timber.log.Timber
 import javax.inject.Inject
+import timber.log.Timber
 
 class CharactersListViewModel @Inject constructor(
     @VisibleForTesting(otherwise = PRIVATE)
     val dataSourceFactory: CharactersPageDataSourceFactory
-): ViewModel() {
+) : ViewModel() {
 
     @VisibleForTesting(otherwise = PRIVATE)
-    val networkState = Transformations.switchMap(dataSourceFactory.sourceLiveData){
+    val networkState = Transformations.switchMap(dataSourceFactory.sourceLiveData) {
         it.networkState
     }
 
@@ -28,39 +27,37 @@ class CharactersListViewModel @Inject constructor(
     val state = Transformations.map(networkState) {
 
         Timber.d("state is $it")
-        when(it){
+        when (it) {
 
             is NetworkState.Success -> {
-                if( it.isAdditional && it.isEmptyResponse){
+                if (it.isAdditional && it.isEmptyResponse) {
                     CharactersListViewState.NoMoreElements
-                }else if (it.isEmptyResponse){
+                } else if (it.isEmptyResponse) {
                     CharactersListViewState.Empty
-                }else{
+                } else {
                     CharactersListViewState.Loaded
                 }
             }
 
             is NetworkState.Loading -> {
-                if(it.isAdditional){
+                if (it.isAdditional) {
                     CharactersListViewState.AddLoading
-                }else{
+                } else {
                     CharactersListViewState.Loading
                 }
             }
 
             is NetworkState.Error -> {
-                if(it.isAdditional){
+                if (it.isAdditional) {
                     CharactersListViewState.AddError
-                }else{
+                } else {
                     CharactersListViewState.Error
                 }
             }
-
-
         }
     }
 
-    fun refreshLoadedCharacterList(){
+    fun refreshLoadedCharacterList() {
         dataSourceFactory.refresh()
     }
 

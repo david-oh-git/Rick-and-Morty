@@ -8,7 +8,7 @@ import io.audioshinigami.projectm.di.AppComponent
 internal fun inject(fragment: CharactersListFragment) =
     DaggerCharacterListComponent
         .factory()
-        .create(  appComponent(fragment), coreComponent(fragment) )
+        .create(appComponent(fragment), coreComponent(fragment))
         .inject(fragment)
 
 private fun appComponent(fragment: CharactersListFragment): AppComponent =
@@ -17,7 +17,7 @@ private fun appComponent(fragment: CharactersListFragment): AppComponent =
         AppComponent::class.java
     )
 
-private fun coreComponent( fragment: CharactersListFragment): CoreComponent =
+private fun coreComponent(fragment: CharactersListFragment): CoreComponent =
     EntryPointAccessors.fromApplication(
         fragment.requireContext().applicationContext,
         CoreComponent::class.java

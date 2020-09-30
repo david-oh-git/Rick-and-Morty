@@ -25,7 +25,7 @@ internal class RickAndMortyRepositoryTest {
     private lateinit var rickAndMortyRepository: RickAndMortyRepository
 
     @BeforeEach
-    fun init(){
+    fun init() {
         MockitoAnnotations.initMocks(this)
         rickAndMortyRepository = RickAndMortyRepository(service)
     }
@@ -67,8 +67,7 @@ internal class RickAndMortyRepositoryTest {
         val characterSpecies = "Human"
         val characterType = "Big Sister lol !"
         val characterGender = "Female"
-        val ( name, status, species
-            , type , gender ) =
+        val (name, status, species, type, gender) =
             argumentCaptor<String, String, String, String, String>()
 
         rickAndMortyRepository.findCharacters(
@@ -81,7 +80,7 @@ internal class RickAndMortyRepositoryTest {
 
         verify(service).findCharacters(
             name = name.capture(),
-            status =  status.capture(),
+            status = status.capture(),
             species = species.capture(),
             type = type.capture(),
             gender = gender.capture()
@@ -129,7 +128,7 @@ internal class RickAndMortyRepositoryTest {
         val locationName = "The Citadel"
         val locationType = "Space station"
         val locationDimension = "C137"
-        val ( name, type , dimensions ) =
+        val (name, type, dimensions) =
             argumentCaptor<String, String, String>()
 
         rickAndMortyRepository.findLocations(
@@ -183,7 +182,7 @@ internal class RickAndMortyRepositoryTest {
 
         val episodeName = "Close Rick-counters of the Rick Kind"
         val episodeCode = "S01E10"
-        val ( name, episode  ) =
+        val (name, episode) =
             argumentCaptor<String, String>()
 
         rickAndMortyRepository.findEpisodes(

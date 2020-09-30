@@ -5,9 +5,9 @@ import androidx.annotation.VisibleForTesting.PRIVATE
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import io.audioshinigami.core.network.responses.characters.Character
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 import javax.inject.Provider
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 /**
  *  Factory for data source,
@@ -16,7 +16,7 @@ import javax.inject.Provider
 class CharactersPageDataSourceFactory @Inject constructor(
     @VisibleForTesting(otherwise = PRIVATE)
     val providerDataSource: Provider<CharactersPageDataSource>
-): DataSource.Factory<Int, Character>() {
+) : DataSource.Factory<Int, Character>() {
 
     var sourceLiveData = MutableLiveData<CharactersPageDataSource>()
 
@@ -36,7 +36,7 @@ class CharactersPageDataSourceFactory @Inject constructor(
     /**
      * Force retry the last fetch on data source.
      */
-    fun retry(){
+    fun retry() {
         sourceLiveData.value?.retry
     }
 }

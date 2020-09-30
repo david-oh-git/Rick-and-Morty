@@ -9,46 +9,45 @@ import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.core.network.repositories.RickAndMortyRepository
 import io.audioshinigami.core.network.responses.BaseListResponse
 import io.audioshinigami.core.network.responses.characters.Character
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import javax.inject.Inject
 
 const val PAGE_INIT_ELEMENT = 0
 const val PAGE_MAX_ELEMENTS = 20
 
 @ExperimentalCoroutinesApi
 open class CharactersPageDataSource @Inject constructor(
-    @VisibleForTesting(otherwise = PRIVATE )
+    @VisibleForTesting(otherwise = PRIVATE)
     val repository: RickAndMortyRepository,
-    @VisibleForTesting(otherwise = PRIVATE )
+    @VisibleForTesting(otherwise = PRIVATE)
     @CorotineScopeIo val scope: CoroutineScope
 
-): PageKeyedDataSource<Int, Character>() {
+) : PageKeyedDataSource<Int, Character>() {
 
     val networkState = MutableLiveData<NetworkState>()
     val networkStateFlow = MutableStateFlow<NetworkState>(NetworkState.Loading())
 
-    @VisibleForTesting(otherwise = PRIVATE )
-    var retry: ( () -> Unit )? = null
+    @VisibleForTesting(otherwise = PRIVATE)
+    var retry: (() -> Unit)? = null
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, Character>
     ) {
-        networkState.postValue( NetworkState.Loading())
+        networkState.postValue(NetworkState.Loading())
         networkStateFlow.value = NetworkState.Loading()
-
 
         scope.launch(
             CoroutineExceptionHandler { _, throwable ->
                 retry = {
                     loadInitial(params, callback)
                 }
-                networkState.postValue(NetworkState.Error() )
+                networkState.postValue(NetworkState.Error())
                 networkStateFlow.value = NetworkState.Error()
             }
 
@@ -57,23 +56,22 @@ open class CharactersPageDataSource @Inject constructor(
             val data = response.results
 
             Timber.d("Size of result is ${data.size}")
-            callback.onResult(data, null , PAGE_MAX_ELEMENTS)
+            callback.onResult(data, null, PAGE_MAX_ELEMENTS)
 
-            networkState.postValue( NetworkState.Success( isEmptyResponse = data.isEmpty() ))
-            networkStateFlow.value = NetworkState.Success( isEmptyResponse = data.isEmpty() )
-
+            networkState.postValue(NetworkState.Success(isEmptyResponse = data.isEmpty()))
+            networkStateFlow.value = NetworkState.Success(isEmptyResponse = data.isEmpty())
         }
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Character>) {
-        networkState.postValue( NetworkState.Loading())
+        networkState.postValue(NetworkState.Loading())
         networkStateFlow.value = NetworkState.Loading()
         scope.launch(
             CoroutineExceptionHandler { _, throwable ->
                 retry = {
                     loadAfter(params, callback)
                 }
-                networkState.postValue(NetworkState.Error() )
+                networkState.postValue(NetworkState.Error())
                 networkStateFlow.value = NetworkState.Error()
                 Timber.d("Error loading data. \n Error msg: ${throwable.message}")
                 Timber.d("Error :\n ${throwable.printStackTrace()}")
@@ -81,16 +79,15 @@ open class CharactersPageDataSource @Inject constructor(
 
         ) {
             val response = repository.getCharacters(params.key)
-            val data =  response.results
+            val data = response.results
             callback.onResult(data, params.key + 1)
 
-            networkState.postValue( NetworkState.Success(
-                true,data.isEmpty() )
+            networkState.postValue(NetworkState.Success(
+                true, data.isEmpty())
             )
             networkStateFlow.value = NetworkState.Success(
                 true, data.isEmpty()
             )
-
         }
     }
 

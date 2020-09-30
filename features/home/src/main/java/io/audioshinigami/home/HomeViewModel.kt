@@ -10,13 +10,13 @@ val NAV_FRAGMENTS_ID = setOf(
     R.id.characters_list_fragment
 )
 
-class HomeViewModel @ViewModelInject constructor(): ViewModel() {
+class HomeViewModel @ViewModelInject constructor() : ViewModel() {
 
     private val _state = MutableLiveData<HomeViewState>()
-    val state : LiveData<HomeViewState>
+    val state: LiveData<HomeViewState>
         get() = _state
 
-    fun navigationControllerChanged(navController: NavController){
+    fun navigationControllerChanged(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (NAV_FRAGMENTS_ID.contains(destination.id)) {
                 _state.postValue(HomeViewState.NavigationScreen)
@@ -25,5 +25,4 @@ class HomeViewModel @ViewModelInject constructor(): ViewModel() {
             }
         }
     }
-
 }

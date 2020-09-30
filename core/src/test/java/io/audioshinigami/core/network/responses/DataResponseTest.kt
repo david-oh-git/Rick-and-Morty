@@ -9,7 +9,7 @@ internal class DataResponseTest {
 
     @Test
     @DisplayName("When DataResponse is created, correct attributes are retained.")
-    fun createDataResponse_getCorrectAttributes(){
+    fun createDataResponse_getCorrectAttributes() {
 
         // Arrange:
         val info = mock(Info::class.java)

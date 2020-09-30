@@ -8,7 +8,7 @@ internal class SingleDataResponseTest {
 
     @Test
     @DisplayName("When a SingleDataResponse class is created, its attributes should be correct")
-    fun createSingleDataResponse_getCorrectAttributes(){
+    fun createSingleDataResponse_getCorrectAttributes() {
         // Arrange:
         val data = "FAKE DATA"
 

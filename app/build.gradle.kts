@@ -75,6 +75,12 @@ android {
         BuildModules.Features.HOME,
         BuildModules.Features.CHARACTERS_LIST
     )
+
+    lintOptions {
+        lintConfig = rootProject.file(".lint/config.xml")
+        isCheckAllWarnings = true
+        isWarningsAsErrors = true
+    }
 }
 
 dependencies {

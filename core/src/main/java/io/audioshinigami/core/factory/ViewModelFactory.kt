@@ -32,7 +32,7 @@ import javax.inject.Provider
 /**
  *  Viewmodel factory for dagger hilt.
  */
-class ViewModelFactory  @Inject constructor(
+class ViewModelFactory @Inject constructor(
     private val creators: @JvmSuppressWildcards Map<Class<out ViewModel>, Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

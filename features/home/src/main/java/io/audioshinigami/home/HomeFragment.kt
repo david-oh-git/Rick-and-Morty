@@ -14,7 +14,6 @@ import io.audioshinigami.home.databinding.FragmentHomeBinding
 import io.audioshinigami.home.di.inject
 import io.audioshinigami.ui.extentions.setupWithNavController
 
-
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
@@ -32,7 +31,8 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
-        if( savedInstanceState == null)
+        if (savedInstanceState == null)
             setupBottomNavigationBar()
     }
 
@@ -59,13 +59,15 @@ class HomeFragment : Fragment() {
         setupBottomNavigationBar()
     }
 
-    private fun setupToolbar(){
-        when(requireActivity()){
-            is AppCompatActivity -> (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
+    private fun setupToolbar() {
+        when (requireActivity()) {
+            is AppCompatActivity -> {
+                (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
+            }
         }
     }
 
-    private fun setupBottomNavigationBar(){
+    private fun setupBottomNavigationBar() {
         val navController = binding.bottomNavigation.setupWithNavController(
             navGraphIds = navGraphIds,
             fragmentManager = childFragmentManager,
@@ -81,5 +83,4 @@ class HomeFragment : Fragment() {
             )
         })
     }
-
 }
