@@ -1,6 +1,5 @@
 package io.audioshinigami.core.network.responses.characters
 
-import io.audioshinigami.core.network.responses.EndPoint
 
 /**
  *  Represents a Rick and Morty character from API
@@ -16,7 +15,7 @@ import io.audioshinigami.core.network.responses.EndPoint
  *  @param location [BaseLocation] with [BaseLocation.name] representing character's
  *  planet name and [BaseLocation.url] url to the location
  *  @param image Link to the Character's image, 300px x 300px.
- *  @param episode [EndPoint] list of episodes the character featured in.
+ *  @param episode List of episodes the character featured in.
  *  @param url The URL to the character
  *  @param created Date the character was created in API database.
  */
