@@ -67,6 +67,7 @@ dependencies {
     implementation(BuildDependencies.KOTLIN)
     implementation(BuildDependencies.MATERIAL_COMPONENTS)
     implementation(BuildDependencies.NAVIGATION_FRAGMENT)
+    implementation(BuildDependencies.DYNAMIC_FEATURES_NAV)
     implementation(BuildDependencies.TIMBER)
     implementation(BuildDependencies.CONSTRAINT_LAYOUT)
     implementation(BuildDependencies.DAGGER_HILT)

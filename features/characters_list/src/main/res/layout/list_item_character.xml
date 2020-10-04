@@ -16,7 +16,7 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:onClick="@{ () -> viewModel.openCharacterDetail( character.id) }"
+        android:onClick="@{ () -> viewModel.openCharacterDetail( character) }"
         app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="@dimen/character_list_item_card_radius"
         app:cardElevation="@dimen/character_list_item_card_elevation"
@@ -33,7 +33,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/character_name"
+                app:layout_constraintBottom_toTopOf="@id/character_status"
                 app:url="@{ character.image }"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
@@ -41,7 +41,7 @@
                 />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/character_name"
+                android:id="@+id/character_status"
                 android:text="@{ character.name }"
                 app:layout_constraintTop_toBottomOf="@id/character_image"
                 app:layout_constraintStart_toStartOf="parent"

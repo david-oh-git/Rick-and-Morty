@@ -24,6 +24,7 @@ object BuildVersions {
     const val RECYCLE_VIEW = "1.1.0"
     const val SWIPE_REFRESH_LAYOUT = "1.1.0"
     const val HILT_VIEWMODEL = "1.0.0-alpha01"
+    const val DYNAMIC_NAV_HOST = "2.3.0"
 
     // Tests
     const val JUNIT = "4.13"

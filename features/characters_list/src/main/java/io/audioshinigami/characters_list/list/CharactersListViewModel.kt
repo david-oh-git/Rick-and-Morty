@@ -8,6 +8,7 @@ import androidx.paging.LivePagedListBuilder
 import io.audioshinigami.characters_list.list.paging.CharactersPageDataSourceFactory
 import io.audioshinigami.characters_list.list.paging.PAGE_MAX_ELEMENTS
 import io.audioshinigami.core.network.NetworkState
+import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.livedata.SingleLiveData
 import javax.inject.Inject
 import timber.log.Timber
@@ -21,6 +22,7 @@ class CharactersListViewModel @Inject constructor(
     val networkState = Transformations.switchMap(dataSourceFactory.sourceLiveData) {
         it.networkState
     }
+
 
     val event = SingleLiveData<CharactersListViewEvent>()
     val data = LivePagedListBuilder(dataSourceFactory, PAGE_MAX_ELEMENTS).build()
@@ -65,7 +67,7 @@ class CharactersListViewModel @Inject constructor(
         dataSourceFactory.retry()
     }
 
-    fun openCharacterDetail(characterId: Int) {
-        event.postValue(CharactersListViewEvent.OpenCharacterDetail(characterId))
+    fun openCharacterDetail(character: Character) {
+        event.postValue(CharactersListViewEvent.OpenCharacterDetail(character))
     }
 }

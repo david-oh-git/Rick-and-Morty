@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import coil.load
 import io.audioshinigami.ui.R
+import java.util.Locale
 import kotlin.random.Random
 
 /**
@@ -29,6 +30,22 @@ fun setImage(imageView: AppCompatImageView, url: String?, @DrawableRes placehold
                 val placeholderColor = placeholdersColors[Random.nextInt(placeholdersColors.size)]
                 ColorDrawable(Color.parseColor(placeholderColor))
             })
+        }
+    }
+}
+
+/**
+ * Binder that sets icon based on status.
+ *
+ * @param status The character's status , Dead or Alive ?
+ */
+@BindingAdapter("status", requireAll = false)
+fun setStatus(imageView: AppCompatImageView, status: String){
+    with(imageView) {
+        when (status.toLowerCase(Locale.ROOT)){
+            "alive" -> setImageResource(R.drawable.ic_alive)
+            "dead" -> setImageResource(R.drawable.ic_dead)
+            else -> setImageResource(R.drawable.ic_unknown)
         }
     }
 }

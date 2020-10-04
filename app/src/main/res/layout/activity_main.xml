@@ -11,7 +11,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:name="androidx.navigation.dynamicfeatures.fragment.DynamicNavHostFragment"
             app:defaultNavHost="true"
             app:navGraph="@navigation/app_nav_graph"
             android:layout_width="match_parent"

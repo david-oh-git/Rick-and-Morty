@@ -7,16 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.paging.PagedList
 import io.audioshinigami.characters_list.databinding.FragmentCharactersListBinding
+import io.audioshinigami.characters_list.detail.models.CharacterDetailWrapper
 import io.audioshinigami.characters_list.list.adapter.CharactersListAdapter
 import io.audioshinigami.characters_list.list.adapter.CharactersListAdapterState
 import io.audioshinigami.characters_list.list.di.inject
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.extentions.gridLayoutManager
 import io.audioshinigami.ui.extentions.observe
-import javax.inject.Inject
+import kotlinx.coroutines.runBlocking
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * [Fragment]
@@ -88,7 +91,7 @@ class CharactersListFragment : Fragment() {
     }
 
     /**
-     * Observer view data change on [CharactersListViewModel].
+     * Observe view data change on [CharactersListViewModel].
      *
      * @param viewData Paged list of characters.
      */
@@ -96,11 +99,19 @@ class CharactersListFragment : Fragment() {
         viewAdapter.submitList(viewData)
     }
 
+    /**
+     * Observe [CharactersListViewEvent] for each recyclerView item.
+     * @param viewEvent Event class for the recyclerView item.
+     */
     private fun onViewEvent(viewEvent: CharactersListViewEvent) {
         when (viewEvent) {
             is CharactersListViewEvent.OpenCharacterDetail -> {
-                // TODO
-                Timber.d("*** Open character clicked ****")
+                runBlocking {
+                    val action = CharactersListFragmentDirections.actionCharactersListFragmentToCharacterDetailFragment(
+                        CharacterDetailWrapper().transform(viewEvent.character)
+                    )
+                    findNavController().navigate(action)
+                }
             }
         }
     }

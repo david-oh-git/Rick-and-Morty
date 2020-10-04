@@ -8,7 +8,7 @@ plugins {
     kotlin(BuildPlugins.KOTLIN_ANDROID)
     kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
     kotlin(BuildPlugins.KOTLIN_KAPT)
-//    kotlin(BuildPlugins.KOTLIN_ALL_OPEN)
+    id(BuildPlugins.NAVIGATION_SAFE_ARGS)
 }
 
 android {
@@ -41,7 +41,6 @@ android {
     }
 
     buildFeatures {
-        viewBinding = true
         dataBinding = true
     }
 
@@ -96,7 +95,7 @@ dependencies {
     implementation(BuildDependencies.CONSTRAINT_LAYOUT)
     implementation(BuildDependencies.NAVIGATION_FRAGMENT)
     implementation(BuildDependencies.PLAY_CORE)
-    implementation(BuildDependencies.DYNAMIC_FEATURES)
+    implementation(BuildDependencies.DYNAMIC_FEATURES_NAV)
     implementation(BuildDependencies.MATERIAL_COMPONENTS)
     implementation(BuildDependencies.DAGGER_HILT)
     implementation(BuildDependencies.TIMBER)

@@ -13,7 +13,7 @@ object BuildDependencies {
     const val DAGGER_HILT = "com.google.dagger:hilt-android:${BuildVersions.DAGGER_HILT}"
     const val DAGGER_HILT_KAPT = "com.google.dagger:hilt-android-compiler:${BuildVersions.DAGGER_HILT}"
     const val PAGING_KTX = "androidx.paging:paging-runtime-ktx:${BuildVersions.PAGING_KTX}"
-    const val DYNAMIC_FEATURES = "androidx.navigation:navigation-dynamic-features-fragment:${BuildVersions.DYNAMIC_FEATURES}"
+    const val DYNAMIC_FEATURES_NAV = "androidx.navigation:navigation-dynamic-features-fragment:${BuildVersions.DYNAMIC_FEATURES}"
     const val DATABINDING = "androidx.databinding:databinding-adapters:${BuildVersions.DATABINDING}"
     const val PLAY_CORE = "com.google.android.play:core:${BuildVersions.PLAY_CORE}"
     const val ANDROIDX_LEGACY = "androidx.legacy:legacy-support-v4:${BuildVersions.ANDROIDX_LEGACY}"

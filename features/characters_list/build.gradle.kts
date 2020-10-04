@@ -6,10 +6,13 @@ plugins {
     id("commons.android-dynamic-feature")
 }
 
+android {
+    buildFeatures.dataBinding = true
+}
+
 dependencies {
 
     implementation( project(BuildModules.CORE))
-
 
     implementation(BuildDependencies.KOTLIN_COROUTINES_ANDROID)
     implementation(BuildDependencies.KOTLIN_COROUTINES_CORE)

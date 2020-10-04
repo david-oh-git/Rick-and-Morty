@@ -10,6 +10,7 @@ repositories {
     google()
     jcenter()
     mavenCentral()
+    maven("https://ci.android.com/builds/submitted/6043188/androidx_snapshot/latest/repository/")
 }
 
 kotlinDslPluginOptions {

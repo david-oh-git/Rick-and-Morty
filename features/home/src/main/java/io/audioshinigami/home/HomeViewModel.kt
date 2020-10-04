@@ -5,9 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import io.audioshinigami.characters_list.R.id.characters_list_fragment
 
 val NAV_FRAGMENTS_ID = setOf(
-    R.id.characters_list_fragment
+    characters_list_fragment
 )
 
 class HomeViewModel @ViewModelInject constructor() : ViewModel() {

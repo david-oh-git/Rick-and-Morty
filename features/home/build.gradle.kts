@@ -1,6 +1,3 @@
-//apply plugin: "com.android.dynamic-feature"
-//apply plugin: 'kotlin-android'
-//apply plugin: 'kotlin-android-extensions'
 
 import dependencies.BuildDependencies
 
