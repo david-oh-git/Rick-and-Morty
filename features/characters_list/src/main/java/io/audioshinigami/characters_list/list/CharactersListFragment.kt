@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagedList
 import io.audioshinigami.characters_list.databinding.FragmentCharactersListBinding
-import io.audioshinigami.characters_list.detail.models.CharacterDetailWrapper
+import io.audioshinigami.characters_list.detail.models.CharacterDetailMapper
 import io.audioshinigami.characters_list.list.adapter.CharactersListAdapter
 import io.audioshinigami.characters_list.list.adapter.CharactersListAdapterState
 import io.audioshinigami.characters_list.list.di.inject
@@ -108,7 +108,7 @@ class CharactersListFragment : Fragment() {
             is CharactersListViewEvent.OpenCharacterDetail -> {
                 runBlocking {
                     val action = CharactersListFragmentDirections.actionCharactersListFragmentToCharacterDetailFragment(
-                        CharacterDetailWrapper().transform(viewEvent.character)
+                        CharacterDetailMapper().transform(viewEvent.character)
                     )
                     findNavController().navigate(action)
                 }

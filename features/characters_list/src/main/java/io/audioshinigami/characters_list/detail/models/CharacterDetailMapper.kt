@@ -6,7 +6,7 @@ import io.audioshinigami.core.network.responses.characters.Character
 /**
  * Helper class to transform [Character] input to [CharacterDetail] output.
  */
-class CharacterDetailWrapper: Mapper<Character, CharacterDetail> {
+class CharacterDetailMapper: Mapper<Character, CharacterDetail> {
 
     /**
      * Transforms input to desired output.
