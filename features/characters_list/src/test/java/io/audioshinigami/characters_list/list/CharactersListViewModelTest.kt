@@ -7,6 +7,8 @@ import com.google.common.truth.Truth.assertThat
 import io.audioshinigami.characters_list.list.paging.CharactersPageDataSource
 import io.audioshinigami.characters_list.list.paging.CharactersPageDataSourceFactory
 import io.audioshinigami.core.network.NetworkState
+import io.audioshinigami.core.network.responses.characters.BaseLocation
+import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.test_utils.MainCoroutineRule
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -213,10 +215,23 @@ internal class CharactersListViewModelTest {
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.event.observeForever(eventObserver)
 
-        val characterid = 3
-        viewModel.openCharacterDetail(characterid)
+        val character = Character(
+            name = "Summer",
+            type = "lute",
+            gender = "Female",
+            species = "Human",
+            status = "null",
+            created = "18 of July",
+            episode = listOf("fake episode name"),
+            image = "http://upload.com/summer.jpg",
+            id = 45,
+            location = BaseLocation("Earth Bi15", "http'//"),
+            origin = BaseLocation("Earth Bi15", "http'//"),
+            url = "http://"
+        )
+        viewModel.openCharacterDetail(character)
 
-        val expectedEvent = CharactersListViewEvent.OpenCharacterDetail(characterid)
+        val expectedEvent = CharactersListViewEvent.OpenCharacterDetail(character)
         assertThat(expectedEvent).isEqualTo(viewModel.event.value)
         verify { eventObserver.onChanged(expectedEvent) }
     }

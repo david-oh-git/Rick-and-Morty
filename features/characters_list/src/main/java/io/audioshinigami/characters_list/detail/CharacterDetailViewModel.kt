@@ -17,6 +17,7 @@ class CharacterDetailViewModel @ViewModelInject constructor(): ViewModel() {
         get() = _state
 
     fun addCharacterToFavorite(){
+        // TODO save
     }
 
     fun dismissCharacterDetail(){
