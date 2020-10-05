@@ -1,6 +1,5 @@
 <resources>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="list_error_msg">Error fetching character</string>
     <string name="retry_btn">Retry</string>
     <string name="characters_list_error_text">Error ! Can\'t obtain character list.</string>
@@ -12,4 +11,5 @@
     <string name="origin_title">Origin</string>
     <string name="created_title">Created</string>
     <string name="location_title">Location</string>
+    <string name="default_character_value">Unknown</string>
 </resources>

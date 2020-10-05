@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.DetailsText" >
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lines">2</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">@dimen/character_detail_text_padding_sides</item>
+        <item name="paddingEnd">@dimen/character_detail_text_padding_sides</item>
+        <item name="android:fontFamily">@font/noto_sans</item>
+
+    </style>
+
+    <style name="AppTheme.DetailsTitleText">
+        <item name="android:paddingStart">@dimen/character_detail_text_padding_sides</item>
+        <item name="paddingEnd">@dimen/character_detail_text_padding_sides</item>
+        <item name="android:fontFamily">@font/noto_sans</item>
+    </style>
+
+    <style name="AppTheme.DetailsAppBarText">
+        <item name="android:fontFamily">@font/noto_sans</item>
+    </style>
+
+</resources>

@@ -8,8 +8,10 @@
     <dimen name="character_detail_floating_button_margin">16dp</dimen>
     <dimen name="character_detail_content_padding_horizontal">16dp</dimen>
     <dimen name="character_detail_content_padding_top">32dp</dimen>
-    <dimen name="status_icon_height">10dp</dimen>
+    <dimen name="status_icon_height">16dp</dimen>
     <dimen name="character_detail_side_guideline">8dp</dimen>
     <dimen name="character_detail_top_guideline">8dp</dimen>
     <dimen name="character_detail_title_top_padding">4dp</dimen>
+    <dimen name="character_detail_text_padding_sides">12dp</dimen>
+    <dimen name="character_detail_text_padding_top">4dp</dimen>
 </resources>

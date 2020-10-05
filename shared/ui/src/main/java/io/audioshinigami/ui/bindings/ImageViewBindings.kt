@@ -40,9 +40,9 @@ fun setImage(imageView: AppCompatImageView, url: String?, @DrawableRes placehold
  * @param status The character's status , Dead or Alive ?
  */
 @BindingAdapter("status", requireAll = false)
-fun setStatus(imageView: AppCompatImageView, status: String){
+fun setStatus(imageView: AppCompatImageView, status: String?){
     with(imageView) {
-        when (status.toLowerCase(Locale.ROOT)){
+        when (status?.toLowerCase(Locale.ROOT) ){
             "alive" -> setImageResource(R.drawable.ic_alive)
             "dead" -> setImageResource(R.drawable.ic_dead)
             else -> setImageResource(R.drawable.ic_unknown)

@@ -29,6 +29,7 @@
                 android:fitsSystemWindows="true"
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:expandedTitleTextAppearance="@style/AppTheme.DetailsAppBarText"
                 app:title="@{ viewModel.data.name }" >
 
                 <androidx.appcompat.widget.AppCompatImageView

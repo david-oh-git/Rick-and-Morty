@@ -11,209 +11,203 @@
 
     </data>
 
-    <com.google.android.material.card.MaterialCardView
-        app:cardElevation="8dp"
-        app:cardCornerRadius="8dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingTop="@dimen/character_detail_content_padding_top"
+        android:paddingStart="@dimen/character_detail_content_padding_horizontal"
+        android:paddingEnd="@dimen/character_detail_content_padding_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:paddingTop="@dimen/character_detail_content_padding_top"
-            android:paddingStart="@dimen/character_detail_content_padding_horizontal"
-            android:paddingEnd="@dimen/character_detail_content_padding_horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/AppTheme.DetailsTitleText"
+            tools:text="Alive"
+            android:id="@+id/character_status"
+            android:text="@{ characterDetail.status }"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/start_guideline"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintTop_toTopOf="@id/top_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"
-                tools:text="Alive"
-                android:id="@+id/character_status"
-                android:text="@{ characterDetail.status }"
-                android:gravity="center"
-                app:layout_constraintStart_toStartOf="@id/start_guideline"
-                app:layout_constraintEnd_toEndOf="@id/end_guideline"
-                app:layout_constraintTop_toTopOf="@id/top_guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/status_icon"
+            status="@{ characterDetail.status }"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/status_icon_height"
+            app:layout_constraintStart_toEndOf="@id/character_status"
+            app:layout_constraintTop_toTopOf="@id/character_status"
+            app:layout_constraintBottom_toBottomOf="@id/character_status"
+            app:layout_constraintDimensionRatio="1"
+            tools:src="@drawable/ic_alive"
+            />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/status_icon"
-                status="@{ characterDetail.status }"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/status_icon_height"
-                app:layout_constraintStart_toEndOf="@id/character_status"
-                app:layout_constraintTop_toTopOf="@id/character_status"
-                app:layout_constraintBottom_toBottomOf="@id/character_status"
-                app:layout_constraintDimensionRatio="1"
-                tools:src="@drawable/ic_alive"
-                />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/specie_title"
+            style="@style/AppTheme.DetailsTitleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/specie_title"
+            app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+            app:layout_constraintStart_toStartOf="@id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/character_status"
+            app:layout_constraintWidth_percent="0.5" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/specie_title"
-                android:text="@string/specie_title"
-                android:layout_marginTop="@dimen/character_detail_title_top_padding"
-                app:layout_constraintStart_toStartOf="@id/start_guideline"
-                app:layout_constraintEnd_toStartOf="@id/middle_guideline"
-                app:layout_constraintWidth_percent="0.5"
-                app:layout_constraintTop_toBottomOf="@id/character_status"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/type_title"
+            android:text="@string/type_title"
+            style="@style/AppTheme.DetailsTitleText"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/middle_guideline"
+            app:layout_constraintTop_toTopOf="@id/specie_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/type_title"
-                android:text="@string/type_title"
-                app:layout_constraintWidth_percent="0.5"
-                app:layout_constraintEnd_toEndOf="@id/end_guideline"
-                app:layout_constraintStart_toEndOf="@id/middle_guideline"
-                app:layout_constraintTop_toTopOf="@id/specie_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/specie"
+            style="@style/AppTheme.DetailsText"
+            android:text="@{ characterDetail.species }"
+            tools:text="Human"
+            app:layout_constraintStart_toStartOf="@id/start_guideline"
+            app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+            app:layout_constraintTop_toBottomOf="@id/specie_title"
+            app:layout_constraintWidth_percent="0.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/specie"
-                style="@style/AppTheme.DetailsText"
-                android:text="@{ characterDetail.species }"
-                tools:text="Human"
-                app:layout_constraintStart_toStartOf="@id/start_guideline"
-                app:layout_constraintEnd_toStartOf="@id/middle_guideline"
-                app:layout_constraintTop_toBottomOf="@id/specie_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/type"
+            style="@style/AppTheme.DetailsText"
+            android:text="@{ characterDetail.type ?? @string/default_character_value }"
+            tools:text="Idiot"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/middle_guideline"
+            app:layout_constraintTop_toTopOf="@id/specie"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/type"
-                style="@style/AppTheme.DetailsText"
-                android:text="@{ characterDetail.type }"
-                tools:text="Idiot"
-                app:layout_constraintWidth_percent="0.5"
-                app:layout_constraintEnd_toEndOf="@id/end_guideline"
-                app:layout_constraintStart_toEndOf="@id/middle_guideline"
-                app:layout_constraintTop_toTopOf="@id/specie"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/AppTheme.DetailsTitleText"
+            android:id="@+id/gender_title"
+            android:text="@string/gender_title"
+            app:layout_constraintStart_toStartOf="@id/start_guideline"
+            app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/specie"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/gender_title"
-                android:text="@string/gender_title"
-                android:layout_marginTop="@dimen/character_detail_title_top_padding"
-                app:layout_constraintStart_toStartOf="@id/start_guideline"
-                app:layout_constraintEnd_toStartOf="@id/middle_guideline"
-                app:layout_constraintWidth_percent="0.5"
-                app:layout_constraintTop_toBottomOf="@id/specie"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/AppTheme.DetailsTitleText"
+            android:id="@+id/origin_title"
+            android:text="@string/origin_title"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/middle_guideline"
+            app:layout_constraintTop_toTopOf="@id/gender_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/origin_title"
-                android:text="@string/origin_title"
-                app:layout_constraintWidth_percent="0.5"
-                app:layout_constraintEnd_toEndOf="@id/end_guideline"
-                app:layout_constraintStart_toEndOf="@id/middle_guideline"
-                app:layout_constraintTop_toTopOf="@id/gender_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/gender"
+            style="@style/AppTheme.DetailsText"
+            android:text="@{ characterDetail.gender }"
+            tools:text="Male"
+            app:layout_constraintStart_toStartOf="@id/start_guideline"
+            app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/gender_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/gender"
-                style="@style/AppTheme.DetailsText"
-                android:text="@{ characterDetail.gender }"
-                tools:text="Male"
-                app:layout_constraintStart_toStartOf="@id/start_guideline"
-                app:layout_constraintEnd_toStartOf="@id/middle_guideline"
-                app:layout_constraintWidth_percent="0.5"
-                app:layout_constraintTop_toBottomOf="@id/gender_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/origin"
+            style="@style/AppTheme.DetailsText"
+            android:text="@{ characterDetail.originName }"
+            tools:text="Earth C137"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/middle_guideline"
+            app:layout_constraintTop_toTopOf="@id/gender"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/origin"
-                style="@style/AppTheme.DetailsText"
-                android:text="@{ characterDetail.originName }"
-                tools:text="Earth C137"
-                app:layout_constraintWidth_percent="0.5"
-                app:layout_constraintEnd_toEndOf="@id/end_guideline"
-                app:layout_constraintStart_toEndOf="@id/middle_guideline"
-                app:layout_constraintTop_toTopOf="@id/gender"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/AppTheme.DetailsTitleText"
+            android:id="@+id/created_title"
+            android:text="@string/created_title"
+            app:layout_constraintStart_toStartOf="@id/start_guideline"
+            app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/gender"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/created_title"
-                android:text="@string/created_title"
-                android:layout_marginTop="@dimen/character_detail_title_top_padding"
-                app:layout_constraintStart_toStartOf="@id/start_guideline"
-                app:layout_constraintEnd_toStartOf="@id/middle_guideline"
-                app:layout_constraintWidth_percent="0.5"
-                app:layout_constraintTop_toBottomOf="@id/gender"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/AppTheme.DetailsTitleText"
+            android:id="@+id/location_title"
+            android:text="@string/location_title"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/middle_guideline"
+            app:layout_constraintTop_toTopOf="@id/created_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/location_title"
-                android:text="@string/location_title"
-                app:layout_constraintWidth_percent="0.5"
-                app:layout_constraintEnd_toEndOf="@id/end_guideline"
-                app:layout_constraintStart_toEndOf="@id/middle_guideline"
-                app:layout_constraintTop_toTopOf="@id/created_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/created"
+            style="@style/AppTheme.DetailsText"
+            android:text="@{ characterDetail.created }"
+            tools:text="2017-05-03T19:22:43.665Z"
+            app:layout_constraintStart_toStartOf="@id/start_guideline"
+            app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/created_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/created"
-                style="@style/AppTheme.DetailsText"
-                android:text="@{ characterDetail.created }"
-                tools:text="Male"
-                app:layout_constraintStart_toStartOf="@id/start_guideline"
-                app:layout_constraintEnd_toStartOf="@id/middle_guideline"
-                app:layout_constraintWidth_percent="0.5"
-                app:layout_constraintTop_toBottomOf="@id/created_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/location"
+            style="@style/AppTheme.DetailsText"
+            android:text="@{ characterDetail.locationName }"
+            tools:text="Hubala drive, Northern Nigeria .Earth C137"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/middle_guideline"
+            app:layout_constraintTop_toTopOf="@id/created"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/location"
-                style="@style/AppTheme.DetailsText"
-                android:text="@{ characterDetail.locationName }"
-                tools:text="Earth C137"
-                app:layout_constraintWidth_percent="0.5"
-                app:layout_constraintEnd_toEndOf="@id/end_guideline"
-                app:layout_constraintStart_toEndOf="@id/middle_guideline"
-                app:layout_constraintTop_toTopOf="@id/created"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/top_guideline"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/character_detail_top_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/top_guideline"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="@dimen/character_detail_top_guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_guideline"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/character_detail_side_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/start_guideline"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="@dimen/character_detail_side_guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/character_detail_side_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/end_guideline"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="@dimen/character_detail_side_guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/middle_guideline"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/middle_guideline"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
