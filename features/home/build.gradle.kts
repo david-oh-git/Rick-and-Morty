@@ -5,6 +5,10 @@ plugins {
     id("commons.android-dynamic-feature")
 }
 
+android{
+    buildFeatures.dataBinding = true
+}
+
 dependencies {
 
     implementation( project(BuildModules.APP))

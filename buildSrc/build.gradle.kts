@@ -20,7 +20,7 @@ kotlinDslPluginOptions {
 object PluginVersions {
 
     private object Versions {
-        const val BUILD_TOOLS = "4.0.1"
+        const val BUILD_TOOLS = "4.0.2"
         const val KOTLIN = "1.4.0"
         const val DAGGER_HILT = "2.28-alpha"
         const val NAV_SAFE_ARGS = "2.3.0"

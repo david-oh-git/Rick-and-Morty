@@ -19,20 +19,7 @@ dependencies {
     implementation(BuildDependencies.PAGING_KTX)
     implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
     implementation(BuildDependencies.VIEWMODEL)
-
-    // Tests
-    testImplementation( project(BuildModules.TEST_UTILS))
-
-    testImplementation(TestDependencies.JUNIT5_API)
-    testImplementation(TestDependencies.JUNIT_PLATFORM)
-    testImplementation(TestDependencies.TRUTH)
-    testImplementation(TestDependencies.MOCKITO_)
-    testImplementation(TestDependencies.HAMCREST)
-    testImplementation(TestDependencies.COROUTINE_TEST)
-    testImplementation(TestDependencies.ARCH_CORE)
-    testImplementation(TestDependencies.MOCKK)
     implementation(BuildDependencies.SWIPE_REFRESH_LAYOUT)
     implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
 
-    testRuntimeOnly(TestDependencies.JUNIT5_ENGINE)
 }

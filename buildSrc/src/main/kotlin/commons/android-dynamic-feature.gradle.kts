@@ -1,6 +1,7 @@
 package commons
 
 import dependencies.BuildDependencies
+import dependencies.TestDependencies
 
 plugins {
     id("com.android.dynamic-feature")
@@ -30,8 +31,6 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-
-    buildFeatures.dataBinding = true
 
     androidExtensions {
         isExperimental = true
@@ -75,4 +74,31 @@ dependencies {
 
     kapt(BuildDependencies.HILT_VIEWMODEL_KAPT)
     kapt(BuildDependencies.DAGGER_HILT_KAPT)
+
+    // Tests
+    testImplementation( project(BuildModules.TEST_UTILS))
+
+    testImplementation(TestDependencies.JUNIT5_API)
+    testImplementation(TestDependencies.JUNIT_PLATFORM)
+    testImplementation(TestDependencies.TRUTH)
+    testImplementation(TestDependencies.MOCKITO_)
+    testImplementation(TestDependencies.HAMCREST)
+    testImplementation(TestDependencies.COROUTINE_TEST)
+    testImplementation(TestDependencies.ARCH_CORE)
+    testImplementation(TestDependencies.MOCKK)
+
+
+    testRuntimeOnly(TestDependencies.JUNIT5_ENGINE)
+
+    androidTestImplementation(TestDependencies.JUNIT5_API)
+    androidTestImplementation(TestDependencies.JUNIT_PLATFORM)
+    androidTestImplementation(TestDependencies.TRUTH)
+    androidTestImplementation(TestDependencies.MOCKK)
+    androidTestImplementation(TestDependencies.ANDROIDX_JUNIT_RUNNER)
+    androidTestImplementation(TestDependencies.ANDROIDX_JUNIT_RULES)
+    androidTestImplementation(TestDependencies.OBJENESIS) {
+        exclude(module = "objenesis")
+    }
+
+    androidTestRuntimeOnly(TestDependencies.JUNIT5_ENGINE)
 }

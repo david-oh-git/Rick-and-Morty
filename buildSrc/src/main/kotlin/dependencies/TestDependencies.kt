@@ -2,6 +2,10 @@ package dependencies
 
 object TestDependencies {
 
+    const val OBJENESIS = "org.objenesis:objenesis:${BuildVersions.OBJENESIS}"
+    const val ROBOLECTRIC = "org.robolectric:robolectric:${BuildVersions.ROBOLECTRIC}"
+    const val ANDROIDX_JUNIT_RUNNER = "androidx.test:runner:${BuildVersions.ANDROIDX_RUNNER}"
+    const val ANDROIDX_JUNIT_RULES = "androidx.test:rules:${BuildVersions.ANDROIDX_RUNNER}"
     const val JUNIT = "junit:junit:${BuildVersions.JUNIT}"
     const val JUNIT_VINTAGE = "org.junit.vintage:junit-vintage-engine:${BuildVersions.JUNIT5}"
     const val JUNIT5_API = "org.junit.jupiter:junit-jupiter-api:${BuildVersions.JUNIT5}"

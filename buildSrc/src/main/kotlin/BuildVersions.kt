@@ -40,4 +40,7 @@ object BuildVersions {
     const val COROUTINE = "1.3.7"
     const val MOCKITO_ = "2.2.0"
     const val MOCKK = "1.9.3"
+    const val ANDROIDX_RUNNER = "1.3.0"
+    const val ROBOLECTRIC = "4.3.1"
+    const val OBJENESIS = "2.6"
 }

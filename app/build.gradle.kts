@@ -36,6 +36,7 @@ android {
             applicationIdSuffix = BuildTypeDebug.applicationIdSuffix
             isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
             versionNameSuffix = BuildTypeDebug.versionNameSuffix
+            isTestCoverageEnabled = BuildTypeDebug.isTestCoverageEnabled
         }
 
     }
@@ -80,6 +81,10 @@ android {
         isCheckAllWarnings = true
         isWarningsAsErrors = true
     }
+
+//    packagingOptions {
+//        exclude("META-INF/LICENSE.md")
+//    }
 }
 
 dependencies {
