@@ -67,6 +67,11 @@ class CharactersListViewModel @Inject constructor(
         dataSourceFactory.retry()
     }
 
+    /**
+     * To send an open character detail view from the selected character.
+     *
+     * @param character all the character's details passed on to the character detail view.
+     */
     fun openCharacterDetail(character: Character) {
         event.postValue(CharactersListViewEvent.OpenCharacterDetail(character))
     }

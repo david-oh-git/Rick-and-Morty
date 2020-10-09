@@ -64,15 +64,15 @@ open class CharactersPageDataSource @Inject constructor(
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Character>) {
-        networkState.postValue(NetworkState.Loading())
-        networkStateFlow.value = NetworkState.Loading()
+        networkState.postValue(NetworkState.Loading(true))
+        networkStateFlow.value = NetworkState.Loading(true)
         scope.launch(
             CoroutineExceptionHandler { _, throwable ->
                 retry = {
                     loadAfter(params, callback)
                 }
-                networkState.postValue(NetworkState.Error())
-                networkStateFlow.value = NetworkState.Error()
+                networkState.postValue(NetworkState.Error(isAdditional = true))
+                networkStateFlow.value = NetworkState.Error(isAdditional = true)
                 Timber.d("Error loading data. \n Error msg: ${throwable.message}")
                 Timber.d("Error :\n ${throwable.printStackTrace()}")
             }

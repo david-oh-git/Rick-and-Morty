@@ -31,6 +31,7 @@ class CharactersPageDataSourceFactory @Inject constructor(
      */
     fun refresh() {
         sourceLiveData.value?.invalidate()
+
     }
 
     /**
