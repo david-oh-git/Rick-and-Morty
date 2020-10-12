@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2020 David Osemwota.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package io.audioshinigami.characters_list.list.paging
 
 import androidx.annotation.VisibleForTesting
@@ -13,7 +37,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -50,7 +73,6 @@ open class CharactersPageDataSource @Inject constructor(
 
                 val response = repository.getCharacters(PAGE_INIT_ELEMENT)
                 MAX_PAGE_NUMBER = response.info.pages
-                Timber.d("params Max key is: $MAX_PAGE_NUMBER")
                 val data = response.results
                 callback.onResult(data, null, PAGE_INIT_ELEMENT + 1)
 
@@ -61,7 +83,6 @@ open class CharactersPageDataSource @Inject constructor(
 
             }catch (throwable: Throwable){
                 retry = {
-                    Timber.d("Initial retry is called.")
                     loadInitial(params, callback)
                 }
                 networkState.postValue(NetworkState.Error())
@@ -81,9 +102,7 @@ open class CharactersPageDataSource @Inject constructor(
 
                 val response = repository.getCharacters(params.key)
                 val data = response.results
-                Timber.d("data size is ${data.size}")
                 val nextKey = if( params.key >= MAX_PAGE_NUMBER) null else (params.key + 1 )
-                Timber.d("Params key is : $nextKey")
                 callback.onResult(data, nextKey)
 
                 retry = null
@@ -107,14 +126,11 @@ open class CharactersPageDataSource @Inject constructor(
 
             }catch (throwable: Throwable){
                 retry = {
-                    Timber.d("After retry is called.")
                     loadAfter(params, callback)
                 }
 
                 networkState.postValue(NetworkState.Error(isAdditional = true))
                 networkStateFlow.value = NetworkState.Error(isAdditional = true)
-                Timber.d("Error loading after data. \n Error msg: ${throwable.message}")
-                Timber.d("Error :\n ${throwable.printStackTrace()}")
             }
         }
 
@@ -128,7 +144,6 @@ open class CharactersPageDataSource @Inject constructor(
      *  Retry last fetch operation.
      */
     fun retry(){
-        Timber.d("calling retry")
         val previousRetry = retry
         retry = null
 
