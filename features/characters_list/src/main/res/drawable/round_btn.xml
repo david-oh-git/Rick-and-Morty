@@ -23,8 +23,18 @@
   ~ SOFTWARE.
   -->
 
-<resources>
-    <color name="colorPrimary">#5793FF</color>
-    <color name="colorPrimaryDark">#AE5793FF</color>
-    <color name="colorAccent">#03DAC5</color>
-</resources>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_checked="false">
+        <shape android:shape="oval">
+            <solid android:color="@color/round_btn" />
+        </shape>
+    </item>
+
+    <item android:state_checked="true">
+        <shape android:shape="oval">
+            <solid android:color="@color/round_btn_pressed" />
+        </shape>
+    </item>
+
+</selector>

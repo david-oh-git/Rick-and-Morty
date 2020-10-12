@@ -38,4 +38,5 @@
     <dimen name="character_detail_title_top_padding">4dp</dimen>
     <dimen name="character_detail_text_padding_sides">12dp</dimen>
     <dimen name="character_detail_text_padding_top">4dp</dimen>
+    <dimen name="error_item_image_btn_margin">4dp</dimen>
 </resources>

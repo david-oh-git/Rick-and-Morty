@@ -24,7 +24,7 @@
 
 <resources>
 
-    <string name="list_error_msg">Error fetching character</string>
+    <string name="list_error_msg">Error fetching characters</string>
     <string name="retry_btn">Retry</string>
     <string name="characters_list_error_text">Error ! Can\'t obtain character list.</string>
     <string name="characters_list_empty_text">There are no characters to displays.</string>
@@ -36,4 +36,6 @@
     <string name="created_title">Created</string>
     <string name="location_title">Location</string>
     <string name="default_character_value">Unknown</string>
+    <string name="error_item_reload">Tap to reload</string>
+    <string name="error_item_image">Reload image icon for error item view</string>
 </resources>

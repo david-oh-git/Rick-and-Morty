@@ -24,7 +24,7 @@
   -->
 
 <resources>
-    <color name="colorPrimary">#5793FF</color>
-    <color name="colorPrimaryDark">#AE5793FF</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="round_btn">#70A2FB</color>
+    <color name="round_btn_pressed">#795793FF</color>
+    <color name="retry_icon_tint">#515050</color>
 </resources>
