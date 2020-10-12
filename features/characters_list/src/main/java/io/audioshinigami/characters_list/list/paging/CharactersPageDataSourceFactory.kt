@@ -5,9 +5,9 @@ import androidx.annotation.VisibleForTesting.PRIVATE
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import io.audioshinigami.core.network.responses.characters.Character
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 import javax.inject.Provider
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 /**
  *  Factory for data source,
@@ -31,13 +31,12 @@ class CharactersPageDataSourceFactory @Inject constructor(
      */
     fun refresh() {
         sourceLiveData.value?.invalidate()
-
     }
 
     /**
      * Force retry the last fetch on data source.
      */
     fun retry() {
-        sourceLiveData.value?.retry
+        sourceLiveData.value?.retry()
     }
 }

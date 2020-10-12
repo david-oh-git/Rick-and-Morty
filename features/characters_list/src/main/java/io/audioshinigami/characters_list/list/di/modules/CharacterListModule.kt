@@ -17,4 +17,5 @@ class CharacterListModule {
     @FeatureScope
     @CorotineScopeIo
     fun provideScopeIo(): CoroutineScope = CoroutineScope(Job() + Dispatchers.IO)
+
 }

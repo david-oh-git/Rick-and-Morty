@@ -4,14 +4,16 @@ import androidx.annotation.VisibleForTesting
 import androidx.annotation.VisibleForTesting.PRIVATE
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.LivePagedListBuilder
 import io.audioshinigami.characters_list.list.paging.CharactersPageDataSourceFactory
 import io.audioshinigami.characters_list.list.paging.PAGE_MAX_ELEMENTS
 import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.livedata.SingleLiveData
-import javax.inject.Inject
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import timber.log.Timber
+import javax.inject.Inject
 
 class CharactersListViewModel @Inject constructor(
     @VisibleForTesting(otherwise = PRIVATE)
@@ -30,6 +32,7 @@ class CharactersListViewModel @Inject constructor(
 
         Timber.d("state is $it")
         when (it) {
+
 
             is NetworkState.Success -> {
                 if (it.isAdditional && it.isEmptyResponse) {
@@ -63,6 +66,7 @@ class CharactersListViewModel @Inject constructor(
         dataSourceFactory.refresh()
     }
 
+    @ExperimentalCoroutinesApi
     fun retryAddCharactersList() {
         dataSourceFactory.retry()
     }
