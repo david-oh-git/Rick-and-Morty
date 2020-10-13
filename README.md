@@ -1,2 +1,2 @@
 # Project M
-## work in progress
+## Consumes data from https://rickandmortyapi.com 

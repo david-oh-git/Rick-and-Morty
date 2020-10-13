@@ -28,7 +28,7 @@
     <item
         android:id="@id/nav_characters_list_graph"
         android:icon="@drawable/ic_characters"
-        android:title="@string/home_tab_charactes" />
+        android:title="@string/home_tab_characters" />
 
     <item
         android:visible="false"

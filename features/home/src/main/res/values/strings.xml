@@ -23,7 +23,7 @@
   -->
 
 <resources>
-    <string name="home_tab_charactes">Characters</string>
+    <string name="home_tab_characters">Characters</string>
     <string name="home_tab_episodes">Episodes</string>
     <string name="home_tab_locations">Locations</string>
 </resources>

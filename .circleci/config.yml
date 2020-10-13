@@ -1,3 +1,4 @@
+#CircleCi config file
 version: 2.1
 orbs:
   gradle: circleci/gradle@2.2.0
@@ -12,6 +13,9 @@ jobs:
       - checkout
       - restore_cache:
           key: jars-{{ checksum "build.gradle.kts" }}-{{ checksum "app/build.gradle.kts" }}
+      - run:
+          name: Run Ktlint
+          command: ./gradlew ktlint
       - run:
           name: chmod permissions
           command: chmod +x ./gradlew

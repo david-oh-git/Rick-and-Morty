@@ -25,6 +25,5 @@
 <resources>
     <string name="app_name">Project M</string>
     <string name="title_home">home</string>
-    <string name="title_chracters_list">Characters</string>
     <string name="title_ui">UI</string>
 </resources>
