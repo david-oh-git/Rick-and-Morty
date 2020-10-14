@@ -27,4 +27,6 @@
     <color name="round_btn">#F7DAE8FF</color>
     <color name="round_btn_pressed">#795793FF</color>
     <color name="retry_icon_tint">#E4919090</color>
+
+    <color name="error_text">#000000</color>
 </resources>
