@@ -27,7 +27,7 @@
 
     <dist:module
         dist:instant="true"
-        dist:title="@string/title_chracters_list">
+        dist:title="@string/title_characters_list">
         <dist:delivery>
             <dist:install-time />
         </dist:delivery>

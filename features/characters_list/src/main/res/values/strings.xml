@@ -38,4 +38,6 @@
     <string name="default_character_value">Unknown</string>
     <string name="error_item_reload">Tap to reload</string>
     <string name="error_item_image">Reload image icon for error item view</string>
+
+    <string name="title_characters_list">Character list</string>
 </resources>
