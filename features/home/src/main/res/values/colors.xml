@@ -22,9 +22,7 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   -->
-
 <resources>
-
 <!--    Bottom view-->
     <color name="bottom_view_item_checked">#5793FF</color>
     <color name="bottom_view_item_unchecked">#234567</color>
