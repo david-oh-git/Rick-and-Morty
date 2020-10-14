@@ -22,7 +22,7 @@
   ~ SOFTWARE.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
@@ -31,8 +31,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="fontFamily">@font/noto_sans</item>
-
-
+        <item name="android:windowLightStatusBar" tools:targetApi="m">@bool/light_status_bar</item>
     </style>
 
 </resources>

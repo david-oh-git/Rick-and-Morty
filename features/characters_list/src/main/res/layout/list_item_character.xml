@@ -74,6 +74,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 tools:text="Summer"
+                android:padding="4dp"
                 style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"
                 />
 
