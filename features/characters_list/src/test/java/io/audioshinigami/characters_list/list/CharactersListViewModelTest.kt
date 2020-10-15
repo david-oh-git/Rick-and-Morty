@@ -48,7 +48,7 @@ import org.junit.Test
 internal class CharactersListViewModelTest {
 
     @get:Rule
-    var corotinesTestRule = MainCoroutineRule()
+    var mainCoroutineRule = MainCoroutineRule()
 
     @get:Rule
     var instantTarget = InstantTaskExecutorRule()

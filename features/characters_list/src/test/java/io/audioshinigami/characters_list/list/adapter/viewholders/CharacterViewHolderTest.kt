@@ -24,25 +24,24 @@
 
 package io.audioshinigami.characters_list.list.adapter.viewholders
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
 import io.audioshinigami.characters_list.databinding.ListItemCharacterBinding
+import io.audioshinigami.characters_list.list.CharactersListViewModel
+import io.audioshinigami.core.network.responses.characters.Character
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
 import io.mockk.mockkStatic
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
+import io.mockk.verify
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
-@SmallTest
 class CharacterViewHolderTest {
 
-    // TODO  fix issue as test wont run
     @MockK
     lateinit var view: View
     @MockK
@@ -51,19 +50,42 @@ class CharacterViewHolderTest {
     lateinit var binding: ListItemCharacterBinding
     lateinit var viewHolder: CharacterViewHolder
 
-    @Before
+    @BeforeEach
     fun init(){
         MockKAnnotations.init(this)
     }
 
     @Test
     fun createViewHolder_ShouldInitializeCorrectly(){
+        // Arrange: mock & set return value for mocks
         mockkStatic(ListItemCharacterBinding::class)
         every { (binding as ViewDataBinding).root } returns view
         every { ListItemCharacterBinding.inflate(layoutInflater) } returns binding
 
+        // Act: mock vieHolder
         viewHolder = CharacterViewHolder(layoutInflater)
 
+        // Assert:
         assertThat(viewHolder.binding).isEqualTo(binding)
     }
+
+    @Test
+    fun bindViewHolder_shouldBindingDataVariable(){
+        // Arrange: mock & set return value for mocks
+        mockkStatic(ListItemCharacterBinding::class)
+        every { (binding as ViewDataBinding).root } returns view
+        every { ListItemCharacterBinding.inflate(layoutInflater) } returns binding
+
+        // Act: mock viewHolder and call bind.
+        val viewModel = mockk<CharactersListViewModel>()
+        val character = mockk<Character>()
+        viewHolder = CharacterViewHolder(layoutInflater)
+        viewHolder.bind(viewModel, character)
+
+        // Assert:
+        verify { binding.viewModel = viewModel }
+        verify { binding.character = character }
+        verify { binding.executePendingBindings() }
+    }
+
 }
