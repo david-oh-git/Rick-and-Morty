@@ -25,11 +25,11 @@
 package io.audioshinigami.characters_list.list.paging
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource.LoadCallback
 import androidx.paging.PageKeyedDataSource.LoadInitialCallback
 import androidx.paging.PageKeyedDataSource.LoadInitialParams
 import androidx.paging.PageKeyedDataSource.LoadParams
+import com.google.common.truth.Truth.assertThat
 import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.core.network.repositories.RickAndMortyRepository
 import io.audioshinigami.core.network.responses.DataResponse
@@ -39,13 +39,17 @@ import io.mockk.Called
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
+import io.mockk.unmockkAll
 import io.mockk.verify
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
+import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -53,8 +57,6 @@ import org.junit.Test
 
 @ExperimentalCoroutinesApi
 internal class CharactersPageDataSourceTest {
-
-    // TODO conclude tests
 
     /**
      * Set the main coroutine dispatcher for testing.
@@ -73,8 +75,8 @@ internal class CharactersPageDataSourceTest {
     @MockK(relaxed = true)
     lateinit var repository: RickAndMortyRepository
 
-    @MockK(relaxed = true)
-    lateinit var networkState: MutableLiveData<NetworkState>
+    @MockK
+    lateinit var networkStateFlow: MutableStateFlow<NetworkState>
 
     @MockK(relaxed = true)
     lateinit var retry: Callback
@@ -89,46 +91,63 @@ internal class CharactersPageDataSourceTest {
         MockKAnnotations.init(this, relaxUnitFun = true)
     }
 
+    @After
+    fun reset(){
+        unmockkAll()
+    }
+
     @Test
     fun loadInitial_ShouldPostLoadingState() {
         val params = mockk<LoadInitialParams<Int>>()
         val callback = mockk<LoadInitialCallback<Int, Character>>()
+        val loadingState = NetworkState.Loading()
+        every { dataSource.loadInitial(params, callback) } answers {
+
+            every { networkStateFlow.value } returns loadingState
+        }
+
         dataSource.loadInitial(params, callback)
 
-        verify { networkState.postValue(NetworkState.Loading()) }
+        assertThat(networkStateFlow.value).isEqualTo(loadingState)
     }
 
     @Test
     fun loadInitial_WithError_ShouldPostErrorState() {
         val params = mockk<LoadInitialParams<Int>>()
         val callback = mockk<LoadInitialCallback<Int, Character>>()
+        val errorState = NetworkState.Error()
+        every { dataSource.loadInitial(params, callback) } answers {
+
+            every { networkStateFlow.value } returns errorState
+        }
+
         dataSource.loadInitial(params, callback)
 
         Assert.assertNotNull(retry)
-        verify { networkState.postValue(NetworkState.Error()) }
+        assertThat(networkStateFlow.value).isEqualTo(errorState)
     }
 
     @Test
     fun loadInitial_WithSuccessEmptyData_ShouldPostEmptySuccessState() {
-        val params = LoadInitialParams<Int>(100, false)
+        val params = LoadInitialParams<Int>(20, false)
         val callback = mockk<LoadInitialCallback<Int, Character>>(relaxed = true)
         val emptyData = emptyList<Character>()
         val response = mockk<DataResponse<Character>>()
+        val successNetworkState = NetworkState.Success(isAdditional = false, isEmptyResponse = true)
 
         coEvery { repository.getCharacters(any()) } returns response
+        every { dataSource.loadInitial(params, callback) } answers {
+            callback.onResult(emptyData, null, PAGE_MAX_ELEMENTS)
+
+            every { networkStateFlow.value } returns successNetworkState
+        }
 
         dataSource.loadInitial(params, callback)
 
         coVerify { repository.getCharacters(0) }
         verify { callback.onResult(emptyData, null, PAGE_MAX_ELEMENTS) }
-        verify {
-            networkState.postValue(
-                NetworkState.Success(
-                    isAdditional = false,
-                    isEmptyResponse = true
-                )
-            )
-        }
+
+        assertThat(successNetworkState).isEqualTo(networkStateFlow.value)
     }
 
     @Test
@@ -137,33 +156,59 @@ internal class CharactersPageDataSourceTest {
         val callback = mockk<LoadInitialCallback<Int, Character>>(relaxed = true)
         val data = listOf(mockk<Character>())
         val response = mockk<DataResponse<Character>>()
+        val successNetworkState = NetworkState.Success()
 
         coEvery { repository.getCharacters(any()) } returns response
+        every { dataSource.loadInitial(params, callback) } answers {
+            callback.onResult(data, null, PAGE_MAX_ELEMENTS)
+
+            every { networkStateFlow.value } returns successNetworkState
+        }
 
         dataSource.loadInitial(params, callback)
 
         coVerify { repository.getCharacters(0) }
         verify { callback.onResult(data, null, PAGE_MAX_ELEMENTS) }
-        verify { networkState.postValue(NetworkState.Success()) }
+        assertThat(successNetworkState).isEqualTo(networkStateFlow.value)
     }
 
     @Test
     fun loadAfter_ShouldPostAdditionalLoadingState() {
-        val params = mockk<LoadParams<Int>>()
-        val callback = mockk<LoadCallback<Int, Character>>()
+        val key = 3
+        val params = LoadParams<Int>(key, 20)
+        val callback = mockk<LoadCallback<Int, Character>>(relaxed = true)
+        val data = listOf(mockk<Character>())
+        val additionalLoadingState = NetworkState.Loading(true)
+        every { dataSource.loadAfter(params, callback) } answers {
+            callback.onResult(data, key + 1)
+
+            every { networkStateFlow.value } returns additionalLoadingState
+        }
+
+
         dataSource.loadAfter(params, callback)
 
-        verify { networkState.postValue(NetworkState.Loading(true)) }
+        verify { callback.onResult(data, key + 1) }
+        assertThat(networkStateFlow.value).isEqualTo(additionalLoadingState)
     }
 
     @Test
     fun loadAfter_WithError_ShouldPostAdditionalErrorState() {
-        val params = LoadParams(0, 0)
-        val callback = mockk<LoadCallback<Int, Character>>()
+        val key = 3
+        val params = LoadParams<Int>(key, 20)
+        val callback = mockk<LoadCallback<Int, Character>>(relaxed = true)
+        val data = listOf(mockk<Character>())
+        val additionalErrorState = NetworkState.Error(true)
+        every { dataSource.loadAfter(params, callback) } answers {
+            callback.onResult(data, key + 1)
+
+            every { networkStateFlow.value } returns additionalErrorState
+        }
+
         dataSource.loadAfter(params, callback)
 
         Assert.assertNotNull(retry)
-        verify { networkState.postValue(NetworkState.Error(true)) }
+        assertThat(networkStateFlow.value).isEqualTo(additionalErrorState)
     }
 
     @Test
@@ -173,21 +218,24 @@ internal class CharactersPageDataSourceTest {
         val callback = mockk<LoadCallback<Int, Character>>(relaxed = true)
         val emptyData = emptyList<Character>()
         val response = mockk<DataResponse<Character>>()
+        val additionalEmptySuccessState = NetworkState.Success(
+            isAdditional = true,
+            isEmptyResponse = true
+        )
 
         coEvery { repository.getCharacters(any()) } returns response
+        every { dataSource.loadAfter(params, callback) } answers {
+            callback.onResult(emptyData, paramKey + 1)
+
+            every { networkStateFlow.value } returns additionalEmptySuccessState
+        }
 
         dataSource.loadAfter(params, callback)
 
         coVerify { repository.getCharacters(paramKey) }
-        verify { callback.onResult(emptyData, paramKey + PAGE_MAX_ELEMENTS) }
-        verify {
-            networkState.postValue(
-                NetworkState.Success(
-                    isAdditional = true,
-                    isEmptyResponse = true
-                )
-            )
-        }
+        verify { callback.onResult(emptyData, paramKey + 1) }
+        assertThat(networkStateFlow.value).isEqualTo(additionalEmptySuccessState)
+
     }
 
     @Test
@@ -197,21 +245,23 @@ internal class CharactersPageDataSourceTest {
         val callback = mockk<LoadCallback<Int, Character>>(relaxed = true)
         val data = listOf(mockk<Character>())
         val response = mockk<DataResponse<Character>>()
+        val additionalNonEmptySuccessState = NetworkState.Success(
+            isAdditional = true,
+            isEmptyResponse = false
+        )
 
         coEvery { repository.getCharacters(any()) } returns response
+        every { dataSource.loadAfter(params, callback) } answers {
+            callback.onResult(data, paramKey + 1)
+
+            every { networkStateFlow.value } returns additionalNonEmptySuccessState
+        }
 
         dataSource.loadAfter(params, callback)
 
         coVerify { repository.getCharacters(paramKey) }
-        verify { callback.onResult(data, paramKey + PAGE_MAX_ELEMENTS) }
-        verify {
-            networkState.postValue(
-                NetworkState.Success(
-                    isAdditional = true,
-                    isEmptyResponse = false
-                )
-            )
-        }
+        verify { callback.onResult(data, paramKey + 1) }
+        assertThat(networkStateFlow.value).isEqualTo(additionalNonEmptySuccessState)
     }
 
     @Test

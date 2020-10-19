@@ -26,10 +26,10 @@ package io.audioshinigami.characters_list.list.paging
 
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.VisibleForTesting.PRIVATE
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import io.audioshinigami.core.network.responses.characters.Character
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -42,11 +42,11 @@ class CharactersPageDataSourceFactory @Inject constructor(
     val providerDataSource: Provider<CharactersPageDataSource>
 ) : DataSource.Factory<Int, Character>() {
 
-    var sourceLiveData = MutableLiveData<CharactersPageDataSource>()
+    var sourceFlow = MutableStateFlow<CharactersPageDataSource?>(null)
 
     override fun create(): DataSource<Int, Character> {
         val dataSource = providerDataSource.get()
-        sourceLiveData.postValue(dataSource)
+        sourceFlow.value = dataSource
         return dataSource
     }
 
@@ -54,13 +54,13 @@ class CharactersPageDataSourceFactory @Inject constructor(
      *  Refresh data source.
      */
     fun refresh() {
-        sourceLiveData.value?.invalidate()
+        sourceFlow.value?.invalidate()
     }
 
     /**
      * Force retry the last fetch on data source.
      */
     fun retry() {
-        sourceLiveData.value?.retry()
+        sourceFlow.value?.retry()
     }
 }

@@ -26,7 +26,6 @@ package io.audioshinigami.characters_list.list.paging
 
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.VisibleForTesting.PRIVATE
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import io.audioshinigami.characters_list.list.di.CorotineScopeIo
 import io.audioshinigami.core.network.NetworkState
@@ -52,7 +51,6 @@ open class CharactersPageDataSource @Inject constructor(
 
 ) : PageKeyedDataSource<Int, Character>() {
 
-    val networkState = MutableLiveData<NetworkState>()
     val networkStateFlow = MutableStateFlow<NetworkState>(NetworkState.Loading())
 
     @VisibleForTesting(otherwise = PRIVATE)
@@ -64,7 +62,6 @@ open class CharactersPageDataSource @Inject constructor(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, Character>
     ) {
-        networkState.postValue(NetworkState.Loading())
         networkStateFlow.value = NetworkState.Loading()
 
         scope.launch {
@@ -75,9 +72,8 @@ open class CharactersPageDataSource @Inject constructor(
                 MAX_PAGE_NUMBER = response.info.pages
                 val data = response.results
                 callback.onResult(data, null, PAGE_INIT_ELEMENT + 1)
-
-                networkState.postValue(NetworkState.Success(isEmptyResponse = data.isEmpty()))
                 networkStateFlow.value = NetworkState.Success(isEmptyResponse = data.isEmpty())
+
 
                 retry = null
 
@@ -85,7 +81,6 @@ open class CharactersPageDataSource @Inject constructor(
                 retry = {
                     loadInitial(params, callback)
                 }
-                networkState.postValue(NetworkState.Error())
                 networkStateFlow.value = NetworkState.Error()
             }
         }
@@ -93,7 +88,6 @@ open class CharactersPageDataSource @Inject constructor(
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Character>) {
-        networkState.postValue(NetworkState.Loading(true))
         networkStateFlow.value = NetworkState.Loading(true)
 
         scope.launch {
@@ -108,16 +102,10 @@ open class CharactersPageDataSource @Inject constructor(
                 retry = null
 
                 if( nextKey != null ){
-                    networkState.postValue(NetworkState.Success(
-                        true, data.isEmpty())
-                    )
                     networkStateFlow.value = NetworkState.Success(
                         true, data.isEmpty()
                     )
                 }else {
-                    networkState.postValue(NetworkState.Success(
-                        isAdditional = true,  isEmptyResponse = true )
-                    )
                     networkStateFlow.value = NetworkState.Success(
                         isAdditional = true,  isEmptyResponse = true
                     )
@@ -128,8 +116,6 @@ open class CharactersPageDataSource @Inject constructor(
                 retry = {
                     loadAfter(params, callback)
                 }
-
-                networkState.postValue(NetworkState.Error(isAdditional = true))
                 networkStateFlow.value = NetworkState.Error(isAdditional = true)
             }
         }

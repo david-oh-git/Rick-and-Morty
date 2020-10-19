@@ -45,5 +45,6 @@ dependencies {
     implementation(BuildDependencies.VIEWMODEL)
     implementation(BuildDependencies.SWIPE_REFRESH_LAYOUT)
     implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
+    implementation(BuildDependencies.LIVEDATA_KTX)
 
 }

@@ -42,7 +42,6 @@ import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.extentions.gridLayoutManager
 import io.audioshinigami.ui.extentions.observe
 import kotlinx.coroutines.runBlocking
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -101,7 +100,7 @@ class CharactersListFragment : Fragment() {
      * @param viewState State of characters list.
      */
     private fun onViewStateChange(viewState: CharactersListViewState) {
-        Timber.d("ViewState is: $viewState")
+
         when (viewState) {
             is CharactersListViewState.Loaded ->
                 viewAdapter.submitState(CharactersListAdapterState.Added)
@@ -111,6 +110,10 @@ class CharactersListFragment : Fragment() {
                 viewAdapter.submitState(CharactersListAdapterState.AddError)
             is CharactersListViewState.NoMoreElements ->
                 viewAdapter.submitState(CharactersListAdapterState.NoMore)
+
+            else -> {
+
+            }
         }
     }
 
