@@ -40,6 +40,7 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -73,9 +74,14 @@ internal class CharactersListViewModelTest {
         )
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
         val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
+        val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
+//        every {
+//            dataSourceFactory.sourceLiveData
+//        } returns fakeSourceLiveData
+
         every {
-            dataSourceFactory.sourceLiveData
-        } returns fakeSourceLiveData
+            dataSourceFactory.sourceFlow
+        } returns fakeSourceFlow
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.state.observeForever(stateObserver)
@@ -93,9 +99,15 @@ internal class CharactersListViewModelTest {
         )
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
         val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
+        val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
+
+//        every {
+//            dataSourceFactory.sourceLiveData
+//        } returns fakeSourceLiveData
+
         every {
-            dataSourceFactory.sourceLiveData
-        } returns fakeSourceLiveData
+            dataSourceFactory.sourceFlow
+        } returns fakeSourceFlow
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.state.observeForever(stateObserver)
@@ -112,9 +124,10 @@ internal class CharactersListViewModelTest {
         )
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
         val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
-        every {
-            dataSourceFactory.sourceLiveData
-        } returns fakeSourceLiveData
+        val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
+//        every {
+//            dataSourceFactory.sourceLiveData
+//        } returns fakeSourceLiveData
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.state.observeForever(stateObserver)
@@ -129,9 +142,10 @@ internal class CharactersListViewModelTest {
         val networkState = NetworkState.Success()
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
         val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
-        every {
-            dataSourceFactory.sourceLiveData
-        } returns fakeSourceLiveData
+        val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
+//        every {
+//            dataSourceFactory.sourceLiveData
+//        } returns fakeSourceLiveData
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.state.observeForever(stateObserver)
@@ -146,9 +160,10 @@ internal class CharactersListViewModelTest {
         val networkState = NetworkState.Loading()
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
         val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
-        every {
-            dataSourceFactory.sourceLiveData
-        } returns fakeSourceLiveData
+        val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
+//        every {
+//            dataSourceFactory.sourceLiveData
+//        } returns fakeSourceLiveData
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.state.observeForever(stateObserver)
@@ -165,9 +180,10 @@ internal class CharactersListViewModelTest {
         )
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
         val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
-        every {
-            dataSourceFactory.sourceLiveData
-        } returns fakeSourceLiveData
+        val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
+//        every {
+//            dataSourceFactory.sourceLiveData
+//        } returns fakeSourceLiveData
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.state.observeForever(stateObserver)
@@ -182,9 +198,10 @@ internal class CharactersListViewModelTest {
         val networkState = NetworkState.Error()
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
         val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
-        every {
-            dataSourceFactory.sourceLiveData
-        } returns fakeSourceLiveData
+        val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
+//        every {
+//            dataSourceFactory.sourceLiveData
+//        } returns fakeSourceLiveData
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.state.observeForever(stateObserver)
@@ -201,9 +218,10 @@ internal class CharactersListViewModelTest {
         )
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
         val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
-        every {
-            dataSourceFactory.sourceLiveData
-        } returns fakeSourceLiveData
+        val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
+//        every {
+//            dataSourceFactory.sourceLiveData
+//        } returns fakeSourceLiveData
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.state.observeForever(stateObserver)
@@ -267,7 +285,7 @@ internal class CharactersListViewModelTest {
         scope = mockk()
     ) {
         init {
-            networkState.postValue(forceNetworkState)
+            networkStateFlow.value = forceNetworkState
         }
     }
 }
