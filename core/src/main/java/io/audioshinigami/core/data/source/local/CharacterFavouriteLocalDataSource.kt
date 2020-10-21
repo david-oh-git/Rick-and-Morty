@@ -24,41 +24,46 @@
 
 package io.audioshinigami.core.data.source.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
 import io.audioshinigami.core.data.CharacterFavourite
-import io.audioshinigami.core.utils.CHARACTER_TABLE
+import io.audioshinigami.core.data.source.CharacterFavouriteDataSource
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 /**
- * Room dao access object for [CharacterFavourite] class.
+ * Implementation of [CharacterFavouriteDataSource].
  */
-@Dao
-interface CharacterFavouriteDao {
+class CharacterFavouriteLocalDataSource @Inject constructor(
+    private val characterFavouriteDao: CharacterFavouriteDao,
+    private val ioDispatcher: CoroutineDispatcher
+): CharacterFavouriteDataSource {
 
     /**
-     * Add a [CharacterFavourite] to database.
+     *  Save characterFavourite object to the database.
      */
-    @Insert
-    suspend fun save(characterFavourite: CharacterFavourite)
+    override suspend fun save(characterFavourite: CharacterFavourite) = withContext(ioDispatcher){
+        characterFavouriteDao.save(characterFavourite)
+    }
 
     /**
-     * Get all [CharacterFavourite] from the database via
-     * kotlin flow.
+     *  Get a list of all [CharacterFavourite] objects as a flow.
      */
-    @Query("SELECT * FROM $CHARACTER_TABLE ORDER BY id")
-    fun getAllCharactersFlow(): Flow<List<CharacterFavourite>>
+    override fun getAllCharacterFlow(): Flow<List<CharacterFavourite>> {
+        return characterFavouriteDao.getAllCharactersFlow()
+    }
 
     /**
-     * Get a list of all [CharacterFavourite] from the database.
+     *  Get a list of all [CharacterFavourite] objects.
      */
-    @Query("SELECT * FROM $CHARACTER_TABLE ORDER BY id")
-    suspend fun getAllCharacters(): List<CharacterFavourite>
+    override suspend fun getAllCharacters(): List<CharacterFavourite> = withContext(ioDispatcher){
+        return@withContext characterFavouriteDao.getAllCharacters()
+    }
 
-    /**C
-     * Delete all [CharacterFavourite] from the database.
+    /**
+     * Delete all [CharacterFavourite] objects.
      */
-    @Query("DELETE FROM $CHARACTER_TABLE")
-    suspend fun deleteAllCharacters()
+    override suspend fun deleteAllCharacters() {
+        characterFavouriteDao.deleteAllCharacters()
+    }
 }

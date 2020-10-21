@@ -33,7 +33,7 @@ import io.audioshinigami.core.data.CharacterFavourite
 object CharacterFavouriteFactory {
 
     fun getCharacter(): CharacterFavourite {
-        val id = 0L
+        val id = 140L
         val name = "Alhaji Rickmud Sanchez"
         val status = "Filthy Rich"
         val species = "Human"

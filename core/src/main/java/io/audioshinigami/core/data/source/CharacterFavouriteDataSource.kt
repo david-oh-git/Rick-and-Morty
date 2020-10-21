@@ -22,43 +22,21 @@
  * SOFTWARE.
  */
 
-package io.audioshinigami.core.data.source.local
+package io.audioshinigami.core.data.source
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
 import io.audioshinigami.core.data.CharacterFavourite
-import io.audioshinigami.core.utils.CHARACTER_TABLE
-import kotlinx.coroutines.flow.Flow
 
 /**
- * Room dao access object for [CharacterFavourite] class.
+ *  Entry point for the [CharacterFavourite] table in the
+ *  database.
  */
-@Dao
-interface CharacterFavouriteDao {
+interface CharacterFavouriteDataSource {
 
-    /**
-     * Add a [CharacterFavourite] to database.
-     */
-    @Insert
     suspend fun save(characterFavourite: CharacterFavourite)
 
-    /**
-     * Get all [CharacterFavourite] from the database via
-     * kotlin flow.
-     */
-    @Query("SELECT * FROM $CHARACTER_TABLE ORDER BY id")
-    fun getAllCharactersFlow(): Flow<List<CharacterFavourite>>
+    fun getAllCharacterFlow(): kotlinx.coroutines.flow.Flow<List<CharacterFavourite>>
 
-    /**
-     * Get a list of all [CharacterFavourite] from the database.
-     */
-    @Query("SELECT * FROM $CHARACTER_TABLE ORDER BY id")
     suspend fun getAllCharacters(): List<CharacterFavourite>
 
-    /**C
-     * Delete all [CharacterFavourite] from the database.
-     */
-    @Query("DELETE FROM $CHARACTER_TABLE")
     suspend fun deleteAllCharacters()
 }
