@@ -73,6 +73,9 @@ dependencies {
     kapt(BuildDependencies.DAGGER_HILT_KAPT)
 
     // Tests
+
+    testImplementation( project(BuildModules.TEST_UTILS))
+
     testImplementation(TestDependencies.JUNIT5_API)
     testImplementation(TestDependencies.JUNIT_PLATFORM)
     testImplementation(TestDependencies.TRUTH)
@@ -80,6 +83,9 @@ dependencies {
     testImplementation(TestDependencies.HAMCREST)
     testImplementation(TestDependencies.COROUTINE_TEST)
     testImplementation(TestDependencies.ARCH_CORE)
+    testImplementation(TestDependencies.ANDROIDX_TEST_CORE)
+    testImplementation(TestDependencies.ANDROIDX_JUNIT_RUNNER)
+    testImplementation(TestDependencies.ROBOLECTRIC)
 
     testRuntimeOnly(TestDependencies.JUNIT5_ENGINE)
 

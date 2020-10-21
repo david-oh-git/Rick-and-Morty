@@ -22,17 +22,17 @@
  * SOFTWARE.
  */
 
-package io.audioshinigami.core.data
+package io.audioshinigami.core.util
 
-import com.google.common.truth.Truth.assertThat
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
+import io.audioshinigami.core.data.CharacterFavourite
 
-internal class CharacterFavouriteTest {
+/**
+ * Factory object to create [CharacterFavourite] objects
+ * for testing.
+ */
+object CharacterFavouriteFactory {
 
-    @Test
-    @DisplayName("When a CharacterDetail class is created, its attributes should be correct")
-    fun createCharacterFavorite_ShouldAddCorrectAttributes(){
+    fun getCharacter(): CharacterFavourite {
         val id = 0L
         val name = "Alhaji Rickmud Sanchez"
         val status = "Filthy Rich"
@@ -44,7 +44,7 @@ internal class CharacterFavouriteTest {
         val image = "http://fakeurl.com/rickmud.jpg"
         val created = "2016-06-19"
 
-        val characterFavourite = CharacterFavourite(
+        return CharacterFavourite(
             name = name,
             created = created,
             gender = gender,
@@ -56,16 +56,5 @@ internal class CharacterFavouriteTest {
             status = status,
             type = type
         )
-
-        assertThat(characterFavourite.id).isEqualTo(id)
-        assertThat(characterFavourite.name).isEqualTo(name)
-        assertThat(characterFavourite.status).isEqualTo(status)
-        assertThat(characterFavourite.species).isEqualTo(species)
-        assertThat(characterFavourite.type).isEqualTo(type)
-        assertThat(characterFavourite.gender).isEqualTo(gender)
-        assertThat(characterFavourite.originName).isEqualTo(originName)
-        assertThat(characterFavourite.locationName).isEqualTo(locationName)
-        assertThat(characterFavourite.image).isEqualTo(image)
-        assertThat(characterFavourite.created).isEqualTo(created)
     }
 }

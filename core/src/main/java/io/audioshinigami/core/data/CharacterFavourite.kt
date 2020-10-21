@@ -27,11 +27,12 @@ package io.audioshinigami.core.data
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import io.audioshinigami.core.utils.CHARACTER_TABLE
 
 /**
  * Entity representing character details to be saved in the database.
  */
-@Entity(tableName = "favourite_table")
+@Entity(tableName = CHARACTER_TABLE)
 data class CharacterFavourite(
     @PrimaryKey(autoGenerate = true) val id: Long,
     @ColumnInfo val name: String,
@@ -42,6 +43,5 @@ data class CharacterFavourite(
     @ColumnInfo(name = "image_name") val originName: String,
     @ColumnInfo(name = "location_name") val locationName: String,
     @ColumnInfo val image: String,
-    @ColumnInfo val episode: List<String>,
     @ColumnInfo val created: String
 )

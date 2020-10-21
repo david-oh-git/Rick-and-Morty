@@ -22,22 +22,25 @@
  * SOFTWARE.
  */
 
+package io.audioshinigami.core.data.source.local
 
-import dependencies.BuildDependencies
+import androidx.room.Database
+import androidx.room.RoomDatabase
+import io.audioshinigami.core.data.CharacterFavourite
+import io.audioshinigami.core.utils.DATABASE_VERSION
 
-plugins {
-    id("commons.android-dynamic-feature")
-}
+/**
+ * Rick and Morty room database class.
+ */
+@Database(
+    entities = [CharacterFavourite::class],
+    version = DATABASE_VERSION,
+    exportSchema = false
+)
+abstract class RickAndMortyDatabase: RoomDatabase() {
 
-android {
-    buildFeatures.dataBinding = true
-}
-
-dependencies {
-
-    implementation( project(BuildModules.APP))
-    implementation( project(BuildModules.Features.CHARACTERS_LIST))
-
-    implementation(BuildDependencies.NAVIGATION_UI)
-    implementation(BuildDependencies.APPCOMPAT)
+    /**
+     * Get character favourite dao [CharacterFavouriteDao] object.
+     */
+    abstract fun characterFavouriteDao(): CharacterFavouriteDao
 }

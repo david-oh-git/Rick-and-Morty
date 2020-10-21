@@ -22,22 +22,12 @@
  * SOFTWARE.
  */
 
+package io.audioshinigami.core.utils
 
-import dependencies.BuildDependencies
+/**
+ *  Constants used in the core module.
+ */
 
-plugins {
-    id("commons.android-dynamic-feature")
-}
+const val CHARACTER_TABLE = "favourite_table"
 
-android {
-    buildFeatures.dataBinding = true
-}
-
-dependencies {
-
-    implementation( project(BuildModules.APP))
-    implementation( project(BuildModules.Features.CHARACTERS_LIST))
-
-    implementation(BuildDependencies.NAVIGATION_UI)
-    implementation(BuildDependencies.APPCOMPAT)
-}
+const val DATABASE_VERSION = 1

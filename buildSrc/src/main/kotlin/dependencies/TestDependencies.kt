@@ -26,6 +26,7 @@ package dependencies
 
 object TestDependencies {
 
+    const val ANDROIDX_TEST_CORE = "androidx.test:core:${BuildVersions.ANDROIDX_TEST_CORE}"
     const val OBJENESIS = "org.objenesis:objenesis:${BuildVersions.OBJENESIS}"
     const val ROBOLECTRIC = "org.robolectric:robolectric:${BuildVersions.ROBOLECTRIC}"
     const val ANDROIDX_JUNIT_RUNNER = "androidx.test:runner:${BuildVersions.ANDROIDX_RUNNER}"

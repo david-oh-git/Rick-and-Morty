@@ -22,22 +22,43 @@
  * SOFTWARE.
  */
 
+package io.audioshinigami.core.data.source.local
 
-import dependencies.BuildDependencies
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import io.audioshinigami.core.data.CharacterFavourite
+import io.audioshinigami.core.utils.CHARACTER_TABLE
+import kotlinx.coroutines.flow.Flow
 
-plugins {
-    id("commons.android-dynamic-feature")
-}
+/**
+ * Room dao access object for [CharacterFavourite] class.
+ */
+@Dao
+interface CharacterFavouriteDao {
 
-android {
-    buildFeatures.dataBinding = true
-}
+    /**
+     * Add a [CharacterFavourite] to database.
+     */
+    @Insert
+    suspend fun save(characterFavourite: CharacterFavourite)
 
-dependencies {
+    /**
+     * Get all [CharacterFavourite] from the database via
+     * kotlin flow.
+     */
+    @Query("SELECT * FROM $CHARACTER_TABLE ORDER BY id")
+    fun getAllCharactersFlow(): Flow<List<CharacterFavourite>>
 
-    implementation( project(BuildModules.APP))
-    implementation( project(BuildModules.Features.CHARACTERS_LIST))
+    /**
+     * Get a list of all [CharacterFavourite] from the database.
+     */
+    @Query("SELECT * FROM $CHARACTER_TABLE ORDER BY id")
+    fun getAllCharacters(): List<CharacterFavourite>
 
-    implementation(BuildDependencies.NAVIGATION_UI)
-    implementation(BuildDependencies.APPCOMPAT)
+    /**
+     * Delete all [CharacterFavourite] from the database.
+     */
+    @Query("DELETE FROM $CHARACTER_TABLE")
+    suspend fun deleteAllCharacters()
 }

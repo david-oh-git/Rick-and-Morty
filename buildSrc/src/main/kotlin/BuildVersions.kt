@@ -65,6 +65,7 @@ object BuildVersions {
     const val MOCKITO_ = "2.2.0"
     const val MOCKK = "1.9.3"
     const val ANDROIDX_RUNNER = "1.3.0"
-    const val ROBOLECTRIC = "4.3.1"
+    const val ROBOLECTRIC = "4.4"
     const val OBJENESIS = "2.6"
+    const val ANDROIDX_TEST_CORE = "1.3.0"
 }
