@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020 David Osemwota.
+ * Copyright (c) 21/10/2020 15:28   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,31 +25,29 @@
 package io.audioshinigami.core.data.source
 
 import io.audioshinigami.core.data.CharacterFavourite
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-/**
- *  Entry point for the [CharacterFavourite] table in the
- *  database.
- */
-interface CharacterFavouriteDataSource {
+class CharacterFavouriteRepositoryImpl @Inject constructor(
+    private val localDataSource: CharacterFavouriteDataSource,
+    private val ioDispatcher: CoroutineDispatcher
+): CharacterFavouriteRepository {
 
-    /**
-     *  Save characterFavourite object to the database.
-     */
-    suspend fun save(characterFavourite: CharacterFavourite)
+    override suspend fun save(characterFavourite: CharacterFavourite) = withContext(ioDispatcher) {
+        localDataSource.save(characterFavourite)
+    }
 
-    /**
-     *  Get a list of all [CharacterFavourite] objects as a flow.
-     */
-    fun getAllCharacterFlow(): Flow<List<CharacterFavourite>>
+    override fun getAllCharacterFlow(): Flow<List<CharacterFavourite>>  {
+        return localDataSource.getAllCharacterFlow()
+    }
 
-    /**
-     *  Get a list of all [CharacterFavourite] objects.
-     */
-    suspend fun getAllCharacters(): List<CharacterFavourite>
+    override suspend fun getAllCharacters(): List<CharacterFavourite> = withContext(ioDispatcher) {
+        return@withContext localDataSource.getAllCharacters()
+    }
 
-    /**
-     * Delete all [CharacterFavourite] objects.
-     */
-    suspend fun deleteAllCharacters()
+    override suspend fun deleteAllCharacters() = withContext(ioDispatcher) {
+        localDataSource.deleteAllCharacters()
+    }
 }

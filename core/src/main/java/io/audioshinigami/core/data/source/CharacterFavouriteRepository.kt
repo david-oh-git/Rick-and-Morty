@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020 David Osemwota.
+ * Copyright (c) 21/10/2020 15:26   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,31 +25,32 @@
 package io.audioshinigami.core.data.source
 
 import io.audioshinigami.core.data.CharacterFavourite
-import kotlinx.coroutines.flow.Flow
 
 /**
- *  Entry point for the [CharacterFavourite] table in the
- *  database.
+ *  Repository for [CharacterFavourite] data operations on the database.
  */
-interface CharacterFavouriteDataSource {
+interface CharacterFavouriteRepository {
 
     /**
-     *  Save characterFavourite object to the database.
+     * Save characterFavourite to database.
+     *
+     * @param characterFavourite item to be saved.
      */
     suspend fun save(characterFavourite: CharacterFavourite)
 
     /**
-     *  Get a list of all [CharacterFavourite] objects as a flow.
+     * Get all list of all [CharacterFavourite] items in the database as a
+     * flow.
      */
-    fun getAllCharacterFlow(): Flow<List<CharacterFavourite>>
+    fun getAllCharacterFlow(): kotlinx.coroutines.flow.Flow<List<CharacterFavourite>>
 
     /**
-     *  Get a list of all [CharacterFavourite] objects.
+     * Get all list of all [CharacterFavourite] items in the database.
      */
     suspend fun getAllCharacters(): List<CharacterFavourite>
 
     /**
-     * Delete all [CharacterFavourite] objects.
+     * Delete all list of all [CharacterFavourite] items in the database.
      */
     suspend fun deleteAllCharacters()
 }
