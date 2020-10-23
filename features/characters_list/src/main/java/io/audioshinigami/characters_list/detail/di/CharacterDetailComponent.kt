@@ -26,7 +26,10 @@ package io.audioshinigami.characters_list.detail.di
 
 import dagger.Component
 import io.audioshinigami.characters_list.detail.CharacterDetailFragment
+import io.audioshinigami.characters_list.detail.di.modules.CharacterDetailModule
+import io.audioshinigami.characters_list.detail.di.modules.ViewModelModule
 import io.audioshinigami.core.di.CoreComponent
+import io.audioshinigami.core.di.modules.FactoryModules
 import io.audioshinigami.projectm.di.AppComponent
 
 /**
@@ -35,7 +38,7 @@ import io.audioshinigami.projectm.di.AppComponent
 @CharacterDetailScope
 @Component(
     dependencies = [AppComponent::class, CoreComponent::class] ,
-    modules = [CharacterDetailModule::class]
+    modules = [CharacterDetailModule::class, ViewModelModule::class, FactoryModules::class]
 )
 interface CharacterDetailComponent {
 

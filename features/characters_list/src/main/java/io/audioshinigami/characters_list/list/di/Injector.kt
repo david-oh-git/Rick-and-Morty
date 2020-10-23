@@ -36,8 +36,8 @@ internal fun inject(fragment: CharactersListFragment) =
         .inject(fragment)
 
 private fun appComponent(fragment: CharactersListFragment): AppComponent =
-    EntryPointAccessors.fromActivity(
-        fragment.requireActivity(),
+    EntryPointAccessors.fromApplication(
+        fragment.requireActivity().applicationContext,
         AppComponent::class.java
     )
 

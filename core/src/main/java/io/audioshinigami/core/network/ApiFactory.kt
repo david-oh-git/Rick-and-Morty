@@ -68,6 +68,6 @@ object ApiFactory {
             .client(provideHttpClient(provideHttpLoggingInterceptor()))
             .build()
 
-    fun provideRickAndMortyService() =
+    fun provideRickAndMortyService(): RickAndMortyService =
         provideRetrofitBuilder().create(RickAndMortyService::class.java)
 }

@@ -22,21 +22,20 @@
  * SOFTWARE.
  */
 
-package io.audioshinigami.core.di.modules
+package io.audioshinigami.characters_list.detail.di.modules
 
+import androidx.lifecycle.ViewModel
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
-import io.audioshinigami.core.network.ApiFactory
-import io.audioshinigami.core.network.services.RickAndMortyService
-import javax.inject.Singleton
+import dagger.hilt.migration.DisableInstallInCheck
+import dagger.multibindings.IntoMap
+import io.audioshinigami.characters_list.detail.CharacterDetailViewModel
+import io.audioshinigami.core.di.ViewModelKey
 
+@DisableInstallInCheck
 @Module
-@InstallIn(ApplicationComponent::class)
-class CoreModule {
+interface ViewModelModule {
 
-    @Provides
-    @Singleton
-    fun provideRetrofit(): RickAndMortyService = ApiFactory.provideRickAndMortyService()
+    @get:[Binds IntoMap ViewModelKey(CharacterDetailViewModel::class)]
+    val CharacterDetailViewModel.viewModel: ViewModel
 }

@@ -35,7 +35,7 @@ internal fun inject(target: HomeFragment) =
         .inject(target)
 
 private fun appComponent(fragment: HomeFragment): AppComponent =
-    EntryPointAccessors.fromActivity(
-        fragment.requireActivity(),
+    EntryPointAccessors.fromApplication(
+        fragment.requireActivity().applicationContext,
         AppComponent::class.java
     )

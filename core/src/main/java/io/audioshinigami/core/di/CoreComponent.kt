@@ -27,6 +27,7 @@ package io.audioshinigami.core.di
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import io.audioshinigami.core.data.source.CharacterFavouriteRepository
 import io.audioshinigami.core.network.services.RickAndMortyService
 
 @EntryPoint
@@ -34,4 +35,6 @@ import io.audioshinigami.core.network.services.RickAndMortyService
 interface CoreComponent {
 
     val service: RickAndMortyService
+
+    val repository: CharacterFavouriteRepository
 }

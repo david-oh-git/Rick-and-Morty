@@ -24,13 +24,16 @@
 
 package io.audioshinigami.characters_list.detail
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.audioshinigami.characters_list.detail.models.CharacterDetail
+import io.audioshinigami.core.data.source.CharacterFavouriteRepository
+import javax.inject.Inject
 
-class CharacterDetailViewModel @ViewModelInject constructor(): ViewModel() {
+class CharacterDetailViewModel @Inject constructor(
+    private val repository: CharacterFavouriteRepository
+): ViewModel() {
 
     private val _data = MutableLiveData<CharacterDetail>()
     val data: LiveData<CharacterDetail>

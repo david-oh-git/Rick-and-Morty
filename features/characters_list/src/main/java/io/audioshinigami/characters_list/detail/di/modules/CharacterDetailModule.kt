@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 22/10/2020 7:37   David Osemwota.
+ * Copyright (c) 22/10/2020 8:25   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,19 +22,11 @@
  * SOFTWARE.
  */
 
-package io.audioshinigami.characters_list.detail.di
+package io.audioshinigami.characters_list.detail.di.modules
 
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.migration.DisableInstallInCheck
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 
 @DisableInstallInCheck
 @Module
-class CharacterDetailModule {
-
-    @Provides
-    @CharacterDetailScope
-    fun provideCoroutineDispatcher(): CoroutineDispatcher = Dispatchers.IO
-}
+class CharacterDetailModule

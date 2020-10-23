@@ -30,19 +30,34 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import io.audioshinigami.characters_list.databinding.FragmentCharacterDetailBinding
+import io.audioshinigami.characters_list.detail.di.inject
 import io.audioshinigami.ui.extentions.observe
+import javax.inject.Inject
 
 /**
  * Displays a character's details.
  */
 class CharacterDetailFragment : Fragment() {
 
-    private val _viewModel: CharacterDetailViewModel by viewModels()
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val _viewModel: CharacterDetailViewModel by viewModels {
+        viewModelFactory
+    }
+
     private lateinit var binding: FragmentCharacterDetailBinding
     private val args: CharacterDetailFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
