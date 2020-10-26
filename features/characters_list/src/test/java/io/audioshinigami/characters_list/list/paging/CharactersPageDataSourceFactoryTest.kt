@@ -26,28 +26,13 @@ package io.audioshinigami.characters_list.list.paging
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.never
-import com.nhaarman.mockitokotlin2.whenever
-import com.nhaarman.mockitokotlin2.verify
-import io.mockk.Called
-import io.mockk.MockKAnnotations
-import io.mockk.impl.annotations.InjectMockKs
-import io.mockk.impl.annotations.SpyK
-import io.mockk.mockk
-import io.mockk.unmockkAll
+import com.nhaarman.mockitokotlin2.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.same
 import org.mockito.InjectMocks
-import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import org.mockito.Spy
 import org.mockito.junit.MockitoJUnitRunner
@@ -112,19 +97,19 @@ class CharactersPageDataSourceFactoryTest {
 
         assertThat(dataSourceFactory.sourceFlow.value).isEqualTo(dataSource)
 
-//        verify(dataSource).invalidate()
-        verify(dataSource, never()).retry()
+        verify(dataSource).invalidate()
+//        verify(dataSource, never()).retry()
     }
 
     @Test
     fun retryDataSource_ShouldRetryData() {
-        val dataSource = mockk<CharactersPageDataSource>()
+        val dataSource = mock<CharactersPageDataSource>()
         doReturn(dataSource).whenever(sourceFlow).value
 
         dataSourceFactory.retry()
 
         verify(dataSource).retry()
-        verify(dataSource, never()).invalidate()
+//        verify(dataSource, never()).invalidate()
 
     }
 }
