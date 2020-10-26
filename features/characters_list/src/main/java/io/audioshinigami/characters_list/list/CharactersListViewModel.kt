@@ -38,9 +38,9 @@ import io.audioshinigami.characters_list.list.paging.PAGE_MAX_ELEMENTS
 import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.livedata.SingleLiveData
+import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
-import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 class CharactersListViewModel @Inject constructor(
@@ -57,7 +57,7 @@ class CharactersListViewModel @Inject constructor(
     @VisibleForTesting(otherwise = PRIVATE)
     val networkState: LiveData<NetworkState> = Transformations.switchMap(
         source
-    ){
+    ) {
         it?.networkStateFlow?.asLiveData(viewModelScope.coroutineContext)
     }
 
@@ -94,7 +94,6 @@ class CharactersListViewModel @Inject constructor(
             }
         }
     }
-
 
     fun refreshLoadedCharacterList() {
         dataSourceFactory.refresh()
@@ -143,5 +142,4 @@ class CharactersListViewModel @Inject constructor(
                 }
             }
         }
-
 }

@@ -26,10 +26,10 @@ package io.audioshinigami.core.data.source.local
 
 import io.audioshinigami.core.data.CharacterFavourite
 import io.audioshinigami.core.data.source.CharacterFavouriteDataSource
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 /**
  * Implementation of [CharacterFavouriteDataSource].
@@ -37,12 +37,12 @@ import javax.inject.Inject
 class CharacterFavouriteLocalDataSource @Inject constructor(
     private val characterFavouriteDao: CharacterFavouriteDao,
     private val ioDispatcher: CoroutineDispatcher
-): CharacterFavouriteDataSource {
+) : CharacterFavouriteDataSource {
 
     /**
      *  Save characterFavourite object to the database.
      */
-    override suspend fun save(characterFavourite: CharacterFavourite) = withContext(ioDispatcher){
+    override suspend fun save(characterFavourite: CharacterFavourite) = withContext(ioDispatcher) {
         characterFavouriteDao.save(characterFavourite)
     }
 
@@ -56,7 +56,7 @@ class CharacterFavouriteLocalDataSource @Inject constructor(
     /**
      *  Get a list of all [CharacterFavourite] objects.
      */
-    override suspend fun getAllCharacters(): List<CharacterFavourite> = withContext(ioDispatcher){
+    override suspend fun getAllCharacters(): List<CharacterFavourite> = withContext(ioDispatcher) {
         return@withContext characterFavouriteDao.getAllCharacters()
     }
 

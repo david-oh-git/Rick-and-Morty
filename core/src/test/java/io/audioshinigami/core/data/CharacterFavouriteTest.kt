@@ -32,7 +32,7 @@ internal class CharacterFavouriteTest {
 
     @Test
     @DisplayName("When a CharacterDetail class is created, its attributes should be correct")
-    fun createCharacterFavorite_ShouldAddCorrectAttributes(){
+    fun createCharacterFavorite_ShouldAddCorrectAttributes() {
         val id = 0L
         val name = "Alhaji Rickmud Sanchez"
         val status = "Filthy Rich"

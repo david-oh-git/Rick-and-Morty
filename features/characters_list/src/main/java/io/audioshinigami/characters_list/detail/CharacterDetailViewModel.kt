@@ -33,7 +33,7 @@ import javax.inject.Inject
 
 class CharacterDetailViewModel @Inject constructor(
     private val repository: CharacterFavouriteRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val _data = MutableLiveData<CharacterDetail>()
     val data: LiveData<CharacterDetail>
@@ -43,15 +43,15 @@ class CharacterDetailViewModel @Inject constructor(
     val state: LiveData<CharacterDetailViewState>
         get() = _state
 
-    fun addCharacterToFavorite(){
+    fun addCharacterToFavorite() {
         // TODO save
     }
 
-    fun dismissCharacterDetail(){
-        _state.postValue( CharacterDetailViewState.Dismiss )
+    fun dismissCharacterDetail() {
+        _state.postValue(CharacterDetailViewState.Dismiss)
     }
 
-    fun setData(characterDetail: CharacterDetail){
+    fun setData(characterDetail: CharacterDetail) {
         _data.postValue(characterDetail)
     }
 }

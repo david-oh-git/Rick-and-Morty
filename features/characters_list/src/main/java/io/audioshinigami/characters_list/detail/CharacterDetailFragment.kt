@@ -60,12 +60,13 @@ class CharacterDetailFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentCharacterDetailBinding.inflate(inflater)
-            .apply { 
+            .apply {
                 lifecycleOwner = viewLifecycleOwner
                 viewModel = _viewModel
             }
@@ -85,8 +86,8 @@ class CharacterDetailFragment : Fragment() {
      *
      * @param viewState State of character detail.
      */
-    private fun onViewStateChange(viewState: CharacterDetailViewState){
-        when(viewState){
+    private fun onViewStateChange(viewState: CharacterDetailViewState) {
+        when (viewState) {
             is CharacterDetailViewState.Dismiss -> findNavController().navigateUp()
         }
     }

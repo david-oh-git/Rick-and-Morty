@@ -24,7 +24,6 @@
 
 package io.audioshinigami.core.network.responses.characters
 
-
 /**
  *  Represents a Rick and Morty character from API
  *

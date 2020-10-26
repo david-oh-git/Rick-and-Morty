@@ -37,7 +37,7 @@ import io.audioshinigami.projectm.di.AppComponent
  */
 @CharacterDetailScope
 @Component(
-    dependencies = [AppComponent::class, CoreComponent::class] ,
+    dependencies = [AppComponent::class, CoreComponent::class],
     modules = [CharacterDetailModule::class, ViewModelModule::class, FactoryModules::class]
 )
 interface CharacterDetailComponent {

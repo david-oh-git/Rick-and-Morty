@@ -25,7 +25,6 @@
 package io.audioshinigami.characters_list.detail.models
 
 import android.os.Parcelable
-import io.audioshinigami.core.network.responses.characters.BaseLocation
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -46,4 +45,4 @@ class CharacterDetail(
     val episode: List<String>,
     val characterUrl: String,
     val created: String
-): Parcelable
+) : Parcelable

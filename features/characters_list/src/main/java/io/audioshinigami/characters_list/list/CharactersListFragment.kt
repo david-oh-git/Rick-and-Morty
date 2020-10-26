@@ -41,8 +41,8 @@ import io.audioshinigami.characters_list.list.di.inject
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.extentions.gridLayoutManager
 import io.audioshinigami.ui.extentions.observe
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
+import kotlinx.coroutines.runBlocking
 
 /**
  * [Fragment]
@@ -112,7 +112,6 @@ class CharactersListFragment : Fragment() {
                 viewAdapter.submitState(CharactersListAdapterState.NoMore)
 
             else -> {
-
             }
         }
     }
@@ -134,9 +133,10 @@ class CharactersListFragment : Fragment() {
         when (viewEvent) {
             is CharactersListViewEvent.OpenCharacterDetail -> {
                 runBlocking {
-                    val action = CharactersListFragmentDirections.actionCharactersListFragmentToCharacterDetailFragment(
-                        CharacterDetailMapper().transform(viewEvent.character)
-                    )
+                    val action = CharactersListFragmentDirections
+                            .actionCharactersListFragmentToCharacterDetailFragment(
+                                    CharacterDetailMapper().transform(viewEvent.character)
+                            )
                     findNavController().navigate(action)
                 }
             }

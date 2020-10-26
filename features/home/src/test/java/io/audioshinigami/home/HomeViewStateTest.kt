@@ -32,7 +32,7 @@ internal class HomeViewStateTest {
     lateinit var state: HomeViewState
 
     @Test
-    fun setStateAsFullScreen_ShouldBeSettled(){
+    fun setStateAsFullScreen_ShouldBeSettled() {
         state = HomeViewState.FullScreen
 
         assertThat(state.isFullScreen()).isTrue()
@@ -40,7 +40,7 @@ internal class HomeViewStateTest {
     }
 
     @Test
-    fun setStateAsNavigationScreen_ShouldBeSettled(){
+    fun setStateAsNavigationScreen_ShouldBeSettled() {
         state = HomeViewState.NavigationScreen
 
         assertThat(state.isNavigationScreen()).isTrue()

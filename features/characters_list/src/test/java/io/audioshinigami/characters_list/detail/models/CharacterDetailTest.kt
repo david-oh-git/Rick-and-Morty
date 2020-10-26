@@ -32,7 +32,7 @@ internal class CharacterDetailTest {
 
     @Test
     @DisplayName("When a CharacterDetail class is created, its attributes should be correct")
-    fun createCharacterDetail_shouldAddCorrectAttributes(){
+    fun createCharacterDetail_shouldAddCorrectAttributes() {
         val name = "Alhaji Rickmud Sanchez"
         val status = "Filthy Rich"
         val species = "Human"

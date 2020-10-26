@@ -32,12 +32,12 @@ import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.core.network.repositories.RickAndMortyRepository
 import io.audioshinigami.core.network.responses.BaseListResponse
 import io.audioshinigami.core.network.responses.characters.Character
+import javax.inject.Inject
+import kotlin.properties.Delegates
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
-import kotlin.properties.Delegates
 
 const val PAGE_INIT_ELEMENT = 0
 const val PAGE_MAX_ELEMENTS = 20
@@ -54,7 +54,7 @@ open class CharactersPageDataSource @Inject constructor(
     val networkStateFlow = MutableStateFlow<NetworkState>(NetworkState.Loading())
 
     @VisibleForTesting(otherwise = PRIVATE)
-    var retry: (  () -> Unit)? = null
+    var retry: (() -> Unit)? = null
 
     var MAX_PAGE_NUMBER by Delegates.notNull<Int>()
 
@@ -74,17 +74,14 @@ open class CharactersPageDataSource @Inject constructor(
                 callback.onResult(data, null, PAGE_INIT_ELEMENT + 1)
                 networkStateFlow.value = NetworkState.Success(isEmptyResponse = data.isEmpty())
 
-
                 retry = null
-
-            }catch (throwable: Throwable){
+            } catch (throwable: Throwable) {
                 retry = {
                     loadInitial(params, callback)
                 }
                 networkStateFlow.value = NetworkState.Error()
             }
         }
-
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Character>) {
@@ -92,34 +89,31 @@ open class CharactersPageDataSource @Inject constructor(
 
         scope.launch {
 
-            try{
+            try {
 
                 val response = repository.getCharacters(params.key)
                 val data = response.results
-                val nextKey = if( params.key >= MAX_PAGE_NUMBER) null else (params.key + 1 )
+                val nextKey = if (params.key >= MAX_PAGE_NUMBER) null else (params.key + 1)
                 callback.onResult(data, nextKey)
 
                 retry = null
 
-                if( nextKey != null ){
+                if (nextKey != null) {
                     networkStateFlow.value = NetworkState.Success(
                         true, data.isEmpty()
                     )
-                }else {
+                } else {
                     networkStateFlow.value = NetworkState.Success(
-                        isAdditional = true,  isEmptyResponse = true
+                        isAdditional = true, isEmptyResponse = true
                     )
                 }
-
-
-            }catch (throwable: Throwable){
+            } catch (throwable: Throwable) {
                 retry = {
                     loadAfter(params, callback)
                 }
                 networkStateFlow.value = NetworkState.Error(isAdditional = true)
             }
         }
-
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Character>) {
@@ -129,12 +123,11 @@ open class CharactersPageDataSource @Inject constructor(
     /**
      *  Retry last fetch operation.
      */
-    fun retry(){
+    fun retry() {
         val previousRetry = retry
         retry = null
 
         previousRetry?.invoke()
-
     }
 
     /**

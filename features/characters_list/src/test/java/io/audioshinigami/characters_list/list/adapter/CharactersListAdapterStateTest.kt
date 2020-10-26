@@ -34,7 +34,7 @@ internal class CharactersListAdapterStateTest {
 
     @Test
     @DisplayName("Set state to Added , then confirm result is as.")
-    fun setStateAdded_Confirm(){
+    fun setStateAdded_Confirm() {
         // Act: set state value to Added.
         state = CharactersListAdapterState.Added
 
@@ -49,7 +49,7 @@ internal class CharactersListAdapterStateTest {
 
     @Test
     @DisplayName("Set state to AddLoading , then confirm result is as.")
-    fun setStateAddLoading_Confirm(){
+    fun setStateAddLoading_Confirm() {
         // Act: set state value to Added.
         state = CharactersListAdapterState.AddLoading
 
@@ -64,7 +64,7 @@ internal class CharactersListAdapterStateTest {
 
     @Test
     @DisplayName("Set state to AddError , then confirm result is as.")
-    fun setStateAddError_Confirm(){
+    fun setStateAddError_Confirm() {
         // Act: set state value to Added.
         state = CharactersListAdapterState.AddError
 
@@ -79,7 +79,7 @@ internal class CharactersListAdapterStateTest {
 
     @Test
     @DisplayName("Set state to NoMore , then confirm result is as.")
-    fun setStateNoMore_Confirm(){
+    fun setStateNoMore_Confirm() {
         // Act: set state value to Added.
         state = CharactersListAdapterState.NoMore
 

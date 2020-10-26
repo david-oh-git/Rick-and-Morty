@@ -37,7 +37,7 @@ import io.audioshinigami.core.utils.DATABASE_VERSION
     version = DATABASE_VERSION,
     exportSchema = false
 )
-abstract class RickAndMortyDatabase: RoomDatabase() {
+abstract class RickAndMortyDatabase : RoomDatabase() {
 
     /**
      * Get character favourite dao [CharacterFavouriteDao] object.

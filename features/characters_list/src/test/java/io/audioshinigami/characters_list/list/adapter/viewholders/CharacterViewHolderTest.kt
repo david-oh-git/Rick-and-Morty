@@ -51,12 +51,12 @@ class CharacterViewHolderTest {
     lateinit var viewHolder: CharacterViewHolder
 
     @BeforeEach
-    fun init(){
+    fun init() {
         MockKAnnotations.init(this)
     }
 
     @Test
-    fun createViewHolder_ShouldInitializeCorrectly(){
+    fun createViewHolder_ShouldInitializeCorrectly() {
         // Arrange: mock & set return value for mocks
         mockkStatic(ListItemCharacterBinding::class)
         every { (binding as ViewDataBinding).root } returns view
@@ -70,7 +70,7 @@ class CharacterViewHolderTest {
     }
 
     @Test
-    fun bindViewHolder_shouldBindingDataVariable(){
+    fun bindViewHolder_shouldBindingDataVariable() {
         // Arrange: mock & set return value for mocks
         mockkStatic(ListItemCharacterBinding::class)
         every { (binding as ViewDataBinding).root } returns view
@@ -87,5 +87,4 @@ class CharacterViewHolderTest {
         verify { binding.character = character }
         verify { binding.executePendingBindings() }
     }
-
 }

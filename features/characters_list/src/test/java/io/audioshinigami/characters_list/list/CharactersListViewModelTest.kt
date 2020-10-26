@@ -25,7 +25,6 @@
 package io.audioshinigami.characters_list.list
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.google.common.truth.Truth.assertThat
 import io.audioshinigami.characters_list.list.paging.CharactersPageDataSource

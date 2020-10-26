@@ -25,21 +25,21 @@
 package io.audioshinigami.core.data.source
 
 import io.audioshinigami.core.data.CharacterFavourite
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 class CharacterFavouriteRepositoryImpl @Inject constructor(
     private val localDataSource: CharacterFavouriteDataSource,
     private val ioDispatcher: CoroutineDispatcher
-): CharacterFavouriteRepository {
+) : CharacterFavouriteRepository {
 
     override suspend fun save(characterFavourite: CharacterFavourite) = withContext(ioDispatcher) {
         localDataSource.save(characterFavourite)
     }
 
-    override fun getAllCharacterFlow(): Flow<List<CharacterFavourite>>  {
+    override fun getAllCharacterFlow(): Flow<List<CharacterFavourite>> {
         return localDataSource.getAllCharacterFlow()
     }
 

@@ -32,7 +32,6 @@ import com.google.common.truth.Truth.assertThat
 import io.audioshinigami.core.util.CharacterFavouriteFactory
 import io.audioshinigami.test_utils.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Before
@@ -56,7 +55,7 @@ internal class CharacterFavouriteDaoTest {
     private lateinit var characterFavouriteDao: CharacterFavouriteDao
 
     @Before
-    fun init(){
+    fun init() {
         val applicationContext = ApplicationProvider.getApplicationContext<Context>()
         database = Room.inMemoryDatabaseBuilder(
             applicationContext,
@@ -68,7 +67,7 @@ internal class CharacterFavouriteDaoTest {
     }
 
     @After
-    fun reset(){
+    fun reset() {
         database.close()
     }
 

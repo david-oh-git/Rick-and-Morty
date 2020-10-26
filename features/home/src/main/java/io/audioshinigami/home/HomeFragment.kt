@@ -100,7 +100,6 @@ class HomeFragment : Fragment() {
             intent = requireActivity().intent
         )
 
-        
         navController.observe(viewLifecycleOwner, Observer {
             _viewModel.navigationControllerChanged(it)
             NavigationUI.setupActionBarWithNavController(

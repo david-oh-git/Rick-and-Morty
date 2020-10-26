@@ -26,17 +26,24 @@ package io.audioshinigami.characters_list.list.paging
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.never
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
+import javax.inject.Provider
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
-import org.junit.*
+import org.junit.After
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.same
 import org.mockito.InjectMocks
 import org.mockito.MockitoAnnotations
 import org.mockito.Spy
 import org.mockito.junit.MockitoJUnitRunner
-import javax.inject.Provider
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
@@ -65,7 +72,7 @@ class CharactersPageDataSourceFactoryTest {
     }
 
     @After
-    fun reset(){
+    fun reset() {
 //        unmockkAll()
 //        validateMockitoUsage()
     }
@@ -74,7 +81,7 @@ class CharactersPageDataSourceFactoryTest {
     fun initializeFactory_WithoutCreate_ShouldNotHaveDataSource() {
 
         verify(dataSourceFactory.sourceFlow, never())
-        Assert.assertNull(dataSourceFactory.sourceFlow.value)
+        assertThat(dataSourceFactory.sourceFlow.value).isNull()
     }
 
     @Test
@@ -101,7 +108,6 @@ class CharactersPageDataSourceFactoryTest {
 //        verify(dataSource, never()).retry()
     }
 
-    @Test
     fun retryDataSource_ShouldRetryData() {
         val dataSource = mock<CharactersPageDataSource>()
         doReturn(dataSource).whenever(sourceFlow).value
@@ -110,6 +116,5 @@ class CharactersPageDataSourceFactoryTest {
 
         verify(dataSource).retry()
 //        verify(dataSource, never()).invalidate()
-
     }
 }

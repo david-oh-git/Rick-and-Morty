@@ -92,7 +92,7 @@ internal class CharactersPageDataSourceTest {
     }
 
     @After
-    fun reset(){
+    fun reset() {
         unmockkAll()
     }
 
@@ -185,7 +185,6 @@ internal class CharactersPageDataSourceTest {
             every { networkStateFlow.value } returns additionalLoadingState
         }
 
-
         dataSource.loadAfter(params, callback)
 
         verify { callback.onResult(data, key + 1) }
@@ -235,7 +234,6 @@ internal class CharactersPageDataSourceTest {
         coVerify { repository.getCharacters(paramKey) }
         verify { callback.onResult(emptyData, paramKey + 1) }
         assertThat(networkStateFlow.value).isEqualTo(additionalEmptySuccessState)
-
     }
 
     @Test

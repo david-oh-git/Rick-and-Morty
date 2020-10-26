@@ -45,7 +45,7 @@ class CharacterFavouriteRepositoryTest {
     lateinit var characterFavouriteRepository: CharacterFavouriteRepository
 
     @BeforeEach
-    fun init(){
+    fun init() {
         MockitoAnnotations.initMocks(this)
         characterFavouriteRepository = CharacterFavouriteRepositoryImpl(
             localDataSource,

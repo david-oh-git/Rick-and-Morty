@@ -41,9 +41,9 @@ import io.audioshinigami.core.data.source.local.RickAndMortyDatabase
 import io.audioshinigami.core.network.ApiFactory
 import io.audioshinigami.core.network.services.RickAndMortyService
 import io.audioshinigami.core.utils.CHARACTER_TABLE
+import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
@@ -67,7 +67,8 @@ interface CoreModuleBinds {
 
         @Provides
         @Singleton
-        fun provideCharacterFavouriteDao(@ApplicationContext context: Context): CharacterFavouriteDao =
+        fun provideCharacterFavouriteDao(@ApplicationContext context: Context):
+                CharacterFavouriteDao =
             Room.databaseBuilder(
                 context.applicationContext,
                 RickAndMortyDatabase::class.java,

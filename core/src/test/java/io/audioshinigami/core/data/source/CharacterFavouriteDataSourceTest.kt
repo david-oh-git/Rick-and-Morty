@@ -59,7 +59,7 @@ class CharacterFavouriteDataSourceTest {
     private lateinit var database: RickAndMortyDatabase
 
     @Before
-    fun init(){
+    fun init() {
         val applicationContext = ApplicationProvider.getApplicationContext<Context>()
         database = Room.inMemoryDatabaseBuilder(
             applicationContext,
@@ -74,7 +74,7 @@ class CharacterFavouriteDataSourceTest {
     }
 
     @After
-    fun reset(){
+    fun reset() {
         database.close()
     }
 
