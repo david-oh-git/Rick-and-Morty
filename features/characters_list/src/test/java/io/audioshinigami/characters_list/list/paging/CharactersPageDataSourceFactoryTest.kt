@@ -25,14 +25,17 @@
 package io.audioshinigami.characters_list.list.paging
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.nhaarman.mockitokotlin2.doAnswer
+import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.never
-import com.nhaarman.mockitokotlin2.same
-import com.nhaarman.mockitokotlin2.validateMockitoUsage
-import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
+import com.nhaarman.mockitokotlin2.verify
+import io.mockk.Called
+import io.mockk.MockKAnnotations
+import io.mockk.impl.annotations.InjectMockKs
+import io.mockk.impl.annotations.SpyK
+import io.mockk.mockk
 import io.mockk.unmockkAll
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,7 +45,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.ArgumentMatchers.same
 import org.mockito.InjectMocks
+import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import org.mockito.Spy
 import org.mockito.junit.MockitoJUnitRunner
@@ -64,7 +69,7 @@ class CharactersPageDataSourceFactoryTest {
     lateinit var providerDataSource: Provider<CharactersPageDataSource>
 
     @Spy
-    lateinit var sourceFlow: MutableStateFlow<CharactersPageDataSource>
+    lateinit var sourceFlow: MutableStateFlow<CharactersPageDataSource?>
 
     @InjectMocks
     lateinit var dataSourceFactory: CharactersPageDataSourceFactory
@@ -76,12 +81,13 @@ class CharactersPageDataSourceFactoryTest {
 
     @After
     fun reset(){
-        unmockkAll()
-        validateMockitoUsage()
+//        unmockkAll()
+//        validateMockitoUsage()
     }
 
     @Test
     fun initializeFactory_WithoutCreate_ShouldNotHaveDataSource() {
+
         verify(dataSourceFactory.sourceFlow, never())
         Assert.assertNull(dataSourceFactory.sourceFlow.value)
     }
@@ -104,19 +110,21 @@ class CharactersPageDataSourceFactoryTest {
 
         dataSourceFactory.refresh()
 
-        verify(dataSource).invalidate()
-//        verify(dataSource, never()).retry()
+        assertThat(dataSourceFactory.sourceFlow.value).isEqualTo(dataSource)
+
+//        verify(dataSource).invalidate()
+        verify(dataSource, never()).retry()
     }
 
     @Test
     fun retryDataSource_ShouldRetryData() {
-        val dataSource = mock<CharactersPageDataSource>()
+        val dataSource = mockk<CharactersPageDataSource>()
         doReturn(dataSource).whenever(sourceFlow).value
 
         dataSourceFactory.retry()
 
         verify(dataSource).retry()
-//        verify(dataSource, never()).invalidate()
+        verify(dataSource, never()).invalidate()
 
     }
 }

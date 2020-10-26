@@ -73,11 +73,7 @@ internal class CharactersListViewModelTest {
             isEmptyResponse = true
         )
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
         val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
-//        every {
-//            dataSourceFactory.sourceLiveData
-//        } returns fakeSourceLiveData
 
         every {
             dataSourceFactory.sourceFlow
@@ -98,12 +94,7 @@ internal class CharactersListViewModelTest {
             isAdditional = true
         )
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
         val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
-
-//        every {
-//            dataSourceFactory.sourceLiveData
-//        } returns fakeSourceLiveData
 
         every {
             dataSourceFactory.sourceFlow
@@ -123,11 +114,10 @@ internal class CharactersListViewModelTest {
             isAdditional = true
         )
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
         val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
-//        every {
-//            dataSourceFactory.sourceLiveData
-//        } returns fakeSourceLiveData
+        every {
+            dataSourceFactory.sourceFlow
+        } returns fakeSourceFlow
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.state.observeForever(stateObserver)
@@ -141,11 +131,10 @@ internal class CharactersListViewModelTest {
     fun networkSuccessCharacters_ShouldBeLoadedState() {
         val networkState = NetworkState.Success()
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
         val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
-//        every {
-//            dataSourceFactory.sourceLiveData
-//        } returns fakeSourceLiveData
+        every {
+            dataSourceFactory.sourceFlow
+        } returns fakeSourceFlow
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.state.observeForever(stateObserver)
@@ -159,11 +148,10 @@ internal class CharactersListViewModelTest {
     fun networkLoadingCharacters_ShouldBeLoadingState() {
         val networkState = NetworkState.Loading()
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
         val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
-//        every {
-//            dataSourceFactory.sourceLiveData
-//        } returns fakeSourceLiveData
+        every {
+            dataSourceFactory.sourceFlow
+        } returns fakeSourceFlow
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.state.observeForever(stateObserver)
@@ -179,11 +167,10 @@ internal class CharactersListViewModelTest {
             isAdditional = true
         )
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
         val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
-//        every {
-//            dataSourceFactory.sourceLiveData
-//        } returns fakeSourceLiveData
+        every {
+            dataSourceFactory.sourceFlow
+        } returns fakeSourceFlow
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.state.observeForever(stateObserver)
@@ -197,11 +184,10 @@ internal class CharactersListViewModelTest {
     fun networkErrorCharacters_ShouldBeErrorState() {
         val networkState = NetworkState.Error()
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
         val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
-//        every {
-//            dataSourceFactory.sourceLiveData
-//        } returns fakeSourceLiveData
+        every {
+            dataSourceFactory.sourceFlow
+        } returns fakeSourceFlow
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.state.observeForever(stateObserver)
@@ -217,11 +203,10 @@ internal class CharactersListViewModelTest {
             isAdditional = true
         )
         val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
         val fakeSourceFlow = MutableStateFlow<CharactersPageDataSource?>(fakePageDataSource)
-//        every {
-//            dataSourceFactory.sourceLiveData
-//        } returns fakeSourceLiveData
+        every {
+            dataSourceFactory.sourceFlow
+        } returns fakeSourceFlow
 
         viewModel = CharactersListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.state.observeForever(stateObserver)
