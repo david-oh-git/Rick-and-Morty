@@ -29,4 +29,5 @@
     <color name="retry_icon_tint">#515050</color>
 
     <color name="error_text">#FFFFFF</color>
+    <color name="character_detail_view_title_text">@color/round_btn_pressed</color>
 </resources>

@@ -40,16 +40,17 @@
         android:paddingStart="@dimen/character_detail_content_padding_horizontal"
         android:paddingEnd="@dimen/character_detail_content_padding_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.textview.MaterialTextView
-            style="@style/AppTheme.DetailsTitleText"
-            tools:text="Alive"
-            android:id="@+id/character_status"
-            android:text="@{ characterDetail.status }"
+            tools:text="@tools:sample/full_names"
+            android:id="@+id/character_name"
+            android:text="@{ characterDetail.name }"
+            android:textSize="22sp"
+            android:textColor="@color/character_detail_view_title_text"
+            android:textStyle="bold"
             android:gravity="center"
             app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintEnd_toEndOf="@id/end_guideline"
             app:layout_constraintTop_toTopOf="@id/top_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -57,11 +58,12 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/status_icon"
             status="@{ characterDetail.status }"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/status_icon_height"
-            app:layout_constraintStart_toEndOf="@id/character_status"
-            app:layout_constraintTop_toTopOf="@id/character_status"
-            app:layout_constraintBottom_toBottomOf="@id/character_status"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@id/character_name"
+            app:layout_constraintTop_toTopOf="@id/character_name"
+            app:layout_constraintBottom_toBottomOf="@id/character_name"
             app:layout_constraintDimensionRatio="1"
             tools:src="@drawable/ic_alive"
             />
@@ -72,9 +74,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/specie_title"
-            app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@id/first_column_end_guideline"
             app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintTop_toBottomOf="@id/character_status"
+            app:layout_constraintTop_toBottomOf="@id/character_name"
             app:layout_constraintWidth_percent="0.5" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -83,7 +86,7 @@
             style="@style/AppTheme.DetailsTitleText"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintEnd_toEndOf="@id/end_guideline"
-            app:layout_constraintStart_toEndOf="@id/middle_guideline"
+            app:layout_constraintStart_toEndOf="@id/second_column_start_guideline"
             app:layout_constraintTop_toTopOf="@id/specie_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
@@ -94,7 +97,7 @@
             android:text="@{ characterDetail.species }"
             tools:text="Human"
             app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+            app:layout_constraintEnd_toStartOf="@id/first_column_end_guideline"
             app:layout_constraintTop_toBottomOf="@id/specie_title"
             app:layout_constraintWidth_percent="0.5"
             android:layout_width="0dp"
@@ -107,7 +110,7 @@
             tools:text="Idiot"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintEnd_toEndOf="@id/end_guideline"
-            app:layout_constraintStart_toEndOf="@id/middle_guideline"
+            app:layout_constraintStart_toEndOf="@id/second_column_start_guideline"
             app:layout_constraintTop_toTopOf="@id/specie"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
@@ -117,7 +120,7 @@
             android:id="@+id/gender_title"
             android:text="@string/gender_title"
             app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+            app:layout_constraintEnd_toStartOf="@id/first_column_end_guideline"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintTop_toBottomOf="@id/specie"
             android:layout_width="0dp"
@@ -129,7 +132,7 @@
             android:text="@string/origin_title"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintEnd_toEndOf="@id/end_guideline"
-            app:layout_constraintStart_toEndOf="@id/middle_guideline"
+            app:layout_constraintStart_toEndOf="@id/second_column_start_guideline"
             app:layout_constraintTop_toTopOf="@id/gender_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
@@ -140,7 +143,7 @@
             android:text="@{ characterDetail.gender }"
             tools:text="Male"
             app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+            app:layout_constraintEnd_toStartOf="@id/first_column_end_guideline"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintTop_toBottomOf="@id/gender_title"
             android:layout_width="0dp"
@@ -150,10 +153,10 @@
             android:id="@+id/origin"
             style="@style/AppTheme.DetailsText"
             android:text="@{ characterDetail.originName }"
-            tools:text="Earth C137"
+            tools:text="@tools:sample/cities"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintEnd_toEndOf="@id/end_guideline"
-            app:layout_constraintStart_toEndOf="@id/middle_guideline"
+            app:layout_constraintStart_toEndOf="@id/second_column_start_guideline"
             app:layout_constraintTop_toTopOf="@id/gender"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
@@ -163,7 +166,7 @@
             android:id="@+id/created_title"
             android:text="@string/created_title"
             app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+            app:layout_constraintEnd_toStartOf="@id/first_column_end_guideline"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintTop_toBottomOf="@id/gender"
             android:layout_width="0dp"
@@ -175,7 +178,7 @@
             android:text="@string/location_title"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintEnd_toEndOf="@id/end_guideline"
-            app:layout_constraintStart_toEndOf="@id/middle_guideline"
+            app:layout_constraintStart_toEndOf="@id/second_column_start_guideline"
             app:layout_constraintTop_toTopOf="@id/created_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
@@ -186,9 +189,10 @@
             android:text="@{ characterDetail.created }"
             tools:text="2017-05-03T19:22:43.665Z"
             app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+            app:layout_constraintEnd_toStartOf="@id/first_column_end_guideline"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintTop_toBottomOf="@id/created_title"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -199,8 +203,9 @@
             tools:text="Hubala drive, Northern Nigeria .Earth C137"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintEnd_toEndOf="@id/end_guideline"
-            app:layout_constraintStart_toEndOf="@id/middle_guideline"
+            app:layout_constraintStart_toEndOf="@id/second_column_start_guideline"
             app:layout_constraintTop_toTopOf="@id/created"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -226,9 +231,23 @@
             android:layout_height="wrap_content" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/middle_guideline"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5"
+            android:id="@+id/first_column_end_guideline"
+            app:layout_constraintGuide_percent="0.45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/second_column_start_guideline"
+            app:layout_constraintGuide_percent="0.55"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottom_guideline"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/character_detail_bottom_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
