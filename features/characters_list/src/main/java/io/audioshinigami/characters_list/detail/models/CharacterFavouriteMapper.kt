@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020 David Osemwota.
+ * Copyright (c) 31/10/2020 16:23   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,30 +22,34 @@
  * SOFTWARE.
  */
 
-package io.audioshinigami.characters_list.detail.di.modules
+package io.audioshinigami.characters_list.detail.models
 
-import androidx.lifecycle.ViewModel
-import dagger.Binds
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.migration.DisableInstallInCheck
-import dagger.multibindings.IntoMap
-import io.audioshinigami.characters_list.detail.CharacterDetailViewModel
-import io.audioshinigami.characters_list.detail.di.CharacterDetailScope
-import io.audioshinigami.characters_list.detail.models.CharacterFavouriteMapper
-import io.audioshinigami.core.di.ViewModelKey
+import io.audioshinigami.core.data.CharacterFavourite
+import io.audioshinigami.core.mapper.Mapper
 
-@DisableInstallInCheck
-@Module
-interface ViewModelModule {
+/**
+ * Helper to transform [CharacterDetail] input to [CharacterFavourite] output.
+ */
+class CharacterFavouriteMapper: Mapper<CharacterDetail, CharacterFavourite> {
 
-    @get:[Binds IntoMap ViewModelKey(CharacterDetailViewModel::class)]
-    val CharacterDetailViewModel.viewModel: ViewModel
-
-    companion object {
-
-        @Provides
-        @CharacterDetailScope
-        fun provideCharacterFavouriteMapper(): CharacterFavouriteMapper = CharacterFavouriteMapper()
+    /**
+     * Transforms input to output.
+     *
+     * @param from input [CharacterDetail] class.
+     * @return The desired output [CharacterFavourite].
+     */
+    override suspend fun transform(from: CharacterDetail): CharacterFavourite {
+        return CharacterFavourite(
+                name = from.name,
+                created = from.created,
+                gender = from.gender,
+                id = 0,
+                image = from.image,
+                locationName = from.locationName,
+                originName = from.originName,
+                species = from.species,
+                status = from.status,
+                type = from.type
+        )
     }
 }
