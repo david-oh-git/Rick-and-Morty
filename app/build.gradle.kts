@@ -97,7 +97,8 @@ android {
 
     dynamicFeatures = mutableSetOf(
         BuildModules.Features.HOME,
-        BuildModules.Features.CHARACTERS_LIST
+        BuildModules.Features.CHARACTERS_LIST,
+            BuildModules.Features.FAVOURITES_LIST
     )
 
     lintOptions {
@@ -134,5 +135,5 @@ dependencies {
     testImplementation(TestDependencies.JUNIT)
     androidTestImplementation(TestDependencies.ANDROIDX_JUNIT)
     androidTestImplementation(TestDependencies.ESPRESSO)
-
+    
 }

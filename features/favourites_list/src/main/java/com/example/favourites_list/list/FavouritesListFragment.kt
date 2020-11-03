@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020 David Osemwota.
+ * Copyright (c) 3/11/2020 13:37   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,13 +22,25 @@
  * SOFTWARE.
  */
 
-include(":app")
-include(":core")
-include(":features:home")
-include(":shared:ui")
-include(":features:characters_list")
-include(":shared:test_utils")
-include(":features:favourites_list")
+package com.example.favourites_list.list
 
-rootProject.name = "Project M"
-rootProject.buildFileName = "build.gradle.kts"
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.example.favourites_list.databinding.FragmentFavouritesListBinding
+
+class FavouritesListFragment : Fragment() {
+
+    private lateinit var binding: FragmentFavouritesListBinding
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        binding = FragmentFavouritesListBinding.inflate(inflater)
+        return binding.root
+    }
+
+}

@@ -40,4 +40,5 @@ dependencies {
 
     implementation(BuildDependencies.NAVIGATION_UI)
     implementation(BuildDependencies.APPCOMPAT)
+
 }

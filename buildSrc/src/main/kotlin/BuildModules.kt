@@ -33,5 +33,6 @@ object BuildModules {
         const val HOME = ":features:home"
         const val CHARACTERS_LIST = ":features:characters_list"
         const val UI = ":shared:ui"
+        const val FAVOURITES_LIST = ":features:favourites_list"
     }
 }

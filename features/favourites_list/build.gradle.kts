@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020 David Osemwota.
+ * Copyright (c) 2/11/2020 12:28   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,13 +22,19 @@
  * SOFTWARE.
  */
 
-include(":app")
-include(":core")
-include(":features:home")
-include(":shared:ui")
-include(":features:characters_list")
-include(":shared:test_utils")
-include(":features:favourites_list")
+import dependencies.BuildDependencies
 
-rootProject.name = "Project M"
-rootProject.buildFileName = "build.gradle.kts"
+plugins {
+    id("commons.android-dynamic-feature")
+    id("kotlin-android")
+}
+
+android {
+    buildFeatures.dataBinding = true
+}
+
+dependencies {
+
+    implementation( project(BuildModules.Features.CHARACTERS_LIST))
+
+}
