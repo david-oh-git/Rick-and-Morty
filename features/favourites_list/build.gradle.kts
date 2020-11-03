@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2/11/2020 12:28   David Osemwota.
+ * Copyright (c) 3/11/2020 15:11   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,6 @@ import dependencies.BuildDependencies
 
 plugins {
     id("commons.android-dynamic-feature")
-    id("kotlin-android")
 }
 
 android {
@@ -35,6 +34,17 @@ android {
 
 dependencies {
 
-    implementation( project(BuildModules.Features.CHARACTERS_LIST))
+    implementation( project(BuildModules.CORE))
 
+    implementation(BuildDependencies.KOTLIN_COROUTINES_ANDROID)
+    implementation(BuildDependencies.KOTLIN_COROUTINES_CORE)
+    implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
+    implementation(BuildDependencies.VIEWMODEL)
+    implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
+    implementation(BuildDependencies.LIVEDATA_KTX)
+    implementation(BuildDependencies.DAGGER_HILT)
+    implementation(BuildDependencies.HILT_VIEWMODEL)
+
+    kapt(BuildDependencies.HILT_VIEWMODEL_KAPT)
+    kapt(BuildDependencies.DAGGER_HILT_KAPT)
 }

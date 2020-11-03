@@ -98,7 +98,7 @@ android {
     dynamicFeatures = mutableSetOf(
         BuildModules.Features.HOME,
         BuildModules.Features.CHARACTERS_LIST,
-            BuildModules.Features.FAVOURITES_LIST
+            BuildModules.Features.FAVOURITES_LIST, ":features:favourites_list"
     )
 
     lintOptions {

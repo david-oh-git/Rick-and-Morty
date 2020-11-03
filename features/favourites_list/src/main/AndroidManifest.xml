@@ -2,7 +2,7 @@
 <!--
   ~ MIT License
   ~
-  ~ Copyright (c) 2/11/2020 12:28   David Osemwota.
+  ~ Copyright (c) 3/11/2020 15:11   David Osemwota.
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy
   ~ of this software and associated documentation files (the "Software"), to deal
@@ -23,16 +23,15 @@
   ~ SOFTWARE.
   -->
 
-<manifest
-    xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="com.example.favourites_list">
+<manifest xmlns:dist="http://schemas.android.com/apk/distribution"
+    package="io.audioshinigami.favourites_list">
 
     <dist:module
-        dist:instant="false"
+        dist:instant="true"
         dist:title="@string/title_favourites_list">
         <dist:delivery>
-            <dist:on-demand />
+            <dist:install-time />
         </dist:delivery>
-        <dist:fusing dist:include="true" />
+        <dist:fusing dist:include="false" />
     </dist:module>
 </manifest>
