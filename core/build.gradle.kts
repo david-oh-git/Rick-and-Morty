@@ -87,6 +87,8 @@ dependencies {
     testImplementation(TestDependencies.ANDROIDX_JUNIT_RUNNER)
     testImplementation(TestDependencies.ROBOLECTRIC)
 
+    api(BuildDependencies.LIVEDATA_KTX)
+
     testRuntimeOnly(TestDependencies.JUNIT5_ENGINE)
 
 }

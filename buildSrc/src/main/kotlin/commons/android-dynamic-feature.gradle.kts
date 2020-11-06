@@ -94,9 +94,7 @@ dependencies {
     implementation(BuildDependencies.TIMBER)
     implementation(BuildDependencies.CONSTRAINT_LAYOUT)
     implementation(BuildDependencies.DAGGER_HILT)
-    implementation(BuildDependencies.HILT_VIEWMODEL)
 
-    kapt(BuildDependencies.HILT_VIEWMODEL_KAPT)
     kapt(BuildDependencies.DAGGER_HILT_KAPT)
 
     // Tests

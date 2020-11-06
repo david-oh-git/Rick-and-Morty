@@ -41,10 +41,7 @@ dependencies {
     implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
     implementation(BuildDependencies.VIEWMODEL)
     implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
-    implementation(BuildDependencies.LIVEDATA_KTX)
     implementation(BuildDependencies.DAGGER_HILT)
-    implementation(BuildDependencies.HILT_VIEWMODEL)
 
-    kapt(BuildDependencies.HILT_VIEWMODEL_KAPT)
     kapt(BuildDependencies.DAGGER_HILT_KAPT)
 }

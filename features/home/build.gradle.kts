@@ -40,5 +40,8 @@ dependencies {
 
     implementation(BuildDependencies.NAVIGATION_UI)
     implementation(BuildDependencies.APPCOMPAT)
+    implementation(BuildDependencies.HILT_VIEWMODEL)
+
+    kapt(BuildDependencies.HILT_VIEWMODEL_KAPT)
 
 }
