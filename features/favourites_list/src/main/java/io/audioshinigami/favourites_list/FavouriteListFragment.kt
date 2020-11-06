@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020 David Osemwota.
+ * Copyright (c) 6/11/2020 12:42   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,34 +22,24 @@
  * SOFTWARE.
  */
 
-package io.audioshinigami.home
+package io.audioshinigami.favourites_list
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import io.audioshinigami.characters_list.R.id.characters_list_fragment
-import io.audioshinigami.favourites_list.R.id.favouriteListFragment
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 
-val NAV_FRAGMENTS_ID = setOf(
-    characters_list_fragment,
-    favouriteListFragment
-)
+/**
+ * A[Fragment] subclass.
+ * Displays a list of favourite characters on the favourites tab.
+ */
+class FavouriteListFragment : Fragment() {
 
-class HomeViewModel @ViewModelInject constructor() : ViewModel() {
-
-    private val _state = MutableLiveData<HomeViewState>()
-    val state: LiveData<HomeViewState>
-        get() = _state
-
-    fun navigationControllerChanged(navController: NavController) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (NAV_FRAGMENTS_ID.contains(destination.id)) {
-                _state.postValue(HomeViewState.NavigationScreen)
-            } else {
-                _state.postValue(HomeViewState.FullScreen)
-            }
-        }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_favourite_list, container, false)
     }
+
 }

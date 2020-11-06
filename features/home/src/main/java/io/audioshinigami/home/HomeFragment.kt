@@ -35,6 +35,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.ui.NavigationUI
 import io.audioshinigami.characters_list.R.navigation.nav_characters_list_graph
+import io.audioshinigami.favourites_list.R.navigation.nav_favourites_list_graph
 import io.audioshinigami.home.databinding.FragmentHomeBinding
 import io.audioshinigami.home.di.inject
 import io.audioshinigami.ui.extentions.setupWithNavController
@@ -44,7 +45,8 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     private val navGraphIds = listOf(
-        nav_characters_list_graph
+        nav_characters_list_graph,
+        nav_favourites_list_graph
     )
 
     private val _viewModel: HomeViewModel by viewModels()

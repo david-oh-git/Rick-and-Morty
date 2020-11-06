@@ -2,7 +2,7 @@
 <!--
   ~ MIT License
   ~
-  ~ Copyright (c) 2020 David Osemwota.
+  ~ Copyright (c) 6/11/2020 12:49   David Osemwota.
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy
   ~ of this software and associated documentation files (the "Software"), to deal
@@ -23,26 +23,14 @@
   ~ SOFTWARE.
   -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_favourites_list_graph"
+    app:startDestination="@id/favouriteListFragment">
 
-    <item
-        android:id="@id/nav_characters_list_graph"
-        android:icon="@drawable/ic_characters"
-        android:title="@string/home_tab_characters" />
+    <fragment
+        android:id="@+id/favouriteListFragment"
+        android:name="io.audioshinigami.favourites_list.FavouriteListFragment"
+        android:label="Favourites" />
 
-    <item
-        android:id="@id/nav_favourites_list_graph"
-        android:icon="@drawable/ic_favorites"
-        android:title="Favourites" />
-
-    <item
-        android:visible="false"
-        android:icon="@drawable/ic_episodes"
-        android:title="@string/home_tab_episodes"/>
-
-    <item
-        android:visible="false"
-        android:icon="@drawable/ic_locations"
-        android:title="@string/home_tab_locations" />
-
-</menu>
+</navigation>

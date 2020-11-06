@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ MIT License
   ~
-  ~ Copyright (c) 2020 David Osemwota.
+  ~ Copyright (c) 6/11/2020 12:42   David Osemwota.
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy
   ~ of this software and associated documentation files (the "Software"), to deal
@@ -23,26 +22,7 @@
   ~ SOFTWARE.
   -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item
-        android:id="@id/nav_characters_list_graph"
-        android:icon="@drawable/ic_characters"
-        android:title="@string/home_tab_characters" />
-
-    <item
-        android:id="@id/nav_favourites_list_graph"
-        android:icon="@drawable/ic_favorites"
-        android:title="Favourites" />
-
-    <item
-        android:visible="false"
-        android:icon="@drawable/ic_episodes"
-        android:title="@string/home_tab_episodes"/>
-
-    <item
-        android:visible="false"
-        android:icon="@drawable/ic_locations"
-        android:title="@string/home_tab_locations" />
-
-</menu>
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

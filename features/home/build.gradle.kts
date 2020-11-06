@@ -37,6 +37,7 @@ dependencies {
 
     implementation( project(BuildModules.APP))
     implementation( project(BuildModules.Features.CHARACTERS_LIST))
+    implementation( project(BuildModules.Features.FAVOURITES_LIST))
 
     implementation(BuildDependencies.NAVIGATION_UI)
     implementation(BuildDependencies.APPCOMPAT)
