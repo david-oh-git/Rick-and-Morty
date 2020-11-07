@@ -52,4 +52,9 @@ interface CharacterFavouriteDataSource {
      * Delete all [CharacterFavourite] objects.
      */
     suspend fun deleteAllCharacters()
+
+    /**
+     * Delete [CharacterFavourite] item by id.
+     */
+    suspend fun deleteCharacterFavourite(id: Long)
 }

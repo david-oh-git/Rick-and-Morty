@@ -26,13 +26,14 @@ package io.audioshinigami.core.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import io.audioshinigami.core.utils.CHARACTER_TABLE
 
 /**
  * Entity representing character details to be saved in the database.
  */
-@Entity(tableName = CHARACTER_TABLE)
+@Entity(tableName = CHARACTER_TABLE, indices = [Index(value = ["id"], unique = true)])
 data class CharacterFavourite(
     @PrimaryKey(autoGenerate = true) val id: Long,
     @ColumnInfo val name: String,

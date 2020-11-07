@@ -29,6 +29,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import io.audioshinigami.core.data.source.local.CharacterFavouriteLocalDataSource
 import io.audioshinigami.core.data.source.local.RickAndMortyDatabase
 import io.audioshinigami.core.util.CharacterFavouriteFactory
@@ -88,12 +89,12 @@ class CharacterFavouriteDataSourceTest {
         val result = localDataSource.getAllCharacters()
 
         // Assert: confirm results
-        Truth.assertThat(result.size).isEqualTo(1)
-        Truth.assertThat(result[0].created).isEqualTo(characterFavourite.created)
-        Truth.assertThat(result[0].id).isEqualTo(characterFavourite.id)
-        Truth.assertThat(result[0].gender).isEqualTo(characterFavourite.gender)
-        Truth.assertThat(result[0].locationName).isEqualTo(characterFavourite.locationName)
-        Truth.assertThat(result[0].originName).isEqualTo(characterFavourite.originName)
+        assertThat(result.size).isEqualTo(1)
+        assertThat(result[0].created).isEqualTo(characterFavourite.created)
+        assertThat(result[0].id).isEqualTo(characterFavourite.id)
+        assertThat(result[0].gender).isEqualTo(characterFavourite.gender)
+        assertThat(result[0].locationName).isEqualTo(characterFavourite.locationName)
+        assertThat(result[0].originName).isEqualTo(characterFavourite.originName)
     }
 
     @Test
@@ -107,7 +108,27 @@ class CharacterFavouriteDataSourceTest {
         val result = localDataSource.getAllCharacters()
 
         // Assert: confirm results
-        Truth.assertThat(result.size).isEqualTo(0)
-        Truth.assertThat(result.isEmpty()).isTrue()
+        assertThat(result.size).isEqualTo(0)
+        assertThat(result.isEmpty()).isTrue()
+    }
+
+    @Test
+    fun deleteCharacterFavourite_confirmResults() = runBlockingTest {
+        // Arrange: save a characterFavourite
+        val id = 89L
+        val characterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = id)
+        val secondCharacterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = 22L)
+        localDataSource.save(characterFavourite)
+        localDataSource.save(secondCharacterFavourite)
+
+        // Act: delete characterFavourite item.
+        localDataSource.deleteCharacterFavourite(id)
+        val result = localDataSource.getAllCharacters()
+
+        // Assert: confirm results
+        assertThat(result.size).isEqualTo(1)
+        assertThat(result.isEmpty()).isFalse()
+        val resultItem = result[0]
+        assertThat(resultItem).isEqualTo(secondCharacterFavourite)
     }
 }

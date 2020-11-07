@@ -63,7 +63,11 @@ class CharacterFavouriteLocalDataSource @Inject constructor(
     /**
      * Delete all [CharacterFavourite] objects.
      */
-    override suspend fun deleteAllCharacters() {
+    override suspend fun deleteAllCharacters() = withContext(ioDispatcher) {
         characterFavouriteDao.deleteAllCharacters()
+    }
+
+    override suspend fun deleteCharacterFavourite(id: Long) = withContext(ioDispatcher) {
+        characterFavouriteDao.deleteCharacterFavourite(id)
     }
 }
