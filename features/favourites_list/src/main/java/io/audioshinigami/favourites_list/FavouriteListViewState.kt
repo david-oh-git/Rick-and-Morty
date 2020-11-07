@@ -38,6 +38,11 @@ sealed class FavouriteListViewState: BaseViewState {
      */
     object Listed : FavouriteListViewState()
 
+    /**
+     * Error state displayed.
+     */
+    object Error : FavouriteListViewState()
+
     // ============================================================================================
     //  Public helpers methods
     // ============================================================================================
@@ -55,4 +60,11 @@ sealed class FavouriteListViewState: BaseViewState {
      * @return True if is listed state, otherwise false.
      */
     fun isListed() = this is Listed
+
+    /**
+     * Check if current view state is [Error].
+     *
+     * @return True if is error state, otherwise false.
+     */
+    fun isError() = this is Error
 }

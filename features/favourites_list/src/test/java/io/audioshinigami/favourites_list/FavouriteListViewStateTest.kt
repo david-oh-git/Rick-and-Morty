@@ -38,6 +38,7 @@ internal class FavouriteListViewStateTest {
 
         assertThat(state.isEmpty()).isTrue()
         assertThat(state.isListed()).isFalse()
+        assertThat(state.isError()).isFalse()
     }
 
     @Test
@@ -46,5 +47,15 @@ internal class FavouriteListViewStateTest {
 
         assertThat(state.isListed()).isTrue()
         assertThat(state.isEmpty()).isFalse()
+        assertThat(state.isError()).isFalse()
+    }
+
+    @Test
+    fun setStateError_confirmStateIsError(){
+        state = FavouriteListViewState.Error
+
+        assertThat(state.isError()).isTrue()
+        assertThat(state.isEmpty()).isFalse()
+        assertThat(state.isListed()).isFalse()
     }
 }
