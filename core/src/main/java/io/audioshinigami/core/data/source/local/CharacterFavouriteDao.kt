@@ -56,9 +56,12 @@ interface CharacterFavouriteDao {
     @Query("SELECT * FROM $CHARACTER_TABLE ORDER BY id")
     suspend fun getAllCharacters(): List<CharacterFavourite>
 
-    /**C
+    /**
      * Delete all [CharacterFavourite] from the database.
      */
     @Query("DELETE FROM $CHARACTER_TABLE")
     suspend fun deleteAllCharacters()
+
+    @Query("DELETE FROM $CHARACTER_TABLE WHERE id = :id")
+    suspend fun deleteCharacterFavourite(id: Long)
 }

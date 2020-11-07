@@ -103,4 +103,25 @@ internal class CharacterFavouriteDaoTest {
         assertThat(result.size).isEqualTo(0)
         assertThat(result.isEmpty()).isTrue()
     }
+
+    @Test
+    fun deleteCharacterFavourite_confirmResult() = runBlockingTest {
+        // Arrange: save characterFavourite items
+        val id = 22L
+        val characterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = 15L)
+        val secondCharacter = CharacterFavouriteFactory.getCharacter()
+                .copy(name = "Ernest Shabalala", id = id)
+        characterFavouriteDao.save(characterFavourite)
+        characterFavouriteDao.save(secondCharacter)
+
+        // Act: delete secondCharacter.
+        characterFavouriteDao.deleteCharacterFavourite(id)
+        val result = characterFavouriteDao.getAllCharacters()
+
+        // Assert: confirm results. db should have 1 item after deleting secondCharacter.
+        assertThat(result.size).isEqualTo(1)
+        assertThat(result.isEmpty()).isFalse()
+        val remainingItem = result[0]
+        assertThat(remainingItem).isEqualTo(characterFavourite)
+    }
 }
