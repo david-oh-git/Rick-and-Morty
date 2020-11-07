@@ -33,6 +33,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
@@ -82,5 +83,18 @@ class CharacterFavouriteRepositoryTest {
         val characterSavedCaptor = argumentCaptor<CharacterFavourite>()
         verify(localDataSource).save(characterSavedCaptor.capture())
         assertThat(characterFavourite).isEqualTo(characterSavedCaptor.lastValue)
+    }
+
+    @Test
+    @DisplayName("verify calling repository deleteCharacter calls localDataSource method")
+    fun deleteById_confirmResults() = runBlockingTest {
+        val id = 34L
+        val characterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = id)
+        characterFavouriteRepository.save(characterFavourite)
+        characterFavouriteRepository.deleteCharacterFavourite(id)
+
+        val savedCharacterId = argumentCaptor<Long>()
+        verify(localDataSource).deleteCharacterFavourite(savedCharacterId.capture())
+        assertThat(id).isEqualTo(savedCharacterId.lastValue)
     }
 }

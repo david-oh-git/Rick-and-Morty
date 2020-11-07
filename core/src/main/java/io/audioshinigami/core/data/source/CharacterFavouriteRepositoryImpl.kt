@@ -50,4 +50,8 @@ class CharacterFavouriteRepositoryImpl @Inject constructor(
     override suspend fun deleteAllCharacters() = withContext(ioDispatcher) {
         localDataSource.deleteAllCharacters()
     }
+
+    override suspend fun deleteCharacterFavourite(id: Long) = withContext(ioDispatcher) {
+        localDataSource.deleteCharacterFavourite(id)
+    }
 }

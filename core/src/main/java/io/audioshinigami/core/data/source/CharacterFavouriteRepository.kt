@@ -53,4 +53,9 @@ interface CharacterFavouriteRepository {
      * Delete all list of all [CharacterFavourite] items in the database.
      */
     suspend fun deleteAllCharacters()
+
+    /**
+     * Delete [CharacterFavourite] item by id.
+     */
+    suspend fun deleteCharacterFavourite(id: Long)
 }
