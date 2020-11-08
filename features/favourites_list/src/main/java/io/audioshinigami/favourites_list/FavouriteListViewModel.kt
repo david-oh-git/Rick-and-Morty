@@ -30,9 +30,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import io.audioshinigami.core.data.CharacterFavourite
 import io.audioshinigami.core.data.source.CharacterFavouriteRepository
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 internal class FavouriteListViewModel @Inject constructor(
@@ -48,9 +50,18 @@ internal class FavouriteListViewModel @Inject constructor(
     }
 
     val state = Transformations.map(data){
-        if(it.isEmpty())
-            FavouriteListViewState.Empty
-        else
-            FavouriteListViewState.Listed
+        when {
+            it.isEmpty() -> FavouriteListViewState.Empty
+            it.isNotEmpty() -> FavouriteListViewState.Listed
+            else -> FavouriteListViewState.Error
+        }
+    }
+
+    /**
+     * Delete [CharacterFavourite] with id from database.
+     * @param id The characterFavourite's unique id.
+     */
+    fun deleteCharacterFavourite(id: Long) = viewModelScope.launch {
+        repository.deleteCharacterFavourite(id)
     }
 }

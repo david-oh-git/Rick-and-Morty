@@ -26,19 +26,29 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="io.audioshinigami.favourites_list.FavouriteListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".FavouriteListFragment">
+        android:layout_height="match_parent">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+        <include
+            android:id="@+id/include_list"
+            layout="@layout/view_favourite_list"
+            app:viewState="@{viewModel.state}"/>
 
-    </FrameLayout>
+        <include
+            android:id="@+id/include_list_empty"
+            layout="@layout/view_favourite_list_empty"
+            app:viewState="@{viewModel.state}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

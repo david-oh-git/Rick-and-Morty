@@ -2,7 +2,7 @@
 <!--
   ~ MIT License
   ~
-  ~ Copyright (c) 2020 David Osemwota.
+  ~ Copyright (c) 7/11/2020 15:1   David Osemwota.
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy
   ~ of this software and associated documentation files (the "Software"), to deal
@@ -23,9 +23,33 @@
   ~ SOFTWARE.
   -->
 
-<resources>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <color name="colorPrimaryDark">#000000</color>
+    <data>
 
-    <color name="general_text">@android:color/white</color>
-</resources>
+        <variable
+            name="viewState"
+            type="io.audioshinigami.favourites_list.FavouriteListViewState" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:visible="@{viewState.error}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oops !!! error displaying items."
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

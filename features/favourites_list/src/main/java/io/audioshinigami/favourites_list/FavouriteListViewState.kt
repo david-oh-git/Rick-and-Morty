@@ -39,6 +39,11 @@ sealed class FavouriteListViewState: BaseViewState {
     object Listed : FavouriteListViewState()
 
     /**
+     * Loading state displayed.
+     */
+    object Loading : FavouriteListViewState()
+
+    /**
      * Error state displayed.
      */
     object Error : FavouriteListViewState()
@@ -67,4 +72,10 @@ sealed class FavouriteListViewState: BaseViewState {
      * @return True if is error state, otherwise false.
      */
     fun isError() = this is Error
+
+    /**
+     * Check if current state is [Loading].
+     * @return True if is loading else false.
+     */
+    fun isLoading() = this is Loading
 }

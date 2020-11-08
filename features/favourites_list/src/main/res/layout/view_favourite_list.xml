@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ MIT License
   ~
-  ~ Copyright (c) 6/11/2020 12:42   David Osemwota.
+  ~ Copyright (c) 7/11/2020 15:17   David Osemwota.
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy
   ~ of this software and associated documentation files (the "Software"), to deal
@@ -21,9 +22,29 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   -->
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
-<resources>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="favourites_list_empty_txt">No Items to display.</string>
-</resources>
+    <data>
+
+        <variable
+            name="viewState"
+            type="io.audioshinigami.favourites_list.FavouriteListViewState" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:visible="@{viewState.listed}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/favourites_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
