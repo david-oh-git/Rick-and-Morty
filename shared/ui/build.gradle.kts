@@ -24,6 +24,8 @@
 
 
 import dependencies.BuildDependencies
+import dependencies.TestDependencies
+import extentions.addTestsDependencies
 
 plugins {
     id(BuildPlugins.ANDROID_LIBRARY)
@@ -76,4 +78,7 @@ dependencies {
     implementation(BuildDependencies.APPCOMPAT)
     implementation(BuildDependencies.NAVIGATION_FRAGMENT)
     implementation(BuildDependencies.MATERIAL_COMPONENTS)
+
+    // Tests
+    addTestsDependencies()
 }

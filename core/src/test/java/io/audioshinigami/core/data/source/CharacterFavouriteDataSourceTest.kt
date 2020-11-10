@@ -28,7 +28,6 @@ import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.google.common.truth.Truth
 import com.google.common.truth.Truth.assertThat
 import io.audioshinigami.core.data.source.local.CharacterFavouriteLocalDataSource
 import io.audioshinigami.core.data.source.local.RickAndMortyDatabase

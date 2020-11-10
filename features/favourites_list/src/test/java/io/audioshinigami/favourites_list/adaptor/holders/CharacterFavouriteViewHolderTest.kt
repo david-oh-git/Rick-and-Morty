@@ -29,7 +29,6 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.google.common.truth.Truth.assertThat
 import io.audioshinigami.core.data.CharacterFavourite
-import io.audioshinigami.favourites_list.FavouriteListViewModel
 import io.audioshinigami.favourites_list.databinding.ListItemFavouriteBinding
 import io.mockk.MockKAnnotations
 import io.mockk.every

@@ -37,7 +37,6 @@ internal class CharacterFavouriteViewHolder(
 ): BaseViewHolder<ListItemFavouriteBinding>(
         binding = ListItemFavouriteBinding.inflate(inflater)
 ) {
-
     /**
      * Bind view data variable [CharacterFavourite].
      *
