@@ -108,6 +108,7 @@ class CharactersPageDataSourceFactoryTest {
 //        verify(dataSource, never()).retry()
     }
 
+    @Test
     fun retryDataSource_ShouldRetryData() {
         val dataSource = mock<CharactersPageDataSource>()
         doReturn(dataSource).whenever(sourceFlow).value
@@ -115,6 +116,6 @@ class CharactersPageDataSourceFactoryTest {
         dataSourceFactory.retry()
 
         verify(dataSource).retry()
-//        verify(dataSource, never()).invalidate()
+//        verify(dataSource, after(100).never()).invalidate()
     }
 }

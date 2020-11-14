@@ -27,13 +27,12 @@ package io.audioshinigami.favourites_list
 import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.Test
 
-
 internal class FavouriteListViewStateTest {
 
     lateinit var state: FavouriteListViewState
 
     @Test
-    fun setStateEmpty_confirmStateIsEmpty(){
+    fun setStateEmpty_confirmStateIsEmpty() {
         state = FavouriteListViewState.Empty
 
         assertThat(state.isEmpty()).isTrue()
@@ -42,7 +41,7 @@ internal class FavouriteListViewStateTest {
     }
 
     @Test
-    fun setStateListed_confirmStateIsListed(){
+    fun setStateListed_confirmStateIsListed() {
         state = FavouriteListViewState.Listed
 
         assertThat(state.isListed()).isTrue()
@@ -51,7 +50,7 @@ internal class FavouriteListViewStateTest {
     }
 
     @Test
-    fun setStateError_confirmStateIsError(){
+    fun setStateError_confirmStateIsError() {
         state = FavouriteListViewState.Error
 
         assertThat(state.isError()).isTrue()

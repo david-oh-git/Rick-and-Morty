@@ -21,7 +21,6 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   -->
-
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -32,6 +31,12 @@
 
         <item name="fontFamily">@font/noto_sans</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">@bool/light_status_bar</item>
+    </style>
+
+    <style name="SquarcleImageView" parent="" >
+
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">80%</item>
     </style>
 
 </resources>

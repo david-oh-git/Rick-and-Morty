@@ -33,14 +33,14 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import io.audioshinigami.core.data.CharacterFavourite
 import io.audioshinigami.core.data.source.CharacterFavouriteRepository
+import javax.inject.Inject
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-internal class FavouriteListViewModel @Inject constructor(
-        @VisibleForTesting(otherwise = PRIVATE)
-        val repository: CharacterFavouriteRepository
-): ViewModel() {
+class FavouriteListViewModel @Inject constructor(
+    @VisibleForTesting(otherwise = PRIVATE)
+    val repository: CharacterFavouriteRepository
+) : ViewModel() {
 
     val data: LiveData<List<CharacterFavourite>> = liveData {
         repository.getAllCharacterFlow()
@@ -49,7 +49,7 @@ internal class FavouriteListViewModel @Inject constructor(
                 }
     }
 
-    val state = Transformations.map(data){
+    val state = Transformations.map(data) {
         when {
             it.isEmpty() -> FavouriteListViewState.Empty
             it.isNotEmpty() -> FavouriteListViewState.Listed

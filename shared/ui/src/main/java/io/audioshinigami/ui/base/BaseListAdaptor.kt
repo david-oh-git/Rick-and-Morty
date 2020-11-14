@@ -37,15 +37,15 @@ import androidx.recyclerview.widget.RecyclerView
  * @param contentsSame A function that checks if two items have same content.
  */
 abstract class BaseListAdaptor<T>(
-        itemsSame: (T,T) -> Boolean,
-        contentsSame: (T,T) -> Boolean
+    itemsSame: (T, T) -> Boolean,
+    contentsSame: (T, T) -> Boolean
 ) : ListAdapter<T, RecyclerView.ViewHolder>(
         object : DiffUtil.ItemCallback<T>() {
-            override fun areItemsTheSame(oldItem: T, newItem: T): Boolean
-                    = itemsSame(oldItem, newItem)
+            override fun areItemsTheSame(oldItem: T, newItem: T): Boolean =
+                    itemsSame(oldItem, newItem)
 
-            override fun areContentsTheSame(oldItem: T, newItem: T): Boolean
-                    = contentsSame(oldItem, newItem)
+            override fun areContentsTheSame(oldItem: T, newItem: T): Boolean =
+                    contentsSame(oldItem, newItem)
         }
 ) {
 
@@ -58,9 +58,9 @@ abstract class BaseListAdaptor<T>(
      * @return A new viewHolder of the view type.
      */
     abstract fun onCreateViewHolder(
-            parent: ViewGroup,
-            inflater: LayoutInflater,
-            viewType: Int
+        parent: ViewGroup,
+        inflater: LayoutInflater,
+        viewType: Int
     ): RecyclerView.ViewHolder
 
     /**
@@ -70,8 +70,8 @@ abstract class BaseListAdaptor<T>(
      * @param viewType The view type.
      * @return A new viewHolder of the view type.
      */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
-    = onCreateViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+    onCreateViewHolder(
             parent = parent,
             inflater = LayoutInflater.from(parent.context),
             viewType = viewType

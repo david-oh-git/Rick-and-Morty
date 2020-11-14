@@ -30,7 +30,13 @@ import android.view.ViewGroup
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ApplicationProvider
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.after
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.same
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -65,62 +71,61 @@ internal class BaseListAdaptorTest {
     lateinit var context: Context
 
     @Before
-    fun init(){
+    fun init() {
         MockitoAnnotations.initMocks(this)
         context = ApplicationProvider.getApplicationContext()
     }
 
     @Test
-    fun createViewHolder_confirmInvokeAbstractMethod(){
+    fun createViewHolder_confirmInvokeAbstractMethod() {
         val parent = mock<ViewGroup>()
         val viewType = 1
 
         doReturn(context.applicationContext).whenever(parent).context
         adaptor.onCreateViewHolder(parent, viewType)
 
-        verify(adaptor).onCreateViewHolder( same(parent), any() ,same(viewType))
-
+        verify(adaptor).onCreateViewHolder(same(parent), any(), same(viewType))
     }
 
     @Test
     fun addListToRecyclerView_confirmInvokeContentItemComparator() {
-        doReturn(true).whenever(itemsSame).invoke(anyString(), anyString() )
+        doReturn(true).whenever(itemsSame).invoke(anyString(), anyString())
 
-        adaptor.submitList( listOf("Kaname", "Inamori") )
-        adaptor.submitList( listOf("Zangetsu", "Zabimaru", "Sakanade") )
+        adaptor.submitList(listOf("Kaname", "Inamori"))
+        adaptor.submitList(listOf("Zangetsu", "Zabimaru", "Sakanade"))
 
-        verify(contentsSame, after(100).atLeastOnce()).invoke(anyString(), anyString() )
+        verify(contentsSame, after(1000).atLeastOnce()).invoke(anyString(), anyString())
     }
 
     @Test
     fun addListToRecyclerView_confirmInvokeItemComparator() {
 
-        adaptor.submitList( listOf("Kaname", "Inamori") )
-        adaptor.submitList( listOf("Zangetsu", "Zabimaru", "Sakanade") )
+        adaptor.submitList(listOf("Kaname", "Inamori"))
+        adaptor.submitList(listOf("Zangetsu", "Zabimaru", "Sakanade"))
 
-        verify(itemsSame, after(100).atLeastOnce()).invoke(anyString(), anyString() )
+        verify(itemsSame, after(100).atLeastOnce()).invoke(anyString(), anyString())
     }
 
     @Test
     fun emptyRecyclerView_confirmComparatorNotInvoked() {
-        verify(itemsSame, after(100).never()).invoke( anyString(), anyString())
-        verify(contentsSame, after(100).never()).invoke( anyString(), anyString())
+        verify(itemsSame, after(100).never()).invoke(anyString(), anyString())
+        verify(contentsSame, after(100).never()).invoke(anyString(), anyString())
     }
 
-    open inner class TestAdaptor: BaseListAdaptor<String>(
+    open inner class TestAdaptor : BaseListAdaptor<String>(
             itemsSame = itemsSame,
             contentsSame = contentsSame
     ) {
 
         override fun onCreateViewHolder(
-                parent: ViewGroup,
-                inflater: LayoutInflater,
-                viewType: Int): RecyclerView.ViewHolder {
+            parent: ViewGroup,
+            inflater: LayoutInflater,
+            viewType: Int
+        ): RecyclerView.ViewHolder {
             return viewHolder
         }
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
         }
     }
 }

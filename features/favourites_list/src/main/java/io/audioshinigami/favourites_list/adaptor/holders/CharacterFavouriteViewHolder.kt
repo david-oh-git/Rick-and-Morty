@@ -33,8 +33,8 @@ import io.audioshinigami.ui.base.BaseViewHolder
  * RecyclerView ViewHolder for favourite list .
  */
 internal class CharacterFavouriteViewHolder(
-        inflater: LayoutInflater
-): BaseViewHolder<ListItemFavouriteBinding>(
+    inflater: LayoutInflater
+) : BaseViewHolder<ListItemFavouriteBinding>(
         binding = ListItemFavouriteBinding.inflate(inflater)
 ) {
     /**

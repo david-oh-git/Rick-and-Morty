@@ -36,8 +36,8 @@ import androidx.recyclerview.widget.RecyclerView
  * Implements @see [ItemTouchHelper.SimpleCallback]
  */
 class CharacterFavouriteTouchHelper(
-        private val onSwiped: (Int) -> Unit
-): ItemTouchHelper.SimpleCallback(
+    private val onSwiped: (Int) -> Unit
+) : ItemTouchHelper.SimpleCallback(
         ACTION_STATE_IDLE,
         LEFT or RIGHT
 ) {
@@ -46,9 +46,10 @@ class CharacterFavouriteTouchHelper(
      * Called when ItemTouchHelper wants to move from old position to new position.
      */
     override fun onMove(
-            recyclerView: RecyclerView,
-            viewHolder: RecyclerView.ViewHolder,
-            target: RecyclerView.ViewHolder): Boolean = true
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        target: RecyclerView.ViewHolder
+    ): Boolean = true
 
     /**
      * Called when viewHolder item is swiped.

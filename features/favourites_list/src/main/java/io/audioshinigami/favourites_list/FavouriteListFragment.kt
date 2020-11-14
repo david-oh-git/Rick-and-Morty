@@ -25,21 +25,84 @@
 package io.audioshinigami.favourites_list
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
+import io.audioshinigami.core.data.CharacterFavourite
+import io.audioshinigami.favourites_list.adaptor.CharacterFavouriteAdaptor
+import io.audioshinigami.favourites_list.adaptor.CharacterFavouriteTouchHelper
+import io.audioshinigami.favourites_list.databinding.FragmentFavouriteListBinding
+import io.audioshinigami.favourites_list.di.inject
+import io.audioshinigami.ui.extentions.observe
+import javax.inject.Inject
 
 /**
- * A[Fragment] subclass.
- * Displays a list of favourite characters on the favourites tab.
+ * A [Fragment] that displays a list of favourite characters on the favourites tab.
  */
 class FavouriteListFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favourite_list, container, false)
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val _viewModel: FavouriteListViewModel by viewModels {
+        viewModelFactory
+    }
+    private lateinit var binding: FragmentFavouriteListBinding
+    private val _adaptor by lazy {
+        CharacterFavouriteAdaptor()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // init Dagger
+        inject(this)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        binding = FragmentFavouriteListBinding.inflate(inflater)
+        binding.apply {
+            viewModel = _viewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        observe(_viewModel.data, ::onViewDataChange)
+        initRecyclerView()
+    }
+
+    /**
+     * Initialise the recyclerView and add [ItemTouchHelper] for swipe to delete
+     * action.
+     */
+    private fun initRecyclerView() {
+        binding.includeList.favouritesList
+                .apply {
+                    adapter = _adaptor
+
+                    ItemTouchHelper(CharacterFavouriteTouchHelper {
+                        _viewModel.deleteCharacterFavourite(_adaptor.currentList[it].id)
+                    }).attachToRecyclerView(this)
+                }
+    }
+
+    /**
+     * Observes data change on [FavouriteListViewModel]
+     * @param data List of favourite characters.
+     */
+    private fun onViewDataChange(data: List<CharacterFavourite>) {
+        _adaptor.submitList(data)
+    }
 }

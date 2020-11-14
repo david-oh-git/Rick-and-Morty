@@ -2,7 +2,7 @@
 <!--
   ~ MIT License
   ~
-  ~ Copyright (c) 7/11/2020 15:17   David Osemwota.
+  ~ Copyright (c) 11/11/2020 16:20   David Osemwota.
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy
   ~ of this software and associated documentation files (the "Software"), to deal
@@ -22,33 +22,8 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   -->
-<layout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
+<resources>
 
-        <variable
-            name="viewState"
-            type="io.audioshinigami.favourites_list.FavouriteListViewState" />
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        app:visible="@{viewState.listed}"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/favourites_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            tools:listitem="@layout/list_item_favourite"
-            app:spanCount="@integer/favourite_list_spans"
-            app:itemDecorationSpacing="@{ @dimen/favourite_list_item_padding }"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</layout>
+    <dimen name="favourite_list_item_padding">4dp</dimen>
+</resources>

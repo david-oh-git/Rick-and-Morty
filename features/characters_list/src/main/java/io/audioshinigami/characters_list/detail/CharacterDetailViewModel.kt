@@ -30,18 +30,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.audioshinigami.characters_list.detail.models.CharacterDetail
-import io.audioshinigami.characters_list.detail.models.CharacterDetailMapper
 import io.audioshinigami.characters_list.detail.models.CharacterFavouriteMapper
-import io.audioshinigami.core.data.CharacterFavourite
 import io.audioshinigami.core.data.source.CharacterFavouriteRepository
-import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 class CharacterDetailViewModel @Inject constructor(
-        @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-        val repository: CharacterFavouriteRepository,
-        @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-        val characterFavouriteMapper: CharacterFavouriteMapper
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    val repository: CharacterFavouriteRepository,
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    val characterFavouriteMapper: CharacterFavouriteMapper
 ) : ViewModel() {
 
     private val _data = MutableLiveData<CharacterDetail>()
@@ -59,7 +57,7 @@ class CharacterDetailViewModel @Inject constructor(
     init {
 
         viewModelScope.launch {
-            _state.postValue( CharacterDetailViewState.Loading)
+            _state.postValue(CharacterDetailViewState.Loading)
         }
     }
 
@@ -72,7 +70,6 @@ class CharacterDetailViewModel @Inject constructor(
                 _state.postValue(CharacterDetailViewState.AddedToFavorite)
             }
         }
-
     }
 
     fun dismissCharacterDetail() {
@@ -82,6 +79,6 @@ class CharacterDetailViewModel @Inject constructor(
     fun setData(characterDetail: CharacterDetail) {
         _data.postValue(characterDetail)
         _state.postValue(CharacterDetailViewState.AddToFavorite)
-        //TODO check db if already added then set state.
+        // TODO check db if already added then set state.
     }
 }

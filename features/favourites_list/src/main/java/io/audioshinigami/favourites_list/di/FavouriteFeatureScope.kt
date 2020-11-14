@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 31/10/2020 16:23   David Osemwota.
+ * Copyright (c) 11/11/2020 5:20   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,34 +22,10 @@
  * SOFTWARE.
  */
 
-package io.audioshinigami.characters_list.detail.models
+package io.audioshinigami.favourites_list.di
 
-import io.audioshinigami.core.data.CharacterFavourite
-import io.audioshinigami.core.mapper.Mapper
+import javax.inject.Scope
 
-/**
- * Helper to transform [CharacterDetail] input to [CharacterFavourite] output.
- */
-class CharacterFavouriteMapper : Mapper<CharacterDetail, CharacterFavourite> {
-
-    /**
-     * Transforms input to output.
-     *
-     * @param from input [CharacterDetail] class.
-     * @return The desired output [CharacterFavourite].
-     */
-    override suspend fun transform(from: CharacterDetail): CharacterFavourite {
-        return CharacterFavourite(
-                name = from.name,
-                created = from.created,
-                gender = from.gender,
-                id = 0,
-                image = from.image,
-                locationName = from.locationName,
-                originName = from.originName,
-                species = from.species,
-                status = from.status,
-                type = from.type
-        )
-    }
-}
+@Scope
+@kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
+annotation class FavouriteFeatureScope

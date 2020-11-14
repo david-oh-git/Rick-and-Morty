@@ -26,7 +26,7 @@ package io.audioshinigami.favourites_list
 
 import io.audioshinigami.ui.BaseViewState
 
-sealed class FavouriteListViewState: BaseViewState {
+sealed class FavouriteListViewState : BaseViewState {
 
     /**
      * No favorite characters to display.

@@ -39,7 +39,6 @@ import io.mockk.verifyAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-
 internal class CharacterFavouriteTouchHelperTest {
 
     @MockK(relaxed = true)
@@ -47,7 +46,7 @@ internal class CharacterFavouriteTouchHelperTest {
     lateinit var touchHelper: CharacterFavouriteTouchHelper
 
     @BeforeEach
-    fun init(){
+    fun init() {
         MockKAnnotations.init(this)
 
         touchHelper = CharacterFavouriteTouchHelper(onSwiped)
@@ -82,11 +81,10 @@ internal class CharacterFavouriteTouchHelperTest {
             viewHolder wasNot Called
             target wasNot Called
         }
-        
     }
 
     @Test
-    fun swipeTouchOnRemovedItem_confirmInvokeNoPosition(){
+    fun swipeTouchOnRemovedItem_confirmInvokeNoPosition() {
         val viewHolder = mockk<RecyclerView.ViewHolder>()
         val direction = LEFT
         val swipePosition = 5
@@ -99,7 +97,7 @@ internal class CharacterFavouriteTouchHelperTest {
     }
 
     @Test
-    fun swipeTouchEventItem_confirmInvokeWithPosition(){
+    fun swipeTouchEventItem_confirmInvokeWithPosition() {
         val viewHolder = mockk<RecyclerView.ViewHolder>()
         val direction = LEFT
         val swipePosition = 7

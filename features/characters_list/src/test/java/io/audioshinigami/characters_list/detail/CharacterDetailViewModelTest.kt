@@ -95,7 +95,6 @@ internal class CharacterDetailViewModelTest {
         assertThat(viewModel.data.value).isEqualTo(characterDetail)
         assertThat(viewModel.state.value).isEqualTo(expectedState)
         verify { state.onChanged(expectedState) }
-
     }
 
     @Test
@@ -103,7 +102,7 @@ internal class CharacterDetailViewModelTest {
         val expectedState = CharacterDetailViewState.AddedToFavorite
         val characterFavourite = mockk<CharacterFavourite>()
         val characterDetail = mockk<CharacterDetail>()
-        coEvery { characterFavouriteMapper.transform( characterDetail ) } returns  characterFavourite
+        coEvery { characterFavouriteMapper.transform(characterDetail) } returns characterFavourite
 
         viewModel.setData(characterDetail)
         viewModel.addCharacterToFavorite()
@@ -112,6 +111,5 @@ internal class CharacterDetailViewModelTest {
         assertThat(viewModel.state.value).isEqualTo(expectedState)
         verify { state.onChanged(expectedState) }
         coVerify { repository.save(characterFavourite) }
-
     }
 }
