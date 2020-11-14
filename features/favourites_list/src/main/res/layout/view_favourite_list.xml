@@ -45,6 +45,7 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical"
             tools:listitem="@layout/list_item_favourite"
+            app:reverseLayout="true"
             app:spanCount="@integer/favourite_list_spans"
             app:itemDecorationSpacing="@{ @dimen/favourite_list_item_padding }"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
