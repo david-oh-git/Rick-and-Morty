@@ -26,6 +26,7 @@ package io.audioshinigami.core.data.source.local
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import io.audioshinigami.core.data.CharacterFavourite
 import io.audioshinigami.core.utils.CHARACTER_TABLE
@@ -40,7 +41,7 @@ interface CharacterFavouriteDao {
     /**
      * Add a [CharacterFavourite] to database.
      */
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun save(characterFavourite: CharacterFavourite)
 
     /**
