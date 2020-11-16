@@ -58,4 +58,11 @@ interface CharacterFavouriteRepository {
      * Delete [CharacterFavourite] item by id.
      */
     suspend fun deleteCharacterFavourite(id: Long)
+
+    /**
+     * Search for [CharacterFavourite] in database.
+     *@param name of the [CharacterFavourite] item.
+     * @return True if found in database or False otherwise.
+     */
+    suspend fun search(name: String): Boolean
 }

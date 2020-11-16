@@ -97,4 +97,20 @@ class CharacterFavouriteRepositoryTest {
         verify(localDataSource).deleteCharacterFavourite(savedCharacterId.capture())
         assertThat(id).isEqualTo(savedCharacterId.lastValue)
     }
+
+    @Test
+    @DisplayName("verify calling repository.search calls localDataSource.search with same " +
+            "argument")
+    fun searchCharacter() = runBlockingTest {
+        val id = 67L
+        val name = "Soifon"
+        val characterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = id, name = name)
+        characterFavouriteRepository.save(characterFavourite)
+        characterFavouriteRepository.search(name)
+
+        val nameArgument = argumentCaptor<String>()
+        verify(localDataSource).search(nameArgument.capture())
+        assertThat(name).isEqualTo(nameArgument.lastValue)
+
+    }
 }

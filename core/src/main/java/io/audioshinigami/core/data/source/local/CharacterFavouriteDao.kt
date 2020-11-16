@@ -69,6 +69,8 @@ interface CharacterFavouriteDao {
     /**
      * Searches database for [CharacterFavourite] with the name,
      * name is unique so ideally there should be one or none.
+     * @param name Name of the [CharacterFavourite] item .
+     * @return The item with the name if found or null otherwise.
      */
     @Query("SELECT * FROM $CHARACTER_TABLE WHERE name = :name")
     suspend fun search(name: String): CharacterFavourite?

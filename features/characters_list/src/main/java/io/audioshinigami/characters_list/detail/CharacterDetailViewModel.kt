@@ -76,9 +76,14 @@ class CharacterDetailViewModel @Inject constructor(
         _state.postValue(CharacterDetailViewState.Dismiss)
     }
 
-    fun setData(characterDetail: CharacterDetail) {
+    /**
+     * Set [CharacterDetail] value from [CharacterDetailFragment] args
+     * and also update [state] value if it is already on the database.
+     */
+    fun setData(characterDetail: CharacterDetail) = viewModelScope.launch {
         _data.postValue(characterDetail)
         _state.postValue(CharacterDetailViewState.AddToFavorite)
-        // TODO check db if already added then set state.
+        if( repository.search(characterDetail.name))
+            _state.postValue(CharacterDetailViewState.AddedToFavorite)
     }
 }

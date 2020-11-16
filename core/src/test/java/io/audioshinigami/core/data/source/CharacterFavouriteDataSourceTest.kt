@@ -115,7 +115,8 @@ class CharacterFavouriteDataSourceTest {
     fun deleteCharacterFavourite_confirmResults() = runBlockingTest {
         // Arrange: save a characterFavourite
         val id = 89L
-        val characterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = id)
+        val name = "Zaraki Kempachi"
+        val characterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = id, name = name)
         val secondCharacterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = 22L)
         localDataSource.save(characterFavourite)
         localDataSource.save(secondCharacterFavourite)
@@ -129,5 +130,39 @@ class CharacterFavouriteDataSourceTest {
         assertThat(result.isEmpty()).isFalse()
         val resultItem = result[0]
         assertThat(resultItem).isEqualTo(secondCharacterFavourite)
+    }
+
+    @Test
+    fun searchCharacterFavourite_confirmResults() = runBlockingTest {
+        // Arrange: save a characterFavourite
+        val id = 89L
+        val name = "Subaru"
+        val characterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = id, name = name)
+        val secondCharacterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = 22L)
+        localDataSource.save(characterFavourite)
+        localDataSource.save(secondCharacterFavourite)
+
+        // Act: search for characterFavourite item.
+        val result = localDataSource.search(name)
+
+        // Assert: confirm result is True
+        assertThat(result).isTrue()
+    }
+
+    @Test
+    fun searchCharacterFavouriteNotInDb_confirmResults() = runBlockingTest {
+        // Arrange: save a characterFavourite
+        val id = 89L
+        val name = "Yamamoto"
+        val characterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = id, name = "Hisagi")
+        val secondCharacterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = 22L)
+        localDataSource.save(characterFavourite)
+        localDataSource.save(secondCharacterFavourite)
+
+        // Act: search for characterFavourite item.
+        val result = localDataSource.search(name)
+
+        // Assert: confirm result is False
+        assertThat(result).isFalse()
     }
 }

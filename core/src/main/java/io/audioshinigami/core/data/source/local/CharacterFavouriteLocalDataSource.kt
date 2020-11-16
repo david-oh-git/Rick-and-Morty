@@ -70,4 +70,9 @@ class CharacterFavouriteLocalDataSource @Inject constructor(
     override suspend fun deleteCharacterFavourite(id: Long) = withContext(ioDispatcher) {
         characterFavouriteDao.deleteCharacterFavourite(id)
     }
+
+    override suspend fun search(name: String) = withContext(ioDispatcher) {
+        val result = characterFavouriteDao.search(name)
+        return@withContext result != null
+    }
 }
