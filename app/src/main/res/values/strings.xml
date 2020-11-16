@@ -23,7 +23,7 @@
   -->
 
 <resources>
-    <string name="app_name">Project M</string>
+    <string name="app_name">Rick and Morty</string>
     <string name="title_home">home</string>
     <string name="title_ui">UI</string>
     <string name="title_favourites_list">Favourites List</string>
