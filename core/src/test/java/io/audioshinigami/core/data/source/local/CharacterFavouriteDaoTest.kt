@@ -92,7 +92,7 @@ internal class CharacterFavouriteDaoTest {
     @Test
     fun saveSameCharacterMultipleTimes_shouldIgnoreSubsequentSaves() = runBlockingTest {
         // Arrange: save a characterFavourite. A characterFavourite's name is unique.
-        //It should ignore subsequent saves with same name.
+        // It should ignore subsequent saves with same name.
         val characterFavourite = CharacterFavouriteFactory.getCharacter()
         val sameCharacterFavourite = characterFavourite.copy(status = "I do not know")
         characterFavouriteDao.save(characterFavourite)
@@ -147,7 +147,7 @@ internal class CharacterFavouriteDaoTest {
     }
 
     @Test
-    fun searchDbForCharacterFavourite_shouldReturnSameCharacterFavourite() = runBlockingTest{
+    fun searchDbForCharacterFavourite_shouldReturnSameCharacterFavourite() = runBlockingTest {
         // Arrange: save multiple characterFavourite items
         val id = 82L
         val name = "Guy Fawkes"
@@ -164,7 +164,7 @@ internal class CharacterFavouriteDaoTest {
     }
 
     @Test
-    fun searchDbForCharacterFavourite_shouldReturnNull() = runBlockingTest{
+    fun searchDbForCharacterFavourite_shouldReturnNull() = runBlockingTest {
         // Arrange: save multiple characterFavourite items
         val id = 91L
         val name = "Guy Fawkes"

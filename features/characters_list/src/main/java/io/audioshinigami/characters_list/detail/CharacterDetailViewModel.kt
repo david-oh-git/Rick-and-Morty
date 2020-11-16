@@ -83,7 +83,7 @@ class CharacterDetailViewModel @Inject constructor(
     fun setData(characterDetail: CharacterDetail) = viewModelScope.launch {
         _data.postValue(characterDetail)
         _state.postValue(CharacterDetailViewState.AddToFavorite)
-        if( repository.search(characterDetail.name))
+        if (repository.search(characterDetail.name))
             _state.postValue(CharacterDetailViewState.AddedToFavorite)
     }
 }

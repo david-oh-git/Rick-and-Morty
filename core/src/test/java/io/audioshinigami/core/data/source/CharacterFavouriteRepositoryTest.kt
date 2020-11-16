@@ -111,6 +111,5 @@ class CharacterFavouriteRepositoryTest {
         val nameArgument = argumentCaptor<String>()
         verify(localDataSource).search(nameArgument.capture())
         assertThat(name).isEqualTo(nameArgument.lastValue)
-
     }
 }

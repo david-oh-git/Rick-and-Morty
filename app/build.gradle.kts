@@ -130,9 +130,4 @@ dependencies {
     implementation(BuildDependencies.TIMBER)
     
     kapt(BuildDependencies.DAGGER_HILT_KAPT)
-
-    testImplementation(TestDependencies.JUNIT)
-    androidTestImplementation(TestDependencies.ANDROIDX_JUNIT)
-    androidTestImplementation(TestDependencies.ESPRESSO)
-    
 }

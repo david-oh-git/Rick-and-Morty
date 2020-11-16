@@ -65,8 +65,6 @@ dependencies {
     implementation(BuildDependencies.RETROFIT)
     implementation(BuildDependencies.RETROFIT_GSON)
     implementation(BuildDependencies.HTTP_LOGGING)
-    implementation(BuildDependencies.MOSHI)
-    implementation(BuildDependencies.MOSHI_KTX)
     implementation(BuildDependencies.DAGGER_HILT)
 
     kapt(BuildDependencies.ROOM_KAPT)

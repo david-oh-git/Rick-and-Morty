@@ -154,7 +154,8 @@ class CharacterFavouriteDataSourceTest {
         // Arrange: save a characterFavourite
         val id = 89L
         val name = "Yamamoto"
-        val characterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = id, name = "Hisagi")
+        val characterFavourite = CharacterFavouriteFactory.getCharacter()
+            .copy(id = id, name = "Hisagi")
         val secondCharacterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = 22L)
         localDataSource.save(characterFavourite)
         localDataSource.save(secondCharacterFavourite)
