@@ -32,6 +32,8 @@ object BuildPlugins {
     const val NAVIGATION_SAFE_ARGS = "androidx.navigation.safeargs.kotlin"
     const val SPOTLESS = "plugins.spotless"
     const val KTLINT = "plugins.ktlint"
+    const val BEN_MANES_GRADLE_PLUGIN = "com.github.ben-manes.versions"
+    const val UPDATE_DEPENDENCIES = "plugins.update-dependencies"
 
     const val KOTLIN_ANDROID = "android"
     const val KOTLIN_ANDROID_EXTENSIONS = "android.extensions"

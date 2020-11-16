@@ -24,7 +24,7 @@
 
 import extentions.applyDefault
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins.apply(BuildPlugins.UPDATE_DEPENDENCIES)
 
 allprojects {
 
@@ -32,5 +32,5 @@ allprojects {
 
     plugins.apply(BuildPlugins.SPOTLESS)
     plugins.apply(BuildPlugins.KTLINT)
-
+    plugins.apply(BuildPlugins.BEN_MANES_GRADLE_PLUGIN)
 }
