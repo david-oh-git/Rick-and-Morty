@@ -90,6 +90,27 @@ internal class CharacterFavouriteDaoTest {
     }
 
     @Test
+    fun saveSameCharacterMultipleTimes_shouldIgnoreSubsequentSaves() = runBlockingTest {
+        // Arrange: save a characterFavourite. A characterFavourite's name is unique.
+        //It should ignore subsequent saves with same name.
+        val characterFavourite = CharacterFavouriteFactory.getCharacter()
+        val sameCharacterFavourite = characterFavourite.copy(status = "I do not know")
+        characterFavouriteDao.save(characterFavourite)
+        characterFavouriteDao.save(sameCharacterFavourite)
+
+        // Act: Get all characters from the database.
+        val result = characterFavouriteDao.getAllCharacters()
+
+        // Assert: confirm results
+        assertThat(result.size).isEqualTo(1)
+        assertThat(result[0].created).isEqualTo(characterFavourite.created)
+        assertThat(result[0].id).isEqualTo(characterFavourite.id)
+        assertThat(result[0].gender).isEqualTo(characterFavourite.gender)
+        assertThat(result[0].locationName).isEqualTo(characterFavourite.locationName)
+        assertThat(result[0].originName).isEqualTo(characterFavourite.originName)
+    }
+
+    @Test
     fun deleteDatabase_getEmptyDatabase() = runBlockingTest {
         // Arrange: save a characterFavourite
         val characterFavourite = CharacterFavouriteFactory.getCharacter()
@@ -123,5 +144,39 @@ internal class CharacterFavouriteDaoTest {
         assertThat(result.isEmpty()).isFalse()
         val remainingItem = result[0]
         assertThat(remainingItem).isEqualTo(characterFavourite)
+    }
+
+    @Test
+    fun searchDbForCharacterFavourite_shouldReturnSameCharacterFavourite() = runBlockingTest{
+        // Arrange: save multiple characterFavourite items
+        val id = 82L
+        val name = "Guy Fawkes"
+        val characterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = id, name = name)
+        val secondCharacter = CharacterFavouriteFactory.getCharacter()
+        characterFavouriteDao.save(characterFavourite)
+        characterFavouriteDao.save(secondCharacter)
+
+        // Act: Search for CharacterFavourite
+        val result = characterFavouriteDao.search(name)
+
+        // Assert: confirm result.
+        assertThat(result).isEqualTo(characterFavourite)
+    }
+
+    @Test
+    fun searchDbForCharacterFavourite_shouldReturnNull() = runBlockingTest{
+        // Arrange: save multiple characterFavourite items
+        val id = 91L
+        val name = "Guy Fawkes"
+        val characterFavourite = CharacterFavouriteFactory.getCharacter().copy(id = id, name = name)
+        val secondCharacter = CharacterFavouriteFactory.getCharacter()
+        characterFavouriteDao.save(characterFavourite)
+        characterFavouriteDao.save(secondCharacter)
+
+        // Act: Search for CharacterFavourite
+        val result = characterFavouriteDao.search("Camoru")
+
+        // Assert: confirm result.
+        assertThat(result).isNull()
     }
 }

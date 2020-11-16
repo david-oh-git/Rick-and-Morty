@@ -65,4 +65,11 @@ interface CharacterFavouriteDao {
 
     @Query("DELETE FROM $CHARACTER_TABLE WHERE id = :id")
     suspend fun deleteCharacterFavourite(id: Long)
+
+    /**
+     * Searches database for [CharacterFavourite] with the name,
+     * name is unique so ideally there should be one or none.
+     */
+    @Query("SELECT * FROM $CHARACTER_TABLE WHERE name = :name")
+    suspend fun search(name: String): CharacterFavourite?
 }
