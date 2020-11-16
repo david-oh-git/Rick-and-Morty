@@ -103,6 +103,6 @@ class FavouriteListFragment : Fragment() {
      * @param data List of favourite characters.
      */
     private fun onViewDataChange(data: List<CharacterFavourite>) {
-        _adaptor.submitList(data)
+        _adaptor.submitList(data.reversed())
     }
 }
