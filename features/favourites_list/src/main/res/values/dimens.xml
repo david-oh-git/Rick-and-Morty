@@ -25,5 +25,5 @@
 
 <resources>
 
-    <dimen name="favourite_list_item_padding">4dp</dimen>
+    <dimen name="favourite_list_item_padding">6dp</dimen>
 </resources>

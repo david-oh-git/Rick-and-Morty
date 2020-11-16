@@ -73,7 +73,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/average_sans"
                 tools:text="Summer"
+                android:textStyle="bold"
                 android:padding="4dp"
                 style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"
                 />
