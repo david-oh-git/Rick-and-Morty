@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020 David Osemwota.
+ * Copyright (c) $today.day/$today.month/2020 $today.hour24:$today.minute   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.audioshinigami.core.network.repositories
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -55,8 +54,10 @@ internal class RickAndMortyRepositoryTest {
     }
 
     @Test
-    @DisplayName("When repository.getCharacters is called , service.getCharacters is also " +
-        "called with the same args")
+    @DisplayName(
+        "When repository.getCharacters is called , service.getCharacters is also " +
+            "called with the same args"
+    )
     fun getCharacters() = runBlockingTest {
         // Arrange:
         val page = 5
@@ -69,8 +70,10 @@ internal class RickAndMortyRepositoryTest {
     }
 
     @Test
-    @DisplayName("When repository.getCharacter is called , service.getCharacter is also " +
-        "called with the same args")
+    @DisplayName(
+        "When repository.getCharacter is called , service.getCharacter is also " +
+            "called with the same args"
+    )
     fun getCharacter() = runBlockingTest {
         val characterId = 12L
         val capturedId = argumentCaptor<Long>()
@@ -82,8 +85,10 @@ internal class RickAndMortyRepositoryTest {
     }
 
     @Test
-    @DisplayName("When repository.findCharacters is called , service.findCharacters is also " +
-        "called with the same args")
+    @DisplayName(
+        "When repository.findCharacters is called , service.findCharacters is also " +
+            "called with the same args"
+    )
     fun findCharacters() = runBlockingTest {
 
         val characterName = "Summer Smith"
@@ -118,8 +123,10 @@ internal class RickAndMortyRepositoryTest {
     }
 
     @Test
-    @DisplayName("When repository.getLocations is called , service.getLocations is also " +
-        "called with the same args")
+    @DisplayName(
+        "When repository.getLocations is called , service.getLocations is also " +
+            "called with the same args"
+    )
     fun getLocations() = runBlockingTest {
         // Arrange:
         val page = 5
@@ -132,8 +139,10 @@ internal class RickAndMortyRepositoryTest {
     }
 
     @Test
-    @DisplayName("When repository.getLocation is called , service.getLocation is also " +
-        "called with the same args")
+    @DisplayName(
+        "When repository.getLocation is called , service.getLocation is also " +
+            "called with the same args"
+    )
     fun getLocation() = runBlockingTest {
         val locationId = 12L
         val capturedId = argumentCaptor<Long>()
@@ -145,8 +154,10 @@ internal class RickAndMortyRepositoryTest {
     }
 
     @Test
-    @DisplayName("When repository.findLocation is called , service.findLocation is also " +
-        "called with the same args")
+    @DisplayName(
+        "When repository.findLocation is called , service.findLocation is also " +
+            "called with the same args"
+    )
     fun findLocations() = runBlockingTest {
 
         val locationName = "The Citadel"
@@ -173,8 +184,10 @@ internal class RickAndMortyRepositoryTest {
     }
 
     @Test
-    @DisplayName("When repository.getEpisodes is called , service.getEpisodes is also" +
-        "called with the same args")
+    @DisplayName(
+        "When repository.getEpisodes is called , service.getEpisodes is also" +
+            "called with the same args"
+    )
     fun getEpisodes() = runBlockingTest {
         // Arrange:
         val page = 5
@@ -187,8 +200,10 @@ internal class RickAndMortyRepositoryTest {
     }
 
     @Test
-    @DisplayName("When repository.getEpisode is called , service.getEpisode is also" +
-        "called with the same args")
+    @DisplayName(
+        "When repository.getEpisode is called , service.getEpisode is also" +
+            "called with the same args"
+    )
     fun getEpisode() = runBlockingTest {
         val episodeId = 12L
         val capturedId = argumentCaptor<Long>()
@@ -200,8 +215,10 @@ internal class RickAndMortyRepositoryTest {
     }
 
     @Test
-    @DisplayName("When repository.findEpisodes is called , service.findEpisodes is also" +
-        "called with the same args")
+    @DisplayName(
+        "When repository.findEpisodes is called , service.findEpisodes is also" +
+            "called with the same args"
+    )
     fun findEpisodes() = runBlockingTest {
 
         val episodeName = "Close Rick-counters of the Rick Kind"

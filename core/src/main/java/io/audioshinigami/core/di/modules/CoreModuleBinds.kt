@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 22/10/2020 8:41   David Osemwota.
+ * Copyright (c) $today.day/$today.month/2020 $today.hour24:$today.minute   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.audioshinigami.core.di.modules
 
 import android.content.Context
@@ -67,12 +66,12 @@ interface CoreModuleBinds {
 
         @Provides
         @Singleton
-        fun provideCharacterFavouriteDao(@ApplicationContext context: Context):
-                CharacterFavouriteDao =
-            Room.databaseBuilder(
-                context.applicationContext,
-                RickAndMortyDatabase::class.java,
-                CHARACTER_TABLE
-            ).build().characterFavouriteDao()
+        fun provideCharacterFavouriteDao(
+            @ApplicationContext context: Context
+        ): CharacterFavouriteDao = Room.databaseBuilder(
+            context.applicationContext,
+            RickAndMortyDatabase::class.java,
+            CHARACTER_TABLE
+        ).build().characterFavouriteDao()
     }
 }

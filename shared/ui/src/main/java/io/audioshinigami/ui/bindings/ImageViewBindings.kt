@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020 David Osemwota.
+ * Copyright (c) $today.day/$today.month/2020 $today.hour24:$today.minute   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.audioshinigami.ui.bindings
 
 import android.graphics.Color
@@ -48,13 +47,17 @@ fun setImage(imageView: AppCompatImageView, url: String?, @DrawableRes placehold
     with(imageView) {
         load(url) {
             crossfade(true)
-            placeholder(placeholderId?.let {
-                ContextCompat.getDrawable(context, it)
-            } ?: run {
-                val placeholdersColors = resources.getStringArray(R.array.placeholders)
-                val placeholderColor = placeholdersColors[Random.nextInt(placeholdersColors.size)]
-                ColorDrawable(Color.parseColor(placeholderColor))
-            })
+            placeholder(
+                placeholderId?.let {
+                    ContextCompat.getDrawable(context, it)
+                } ?: run {
+                    val placeholdersColors = resources.getStringArray(R.array.placeholders)
+                    val placeholderColor = placeholdersColors[
+                        Random.nextInt(placeholdersColors.size)
+                    ]
+                    ColorDrawable(Color.parseColor(placeholderColor))
+                }
+            )
         }
     }
 }
@@ -71,13 +74,17 @@ fun setImage(imageView: ShapeableImageView, url: String?, @DrawableRes placehold
     with(imageView) {
         load(url) {
             crossfade(true)
-            placeholder(placeholderId?.let {
-                ContextCompat.getDrawable(context, it)
-            } ?: run {
-                val placeholdersColors = resources.getStringArray(R.array.placeholders)
-                val placeholderColor = placeholdersColors[Random.nextInt(placeholdersColors.size)]
-                ColorDrawable(Color.parseColor(placeholderColor))
-            })
+            placeholder(
+                placeholderId?.let {
+                    ContextCompat.getDrawable(context, it)
+                } ?: run {
+                    val placeholdersColors = resources.getStringArray(R.array.placeholders)
+                    val placeholderColor = placeholdersColors[
+                        Random.nextInt(placeholdersColors.size)
+                    ]
+                    ColorDrawable(Color.parseColor(placeholderColor))
+                }
+            )
         }
     }
 }

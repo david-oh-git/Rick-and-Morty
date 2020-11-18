@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 29/10/2020 14:25   David Osemwota.
+ * Copyright (c) $today.day/$today.month/2020 $today.hour24:$today.minute   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.audioshinigami.characters_list.detail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -67,8 +66,8 @@ internal class CharacterDetailViewModelTest {
         MockKAnnotations.init(this)
 
         viewModel = CharacterDetailViewModel(
-                repository = repository,
-                characterFavouriteMapper
+            repository = repository,
+            characterFavouriteMapper
         )
         viewModel.state.observeForever(state)
         viewModel.data.observeForever(data)

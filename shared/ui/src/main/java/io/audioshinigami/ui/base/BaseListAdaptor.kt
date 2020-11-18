@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 9/11/2020 12:18   David Osemwota.
+ * Copyright (c) $today.day/$today.month/2020 $today.hour24:$today.minute   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.audioshinigami.ui.base
 
 import android.view.LayoutInflater
@@ -40,13 +39,13 @@ abstract class BaseListAdaptor<T>(
     itemsSame: (T, T) -> Boolean,
     contentsSame: (T, T) -> Boolean
 ) : ListAdapter<T, RecyclerView.ViewHolder>(
-        object : DiffUtil.ItemCallback<T>() {
-            override fun areItemsTheSame(oldItem: T, newItem: T): Boolean =
-                    itemsSame(oldItem, newItem)
+    object : DiffUtil.ItemCallback<T>() {
+        override fun areItemsTheSame(oldItem: T, newItem: T): Boolean =
+            itemsSame(oldItem, newItem)
 
-            override fun areContentsTheSame(oldItem: T, newItem: T): Boolean =
-                    contentsSame(oldItem, newItem)
-        }
+        override fun areContentsTheSame(oldItem: T, newItem: T): Boolean =
+            contentsSame(oldItem, newItem)
+    }
 ) {
 
     /**
@@ -71,9 +70,9 @@ abstract class BaseListAdaptor<T>(
      * @return A new viewHolder of the view type.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-    onCreateViewHolder(
+        onCreateViewHolder(
             parent = parent,
             inflater = LayoutInflater.from(parent.context),
             viewType = viewType
-    )
+        )
 }

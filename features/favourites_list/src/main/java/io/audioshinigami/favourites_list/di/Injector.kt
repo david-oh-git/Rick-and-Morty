@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 11/11/2020 5:57   David Osemwota.
+ * Copyright (c) $today.day/$today.month/2020 $today.hour24:$today.minute   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.audioshinigami.favourites_list.di
 
 import dagger.hilt.android.EntryPointAccessors
@@ -30,19 +29,19 @@ import io.audioshinigami.favourites_list.FavouriteListFragment
 import io.audioshinigami.projectm.di.AppComponent
 
 internal fun inject(fragment: FavouriteListFragment) =
-        DaggerFavouriteListComponent
-                .factory()
-                .create(appComponent(fragment), coreComponent(fragment))
-                .inject(fragment)
+    DaggerFavouriteListComponent
+        .factory()
+        .create(appComponent(fragment), coreComponent(fragment))
+        .inject(fragment)
 
 private fun appComponent(fragment: FavouriteListFragment): AppComponent =
-        EntryPointAccessors.fromApplication(
-                fragment.requireActivity().applicationContext,
-                AppComponent::class.java
-        )
+    EntryPointAccessors.fromApplication(
+        fragment.requireActivity().applicationContext,
+        AppComponent::class.java
+    )
 
 private fun coreComponent(fragment: FavouriteListFragment): CoreComponent =
-        EntryPointAccessors.fromApplication(
-                fragment.requireContext().applicationContext,
-                CoreComponent::class.java
-        )
+    EntryPointAccessors.fromApplication(
+        fragment.requireContext().applicationContext,
+        CoreComponent::class.java
+    )

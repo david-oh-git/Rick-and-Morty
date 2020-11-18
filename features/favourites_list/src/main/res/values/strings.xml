@@ -1,7 +1,7 @@
 <!--
   ~ MIT License
   ~
-  ~ Copyright (c) 6/11/2020 12:42   David Osemwota.
+  ~ Copyright (c) 17/11/2020 16:24   David Osemwota.
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy
   ~ of this software and associated documentation files (the "Software"), to deal
@@ -26,4 +26,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="favourites_list_empty_txt">No Items to display.</string>
+    <string name="view_favourite_list_error_message">Oops !!! error displaying items.</string>
 </resources>

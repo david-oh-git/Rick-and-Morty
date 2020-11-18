@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 21/10/2020 16:51   David Osemwota.
+ * Copyright (c) $today.day/$today.month/2020 $today.hour24:$today.minute   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.audioshinigami.core.data.source
 
 import com.google.common.truth.Truth.assertThat
@@ -99,8 +98,10 @@ class CharacterFavouriteRepositoryTest {
     }
 
     @Test
-    @DisplayName("verify calling repository.search calls localDataSource.search with same " +
-            "argument")
+    @DisplayName(
+        "verify calling repository.search calls localDataSource.search with same " +
+            "argument"
+    )
     fun searchCharacter() = runBlockingTest {
         val id = 67L
         val name = "Soifon"

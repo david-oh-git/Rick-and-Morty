@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 31/10/2020 16:23   David Osemwota.
+ * Copyright (c) $today.day/$today.month/2020 $today.hour24:$today.minute   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.audioshinigami.characters_list.detail.models
 
 import io.audioshinigami.core.data.CharacterFavourite
@@ -40,16 +39,16 @@ class CharacterFavouriteMapper : Mapper<CharacterDetail, CharacterFavourite> {
      */
     override suspend fun transform(from: CharacterDetail): CharacterFavourite {
         return CharacterFavourite(
-                name = from.name,
-                created = from.created,
-                gender = from.gender,
-                id = 0,
-                image = from.image,
-                locationName = from.locationName,
-                originName = from.originName,
-                species = from.species,
-                status = from.status,
-                type = from.type
+            name = from.name,
+            created = from.created,
+            gender = from.gender,
+            id = 0,
+            image = from.image,
+            locationName = from.locationName,
+            originName = from.originName,
+            species = from.species,
+            status = from.status,
+            type = from.type
         )
     }
 }

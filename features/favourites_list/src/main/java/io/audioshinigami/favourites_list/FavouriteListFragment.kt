@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 6/11/2020 12:42   David Osemwota.
+ * Copyright (c) $today.day/$today.month/2020 $today.hour24:$today.minute   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package io.audioshinigami.favourites_list
 
 import android.os.Bundle
@@ -89,13 +88,15 @@ class FavouriteListFragment : Fragment() {
      */
     private fun initRecyclerView() {
         binding.includeList.favouritesList
-                .apply {
-                    adapter = _adaptor
+            .apply {
+                adapter = _adaptor
 
-                    ItemTouchHelper(CharacterFavouriteTouchHelper {
+                ItemTouchHelper(
+                    CharacterFavouriteTouchHelper {
                         _viewModel.deleteCharacterFavourite(_adaptor.currentList[it].id)
-                    }).attachToRecyclerView(this)
-                }
+                    }
+                ).attachToRecyclerView(this)
+            }
     }
 
     /**

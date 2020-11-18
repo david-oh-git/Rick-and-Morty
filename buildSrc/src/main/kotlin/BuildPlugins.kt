@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020 David Osemwota.
+ * Copyright (c) 17/11/2020 16:23   David Osemwota.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,6 +34,7 @@ object BuildPlugins {
     const val KTLINT = "plugins.ktlint"
     const val BEN_MANES_GRADLE_PLUGIN = "com.github.ben-manes.versions"
     const val UPDATE_DEPENDENCIES = "plugins.update-dependencies"
+    const val GIT_HOOKS = "plugins.git-hooks"
 
     const val KOTLIN_ANDROID = "android"
     const val KOTLIN_ANDROID_EXTENSIONS = "android.extensions"
