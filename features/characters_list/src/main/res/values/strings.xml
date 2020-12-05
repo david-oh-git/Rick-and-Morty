@@ -40,4 +40,5 @@
     <string name="error_item_image">Reload image icon for error item view</string>
 
     <string name="title_characters_list">Character list</string>
+    <string name="character_detail_fab_save">Fab button to save character in database</string>
 </resources>

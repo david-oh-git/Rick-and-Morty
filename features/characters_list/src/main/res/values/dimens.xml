@@ -28,7 +28,6 @@
     <dimen name="character_list_item_card_elevation">5dp</dimen>
     <dimen name="characters_list_loading_size">50dp</dimen>
     <dimen name="characters_list_item_padding">10dp</dimen>
-    <dimen name="character_detail_app_bar_height">300dp</dimen>
     <dimen name="character_detail_floating_button_margin">16dp</dimen>
     <dimen name="character_detail_content_padding_horizontal">16dp</dimen>
     <dimen name="character_detail_content_padding_top">16dp</dimen>
