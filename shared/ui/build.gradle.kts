@@ -30,7 +30,6 @@ import extentions.addTestsDependencies
 plugins {
     id(BuildPlugins.ANDROID_LIBRARY)
     id("kotlin-android")
-    id("kotlin-android-extensions")
     id("kotlin-kapt")
 }
 

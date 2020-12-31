@@ -22,7 +22,6 @@
  * SOFTWARE.
  */
 
-
 import dependencies.BuildDependencies
 import dependencies.TestDependencies
 
@@ -30,8 +29,8 @@ plugins {
     id(BuildPlugins.ANDROID_APPLICATION)
     id(BuildPlugins.DAGGER_HILT_PLUGIN)
     kotlin(BuildPlugins.KOTLIN_ANDROID)
-    kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
     kotlin(BuildPlugins.KOTLIN_KAPT)
+    id(BuildPlugins.PARCELIZE_PLUGIN)
     id(BuildPlugins.NAVIGATION_SAFE_ARGS)
 }
 

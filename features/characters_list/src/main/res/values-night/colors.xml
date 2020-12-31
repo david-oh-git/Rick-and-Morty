@@ -30,4 +30,7 @@
 
     <color name="error_text">#FFFFFF</color>
     <color name="character_detail_view_title_text">@color/round_btn_pressed</color>
+
+    <color name="back_nav_background">@android:color/darker_gray</color>
+
 </resources>

@@ -40,4 +40,5 @@
     <dimen name="error_item_image_btn_margin">4dp</dimen>
     <dimen name="character_detail_content_side_margin">16dp</dimen>
     <dimen name="character_detail_bottom_guideline">8dp</dimen>
+    <dimen name="character_detail_item_bottom_padding">4dp</dimen>
 </resources>

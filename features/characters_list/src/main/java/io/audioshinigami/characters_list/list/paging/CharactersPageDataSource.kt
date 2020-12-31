@@ -29,7 +29,6 @@ import androidx.paging.PageKeyedDataSource
 import io.audioshinigami.characters_list.list.di.CorotineScopeIo
 import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.core.network.repositories.RickAndMortyRepository
-import io.audioshinigami.core.network.responses.BaseListResponse
 import io.audioshinigami.core.network.responses.characters.Character
 import javax.inject.Inject
 import kotlin.properties.Delegates
@@ -38,7 +37,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-const val PAGE_INIT_ELEMENT = 0
+const val PAGE_INIT_ELEMENT = 1
 const val PAGE_MAX_ELEMENTS = 20
 
 @ExperimentalCoroutinesApi
@@ -128,11 +127,4 @@ open class CharactersPageDataSource @Inject constructor(
 
         previousRetry?.invoke()
     }
-
-    /**
-     * Extract list of [Character] items from [BaseListResponse].
-     */
-    @VisibleForTesting(otherwise = PRIVATE)
-    val BaseListResponse<Character>.results
-        get() = this.data.results
 }

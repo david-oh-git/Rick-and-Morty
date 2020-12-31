@@ -27,10 +27,9 @@ import dependencies.BuildDependencies
 import dependencies.TestDependencies
 
 plugins {
-    id(BuildPlugins.COMMON_ANDROID_LIBRARY)
+    id(BuildPlugins.ANDROID_LIBRARY)
     id(BuildPlugins.KOTLIN_ALL_OPEN)
     kotlin(BuildPlugins.KOTLIN_ANDROID)
-    kotlin(BuildPlugins.KOTLIN_ANDROID_EXTENSIONS)
     kotlin(BuildPlugins.KOTLIN_KAPT)
 }
 

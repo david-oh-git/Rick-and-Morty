@@ -29,7 +29,7 @@
     <string name="characters_list_error_text">Error ! Can\'t obtain character list.</string>
     <string name="characters_list_empty_text">There are no characters to displays.</string>
     <string name="character_detail_image_content_description">Character\'s Image</string>
-    <string name="specie_title">Specie</string>
+    <string name="character_detail_specie_title">\u2022 Specie : </string>
     <string name="type_title">Type</string>
     <string name="gender_title">Gender</string>
     <string name="origin_title">Origin</string>
@@ -41,4 +41,6 @@
 
     <string name="title_characters_list">Character list</string>
     <string name="character_detail_fab_save">Fab button to save character in database</string>
+    <string name="specie_title">Specie</string>
+    <string name="status_title">Status</string>
 </resources>

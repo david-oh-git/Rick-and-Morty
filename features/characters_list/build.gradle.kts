@@ -29,16 +29,16 @@ plugins {
     id("commons.android-dynamic-feature")
     id("com.android.dynamic-feature")
     id("kotlin-android")
-    id("kotlin-android-extensions")
     id("kotlin-kapt")
+    id(BuildPlugins.PARCELIZE_PLUGIN)
     id("kotlin-allopen")
     id("androidx.navigation.safeargs.kotlin")
     id("dagger.hilt.android.plugin")
+
 }
 
 android {
     buildFeatures.dataBinding = true
-
 }
 
 dependencies {

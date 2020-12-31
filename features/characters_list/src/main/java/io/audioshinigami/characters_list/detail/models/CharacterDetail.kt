@@ -24,8 +24,7 @@
 package io.audioshinigami.characters_list.detail.models
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
+import kotlinx.parcelize.Parcelize
 /**
  *  A [Parcelable] class with all of the character's details.
  */

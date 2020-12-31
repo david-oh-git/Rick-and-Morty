@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ MIT License
   ~
-  ~ Copyright (c) 17/11/2020 16:24   David Osemwota.
+  ~ Copyright (c) 31/12/2020 7:47   David Osemwota.
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy
   ~ of this software and associated documentation files (the "Software"), to deal
@@ -23,19 +22,23 @@
   ~ SOFTWARE.
   -->
 
-<resources>
-    <color name="round_btn">@color/colorPrimary</color>
-    <color name="round_btn_pressed">#795793FF</color>
-    <color name="retry_icon_tint">#444545</color>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <color name="error_text">#000000</color>
+    <item>
 
-    <color name="back">#292A30</color>
+        <shape
+            android:shape="oval">
+            <solid android:color="@color/back_nav_background" />
+        </shape>
+    </item>
 
-    <color name="ztest">#323333</color>
-    <color name="character_detail_view_title_text">#000000</color>
+    <item
+        android:drawable="@drawable/ic_back_nav"
+        android:right="2dp"
+        android:left="2dp"
+        android:top="2dp"
+        android:bottom="2dp"
+        android:gravity="center_vertical"
+        />
 
-    <color name="fab_background">#5793FF</color>
-
-    <color name="back_nav_background">#CEDFFD</color>
-</resources>
+</layer-list>
