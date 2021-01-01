@@ -25,7 +25,7 @@
 object BuildVersions {
 
     const val DYNAMIC_FEATURES = "2.3.1"
-    const val KOTLIN = "1.4.0"
+    const val KOTLIN = "1.4.21"
     const val KOTLIN_COROUTINES = "1.4.1"
     const val CONSTRAIN_LAYOUT = "2.0.4"
     const val CORE_KTX = "1.3.2"

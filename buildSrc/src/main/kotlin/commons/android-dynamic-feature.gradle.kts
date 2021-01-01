@@ -83,6 +83,7 @@ dependencies {
     implementation( project(BuildModules.APP))
 
     implementation(BuildDependencies.KOTLIN)
+    implementation(BuildDependencies.KOTLIN_REFLECT)
     implementation(BuildDependencies.MATERIAL_COMPONENTS)
     implementation(BuildDependencies.NAVIGATION_FRAGMENT)
     implementation(BuildDependencies.DYNAMIC_FEATURES_NAV)
