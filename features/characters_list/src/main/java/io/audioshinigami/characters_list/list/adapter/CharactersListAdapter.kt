@@ -35,6 +35,7 @@ import io.audioshinigami.characters_list.list.adapter.viewholders.LoadingViewHol
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.base.BasePagedListAdapter
 import javax.inject.Inject
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 /**
  * Enum class representing all types of RecyclerView item.
@@ -45,7 +46,7 @@ internal enum class ItemView(val type: Int, val span: Int) {
     ERROR(type = 2, span = 2);
 
     companion object {
-        fun valueOf(type: Int): ItemView? = values().first { it.type == type }
+        fun valueOf(type: Int): ItemView = values().first { it.type == type }
     }
 }
 
@@ -54,6 +55,7 @@ internal enum class ItemView(val type: Int, val span: Int) {
  * diffs between Lists on a background thread.
  *
  */
+@ExperimentalCoroutinesApi
 class CharactersListAdapter @Inject constructor(
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     val viewModel: CharactersListViewModel

@@ -27,6 +27,7 @@ import android.view.LayoutInflater
 import io.audioshinigami.characters_list.databinding.ListItemErrorBinding
 import io.audioshinigami.characters_list.list.CharactersListViewModel
 import io.audioshinigami.ui.base.BaseViewHolder
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 /**
  * Error view holder.
@@ -40,6 +41,7 @@ class ErrorViewHolder(
     /**
      *  Binding variables.
      */
+    @ExperimentalCoroutinesApi
     fun bind(_viewModel: CharactersListViewModel) {
         binding.apply {
             viewModel = _viewModel

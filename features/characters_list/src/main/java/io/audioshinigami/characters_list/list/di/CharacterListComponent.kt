@@ -30,7 +30,9 @@ import io.audioshinigami.characters_list.list.di.modules.ViewModelModule
 import io.audioshinigami.core.di.CoreComponent
 import io.audioshinigami.core.di.modules.FactoryModules
 import io.audioshinigami.projectm.di.AppComponent
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @FeatureScope
 @Component(
     dependencies = [AppComponent::class, CoreComponent::class],

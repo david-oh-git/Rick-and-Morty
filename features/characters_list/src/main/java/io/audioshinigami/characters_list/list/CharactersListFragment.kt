@@ -41,12 +41,14 @@ import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.extentions.gridLayoutManager
 import io.audioshinigami.ui.extentions.observe
 import javax.inject.Inject
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 
 /**
  * [Fragment]
  * Displays a list of characters on the characters tab.
  */
+@ExperimentalCoroutinesApi
 class CharactersListFragment : Fragment() {
 
     lateinit var viewAdapter: CharactersListAdapter
@@ -70,7 +72,7 @@ class CharactersListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val binding = FragmentCharactersListBinding.inflate(inflater)
         binding.apply {

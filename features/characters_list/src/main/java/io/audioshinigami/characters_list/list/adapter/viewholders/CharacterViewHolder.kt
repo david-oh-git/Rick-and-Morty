@@ -28,6 +28,7 @@ import io.audioshinigami.characters_list.databinding.ListItemCharacterBinding
 import io.audioshinigami.characters_list.list.CharactersListViewModel
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.base.BaseViewHolder
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 /**
  * View holder for RecyclerView item with [Character] data.
@@ -41,6 +42,7 @@ class CharacterViewHolder(
     /**
      * Bind data variables for view holder.
      */
+    @ExperimentalCoroutinesApi
     fun bind(_viewModel: CharactersListViewModel, _character: Character) {
         binding.apply {
             viewModel = _viewModel

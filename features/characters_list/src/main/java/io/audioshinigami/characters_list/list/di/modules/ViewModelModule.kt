@@ -30,7 +30,9 @@ import dagger.hilt.migration.DisableInstallInCheck
 import dagger.multibindings.IntoMap
 import io.audioshinigami.characters_list.list.CharactersListViewModel
 import io.audioshinigami.core.di.ViewModelKey
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @DisableInstallInCheck
 @Module
 interface ViewModelModule {
