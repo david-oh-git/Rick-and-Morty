@@ -41,7 +41,10 @@
         >
         <action
             android:id="@+id/action_characters_list_fragment_to_characterDetailFragment"
-            app:destination="@id/characterDetailFragment" />
+            app:destination="@id/characterDetailFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <fragment
