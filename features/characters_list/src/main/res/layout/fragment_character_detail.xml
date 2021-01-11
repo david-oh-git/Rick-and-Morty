@@ -59,6 +59,7 @@
                     android:id="@+id/character_image"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
+                    android:transitionName="characterImage"
                     android:contentDescription="@string/character_detail_image_content_description"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"

@@ -30,6 +30,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagedList
 import io.audioshinigami.characters_list.databinding.FragmentCharactersListBinding
@@ -60,6 +61,8 @@ class CharactersListFragment : Fragment() {
         viewModelFactory
     }
 
+    private lateinit var binding: FragmentCharactersListBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -74,7 +77,7 @@ class CharactersListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        val binding = FragmentCharactersListBinding.inflate(inflater)
+        binding = FragmentCharactersListBinding.inflate(inflater)
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = _viewModel
@@ -138,6 +141,7 @@ class CharactersListFragment : Fragment() {
                         .actionCharactersListFragmentToCharacterDetailFragment(
                             CharacterDetailMapper().transform(viewEvent.character)
                         )
+                    val extras = FragmentNavigatorExtras()
                     findNavController().navigate(action)
                 }
             }

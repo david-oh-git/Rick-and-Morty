@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 
+@file:Suppress("SpellCheckingInspection")
 package dependencies
 
 object BuildDependencies {

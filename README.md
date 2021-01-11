@@ -1,6 +1,8 @@
 # Project M
 A simple app that consumes data from the open source [Rick and Morty API service ](https://rickandmortyapi.com) .
 
+<img src="screenshots/home_characters.png" width="250" align="right" hspace="20">
+
 ## Dependencies
 
 - [Android Jetpack](https://developer.android.com/jetpack)
@@ -13,3 +15,5 @@ A simple app that consumes data from the open source [Rick and Morty API service
 - [Mockito](http://site.mockito.org)
 - [Mockk](http://mockk.io)
 - [Truth](http://truth.dev)
+
+<img src="screenshots/home_favourites.png" width="250" align="left" hspace="20">
