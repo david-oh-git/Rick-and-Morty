@@ -25,6 +25,7 @@ package io.audioshinigami.characters_list.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.VisibleForTesting
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -58,7 +59,8 @@ internal enum class ItemView(val type: Int, val span: Int) {
 @ExperimentalCoroutinesApi
 class CharactersListAdapter @Inject constructor(
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    val viewModel: CharactersListViewModel
+    val viewModel: CharactersListViewModel,
+    val onItemClickAction: (ImageView, Character) -> Unit
 ) : BasePagedListAdapter<Character>(
     itemsSame = { old, new -> old.id == new.id },
     contentsSame = { old, new -> old == new }
@@ -99,7 +101,7 @@ class CharactersListAdapter @Inject constructor(
             ItemView.CHARACTER ->
                 getItem(position)?.let {
                     if (holder is CharacterViewHolder) {
-                        holder.bind(viewModel, it)
+                        holder.bind(onItemClickAction, it)
                     }
                 }
             ItemView.ERROR ->

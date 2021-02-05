@@ -27,6 +27,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -68,7 +69,7 @@ class CharactersListFragment : Fragment() {
 
         // init dagger
         inject(this)
-        viewAdapter = CharactersListAdapter(_viewModel)
+        viewAdapter = CharactersListAdapter(_viewModel, ::onCharacterItemClickAction)
     }
 
     override fun onCreateView(
@@ -141,10 +142,23 @@ class CharactersListFragment : Fragment() {
                         .actionCharactersListFragmentToCharacterDetailFragment(
                             CharacterDetailMapper().transform(viewEvent.character)
                         )
-                    val extras = FragmentNavigatorExtras()
+//                    val extras = FragmentNavigatorExtras()
                     findNavController().navigate(action)
                 }
             }
+        }
+    }
+
+    private fun onCharacterItemClickAction(imageView: ImageView, character: Character) {
+        runBlocking {
+            val action = CharactersListFragmentDirections
+                .actionCharactersListFragmentToCharacterDetailFragment(
+                    CharacterDetailMapper().transform(character)
+                )
+            val extras = FragmentNavigatorExtras(
+                imageView to character.image
+            )
+            findNavController().navigate(action, extras)
         }
     }
 }

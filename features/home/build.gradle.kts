@@ -22,7 +22,6 @@
  * SOFTWARE.
  */
 
-
 import dependencies.BuildDependencies
 
 plugins {

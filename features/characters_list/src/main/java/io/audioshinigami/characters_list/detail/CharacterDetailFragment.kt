@@ -32,7 +32,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.transition.TransitionInflater
+import io.audioshinigami.characters_list.R.transition.character_list_item_to_character_detail
 import io.audioshinigami.characters_list.databinding.FragmentCharacterDetailBinding
+import io.audioshinigami.characters_list.detail.CharacterDetailViewState.Dismiss
 import io.audioshinigami.characters_list.detail.di.inject
 import io.audioshinigami.ui.extentions.observe
 import javax.inject.Inject
@@ -62,13 +65,14 @@ class CharacterDetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentCharacterDetailBinding.inflate(inflater)
             .apply {
                 lifecycleOwner = viewLifecycleOwner
                 viewModel = _viewModel
             }
+
         return binding.root
     }
 
@@ -76,8 +80,11 @@ class CharacterDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observe(_viewModel.state, ::onViewStateChange)
+        setSharedElementTransitionOnEnter()
+        postponeEnterTransition()
 
         _viewModel.setData(args.characterDetail)
+        startPostponedEnterTransition()
     }
 
     /**
@@ -87,7 +94,12 @@ class CharacterDetailFragment : Fragment() {
      */
     private fun onViewStateChange(viewState: CharacterDetailViewState) {
         when (viewState) {
-            is CharacterDetailViewState.Dismiss -> findNavController().navigateUp()
+            is Dismiss -> findNavController().navigateUp()
         }
+    }
+
+    private fun setSharedElementTransitionOnEnter() {
+        sharedElementEnterTransition = TransitionInflater.from(requireContext())
+            .inflateTransition(character_list_item_to_character_detail)
     }
 }

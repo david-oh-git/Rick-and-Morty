@@ -5,7 +5,7 @@ JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export JAVA_HOME
 
 OUTPUT="/tmp/res"
-./gradlew ktlint spotlessApply --daemon > ${OUTPUT}
+./gradlew ktlintFormat spotlessApply ktlint --daemon > ${OUTPUT}
 EXIT_CODE=$?
 if [ ${EXIT_CODE} -ne 0 ]; then
     cat ${OUTPUT}

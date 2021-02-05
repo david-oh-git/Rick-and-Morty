@@ -26,14 +26,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="io.audioshinigami.characters_list.list.CharactersListViewModel" />
-
-    </data>
-
     <com.google.android.material.card.MaterialCardView
         app:cardCornerRadius="4dp"
         app:cardElevation="8dp"
@@ -42,7 +34,7 @@
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:onClick="@{ () -> viewModel.retryAddCharactersList() }"
+            android:id="@+id/error_item_container"
             android:layout_margin="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

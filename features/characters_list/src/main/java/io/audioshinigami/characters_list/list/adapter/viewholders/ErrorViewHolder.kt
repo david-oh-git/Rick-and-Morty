@@ -43,9 +43,8 @@ class ErrorViewHolder(
      */
     @ExperimentalCoroutinesApi
     fun bind(_viewModel: CharactersListViewModel) {
-        binding.apply {
-            viewModel = _viewModel
-            executePendingBindings()
+        binding.errorItemContainer.setOnClickListener {
+            _viewModel.retryAddCharactersList()
         }
     }
 }

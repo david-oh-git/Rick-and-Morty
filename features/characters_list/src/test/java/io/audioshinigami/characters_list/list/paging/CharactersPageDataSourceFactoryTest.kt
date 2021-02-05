@@ -25,30 +25,23 @@ package io.audioshinigami.characters_list.list.paging
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.never
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
+import io.mockk.every
+import io.mockk.impl.annotations.MockK
+import io.mockk.impl.annotations.SpyK
+import io.mockk.junit5.MockKExtension
+import io.mockk.mockk
+import io.mockk.verify
 import javax.inject.Provider
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
-import org.junit.After
-import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers.same
-import org.mockito.InjectMocks
-import org.mockito.MockitoAnnotations
-import org.mockito.Spy
-import org.mockito.junit.MockitoJUnitRunner
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 
 @ExperimentalCoroutinesApi
-@RunWith(MockitoJUnitRunner::class)
-class CharactersPageDataSourceFactoryTest {
-
-    // TODO conclude tests
+@ExtendWith(MockKExtension::class)
+internal class CharactersPageDataSourceFactoryTest {
 
     /**
      * Executes tasks synchronously using Architecture components.
@@ -56,65 +49,58 @@ class CharactersPageDataSourceFactoryTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
-    @Spy
+    @MockK
     lateinit var providerDataSource: Provider<CharactersPageDataSource>
 
-    @Spy
-    lateinit var sourceFlow: MutableStateFlow<CharactersPageDataSource?>
+    @SpyK
+    var sourceFlow: MutableStateFlow<CharactersPageDataSource?> = MutableStateFlow(null)
 
-    @InjectMocks
-    lateinit var dataSourceFactory: CharactersPageDataSourceFactory
+    private lateinit var dataSourceFactory: CharactersPageDataSourceFactory
 
-    @Before
+    @BeforeEach
     fun init() {
-        MockitoAnnotations.initMocks(this)
-    }
-
-    @After
-    fun reset() {
-//        unmockkAll()
-//        validateMockitoUsage()
+        dataSourceFactory = CharactersPageDataSourceFactory(providerDataSource)
+        dataSourceFactory.sourceFlow = sourceFlow
     }
 
     @Test
     fun initializeFactory_WithoutCreate_ShouldNotHaveDataSource() {
 
-        verify(dataSourceFactory.sourceFlow, never())
+        verify(inverse = true) { dataSourceFactory.sourceFlow.value }
         assertThat(dataSourceFactory.sourceFlow.value).isNull()
     }
 
     @Test
     fun initializeFactory_WithCreate_ShouldHaveDataSource() {
-        doReturn(
-            CharactersPageDataSource(mock(), mock())
-        ).whenever(providerDataSource).get()
+        // Arrange: stub providerDataSource get method.
+        every { providerDataSource.get() } returns CharactersPageDataSource(mockk(), mockk())
 
         val dataSource = dataSourceFactory.create() as CharactersPageDataSource
 
-        verify(dataSourceFactory.sourceFlow).value = same(dataSource)
+        assertThat(dataSource).isEqualTo(dataSourceFactory.sourceFlow.value)
     }
 
     @Test
     fun refreshDataSource_ShouldInvalidateData() {
-        val dataSource = mock<CharactersPageDataSource>()
-        doReturn(dataSource).whenever(sourceFlow).value
+        val dataSource = mockk<CharactersPageDataSource>(relaxed = true)
+        every { sourceFlow.value } returns dataSource
 
         dataSourceFactory.refresh()
 
         assertThat(dataSourceFactory.sourceFlow.value).isEqualTo(dataSource)
 
-        verify(dataSource).invalidate()
-//        verify(dataSource, never()).retry()
+        verify { dataSource.invalidate() }
+        verify(inverse = true) { dataSource.retry() }
     }
 
     @Test
     fun retryDataSource_ShouldRetryData() {
-        val dataSource = mock<CharactersPageDataSource>()
-        doReturn(dataSource).whenever(sourceFlow).value
+        val dataSource = mockk<CharactersPageDataSource>(relaxed = true)
+        every { sourceFlow.value } returns dataSource
 
         dataSourceFactory.retry()
 
-        verify(dataSource).retry()
-//        verify(dataSource, after(100).never()).invalidate()
+        verify { dataSource.retry() }
+        verify(inverse = true) { dataSource.invalidate() }
     }
 }

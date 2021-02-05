@@ -24,10 +24,11 @@
 package io.audioshinigami.characters_list.list.adapter.viewholders
 
 import android.view.LayoutInflater
+import android.widget.ImageView
 import io.audioshinigami.characters_list.databinding.ListItemCharacterBinding
-import io.audioshinigami.characters_list.list.CharactersListViewModel
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.base.BaseViewHolder
+import io.audioshinigami.ui.extentions.setImage
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 /**
@@ -43,11 +44,16 @@ class CharacterViewHolder(
      * Bind data variables for view holder.
      */
     @ExperimentalCoroutinesApi
-    fun bind(_viewModel: CharactersListViewModel, _character: Character) {
+    fun bind(onItemClickAction: (ImageView, Character) -> Unit, _character: Character) {
         binding.apply {
-            viewModel = _viewModel
-            character = _character
-            executePendingBindings()
+            characterName.text = _character.name
+            characterImage.apply {
+                transitionName = _character.image
+                setImage(_character.image, null)
+            }
+            cardViewContainer.setOnClickListener {
+                onItemClickAction.invoke(binding.characterImage, _character)
+            }
         }
     }
 }

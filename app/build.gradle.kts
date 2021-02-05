@@ -105,6 +105,18 @@ android {
         isWarningsAsErrors = true
     }
 
+    signingConfigs {
+
+        getByName(BuildType.DEBUG) {
+            keyAlias = "android"
+            keyPassword = "android"
+            storeFile = file("rickandmorty_debug.jks")
+            storePassword = "android"
+
+            isV2SigningEnabled = true
+        }
+    }
+
 //    packagingOptions {
 //        exclude("META-INF/LICENSE.md")
 //    }

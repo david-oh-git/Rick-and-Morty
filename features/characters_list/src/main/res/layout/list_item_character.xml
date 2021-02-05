@@ -27,20 +27,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="character"
-            type="io.audioshinigami.core.network.responses.characters.Character" />
-
-        <variable
-            name="viewModel"
-            type="io.audioshinigami.characters_list.list.CharactersListViewModel" />
-
-    </data>
-
     <com.google.android.material.card.MaterialCardView
-        android:onClick="@{ () -> viewModel.openCharacterDetail( character) }"
+        android:id="@+id/card_view_container"
         app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="@dimen/character_list_item_card_radius"
         app:cardElevation="@dimen/character_list_item_card_elevation"
@@ -54,12 +42,10 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/character_image"
                 android:scaleType="centerCrop"
-                android:transitionName="characterImage"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/character_name"
-                app:url="@{ character.image }"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 tools:srcCompat="@tools:sample/avatars"
@@ -67,7 +53,6 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/character_name"
-                android:text="@{ character.name }"
                 app:layout_constraintTop_toBottomOf="@id/character_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
