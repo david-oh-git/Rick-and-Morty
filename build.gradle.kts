@@ -22,16 +22,56 @@
  * SOFTWARE.
  */
 
-import extentions.applyDefault
 
-plugins.apply(BuildPlugins.GIT_HOOKS)
-plugins.apply(BuildPlugins.UPDATE_DEPENDENCIES)
+//plugins.apply(BuildPlugins.GIT_HOOKS)
+//plugins.apply(BuildPlugins.UPDATE_DEPENDENCIES)
+
+plugins {
+//    `kotlin-dsl`
+}
+val kotlinVersion = "1.6.10"
+buildscript {
+
+
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        classpath("com.android.tools.build:gradle:4.0.2")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:1.6.10")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.41")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.0")
+        classpath("com.diffplug.spotless:spotless-plugin-gradle:5.6.1")
+        classpath("com.pinterest:ktlint:0.39.0")
+    }
+}
 
 allprojects {
 
-    repositories.applyDefault()
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
 
-    plugins.apply(BuildPlugins.SPOTLESS)
-    plugins.apply(BuildPlugins.KTLINT)
-    plugins.apply(BuildPlugins.BEN_MANES_GRADLE_PLUGIN)
+    configurations.all {
+
+        resolutionStrategy {
+            force(
+                "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}",
+                "org.jetbrains.kotlin:kotlin-stdlib-common:${kotlinVersion}",
+                "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+                "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion",
+                "org.objenesis:objenesis:3.2"
+            )
+        }
+
+    }
 }
+

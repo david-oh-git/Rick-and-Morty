@@ -22,44 +22,41 @@
  * SOFTWARE.
  */
 
-import dependencies.BuildDependencies
-import dependencies.TestDependencies
-
 plugins {
-    id(BuildPlugins.ANDROID_APPLICATION)
-    id(BuildPlugins.DAGGER_HILT_PLUGIN)
-    kotlin(BuildPlugins.KOTLIN_ANDROID)
-    kotlin(BuildPlugins.KOTLIN_KAPT)
-    id(BuildPlugins.PARCELIZE_PLUGIN)
-    id(BuildPlugins.NAVIGATION_SAFE_ARGS)
+    id("com.android.application")
+    id("dagger.hilt.android.plugin")
+    kotlin("android")
+    kotlin("kapt")
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
-    compileSdkVersion(BuildAndroidConfig.COMPILE_SDK_VERSION)
-    buildToolsVersion(BuildAndroidConfig.BUILD_TOOLS_VERSION)
+    compileSdkVersion(30)
+    buildToolsVersion("30.0.2")
 
     defaultConfig {
-        applicationId = BuildAndroidConfig.APPLICATION_ID
-        minSdkVersion(BuildAndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(BuildAndroidConfig.TARGET_SDK_VERSION)
-        versionCode = BuildAndroidConfig.VERSION_CODE
-        versionName = BuildAndroidConfig.VERSION_NAME
+        applicationId = "io.audioshinigami.projectm"
+        minSdkVersion(21)
+        targetSdkVersion(30)
+        versionCode = 1
+        versionName = "1.0"
 
-        testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
 
-        getByName(BuildType.RELEASE){
-            isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
+        getByName("release"){
+            isMinifyEnabled = true
             proguardFiles( getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
 
-        getByName(BuildType.DEBUG){
-            applicationIdSuffix = BuildTypeDebug.applicationIdSuffix
-            isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
-            versionNameSuffix = BuildTypeDebug.versionNameSuffix
-            isTestCoverageEnabled = BuildTypeDebug.isTestCoverageEnabled
+        getByName("debug"){
+            applicationIdSuffix = ".debug"
+            isMinifyEnabled = false
+            versionNameSuffix = "-debug"
+            isTestCoverageEnabled = true
         }
 
     }
@@ -95,8 +92,9 @@ android {
     }
 
     dynamicFeatures = mutableSetOf(
-        BuildModules.Features.HOME,
-        BuildModules.Features.CHARACTERS_LIST,BuildModules.Features.FAVOURITES_LIST
+        ":features:home",
+        ":features:characters_list",
+        ":features:favourites_list"
     )
 
     lintOptions {
@@ -107,7 +105,7 @@ android {
 
     signingConfigs {
 
-        getByName(BuildType.DEBUG) {
+        getByName("debug") {
             keyAlias = "android"
             keyPassword = "android"
             storeFile = file("rickandmorty_debug.jks")
@@ -125,20 +123,21 @@ android {
 dependencies {
     implementation( fileTree( mapOf( "dir" to "libs", "include" to  listOf("*.jar")  )))
 
-    implementation( project(BuildModules.CORE))
-    api( project(BuildModules.Features.UI))
+    implementation( project(":core"))
+    api( project(":shared:ui"))
 
-    implementation(BuildDependencies.KOTLIN)
-    implementation(BuildDependencies.KOTLIN_REFLECT)
-    implementation(BuildDependencies.CORE_KTX)
-    implementation(BuildDependencies.APPCOMPAT)
-    implementation(BuildDependencies.CONSTRAINT_LAYOUT)
-    implementation(BuildDependencies.NAVIGATION_FRAGMENT)
-    implementation(BuildDependencies.PLAY_CORE)
-    implementation(BuildDependencies.DYNAMIC_FEATURES_NAV)
-    implementation(BuildDependencies.MATERIAL_COMPONENTS)
-    implementation(BuildDependencies.DAGGER_HILT)
-    implementation(BuildDependencies.TIMBER)
+    val kotlin = "1.6.10"
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlin")
+    implementation("androidx.core:core-ktx:1.3.2")
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.1")
+    implementation("com.google.android.play:core:1.8.0")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.3.1")
+    implementation("com.google.android.material:material:1.2.1")
+    implementation("com.google.dagger:hilt-android:2.41")
+    implementation("com.jakewharton.timber:timber:4.7.1")
     
-    kapt(BuildDependencies.DAGGER_HILT_KAPT)
+    kapt("com.google.dagger:hilt-android-compiler:2.41")
 }

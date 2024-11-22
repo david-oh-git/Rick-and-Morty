@@ -22,26 +22,77 @@
  * SOFTWARE.
  */
 
-import dependencies.BuildDependencies
 
 plugins {
-    id("commons.android-dynamic-feature")
+    id("com.android.dynamic-feature")
+    id("kotlin-android")
+    id("kotlin-kapt")
+    id("kotlin-allopen")
+    id("androidx.navigation.safeargs.kotlin")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
+    compileSdkVersion(30)
+    buildToolsVersion("30.0.2")
+
+    defaultConfig {
+        minSdkVersion(21)
+        targetSdkVersion(30)
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    lintOptions {
+        lintConfig = rootProject.file(".lint/config.xml")
+        isCheckAllWarnings = true
+        isWarningsAsErrors = true
+    }
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        unitTests.isReturnDefaultValues = true
+    }
+
     buildFeatures.dataBinding = true
 }
 
 dependencies {
 
-    implementation( project(BuildModules.APP))
-    implementation( project(BuildModules.Features.CHARACTERS_LIST))
-    implementation( project(BuildModules.Features.FAVOURITES_LIST))
+    implementation( project(":app"))
+    implementation( project(":features:characters_list"))
+    implementation( project(":features:favourites_list"))
 
-    implementation(BuildDependencies.NAVIGATION_UI)
-    implementation(BuildDependencies.APPCOMPAT)
-    implementation(BuildDependencies.HILT_VIEWMODEL)
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.1")
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02")
+    implementation("com.google.dagger:hilt-android:2.41")
+    implementation("androidx.fragment:fragment-ktx:1.3.2")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
 
-    kapt(BuildDependencies.HILT_VIEWMODEL_KAPT)
+//    kapt("androidx.hilt:hilt-compiler:1.0.0-alpha02")
+    kapt("com.google.dagger:hilt-android-compiler:2.41")
+
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    testImplementation("org.junit.platform:junit-platform-launcher:1.7.0")
+    testImplementation("com.google.truth:truth:1.1")
+    testImplementation("org.mockito:mockito-core:2.2.0")
+    testImplementation("org.hamcrest:hamcrest:2.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("io.mockk:mockk:1.10.2")
+
+
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 
 }

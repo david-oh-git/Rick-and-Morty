@@ -23,14 +23,12 @@
  */
 
 
-import dependencies.BuildDependencies
-import dependencies.TestDependencies
-
 plugins {
-    id(BuildPlugins.ANDROID_LIBRARY)
-    id(BuildPlugins.KOTLIN_ALL_OPEN)
-    kotlin(BuildPlugins.KOTLIN_ANDROID)
-    kotlin(BuildPlugins.KOTLIN_KAPT)
+    id("com.android.library")
+    id("kotlin-allopen")
+    kotlin("android")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 allOpen{
@@ -39,53 +37,72 @@ allOpen{
 }
 
 android {
-    compileSdkVersion(BuildAndroidConfig.COMPILE_SDK_VERSION)
-    buildToolsVersion(BuildAndroidConfig.BUILD_TOOLS_VERSION)
+    compileSdkVersion(30)
+    buildToolsVersion("30.0.2")
 
     defaultConfig {
-        minSdkVersion(BuildAndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(BuildAndroidConfig.TARGET_SDK_VERSION)
-        versionCode = BuildAndroidConfig.VERSION_CODE
-        versionName = BuildAndroidConfig.VERSION_NAME
+        minSdkVersion(21)
+        targetSdkVersion(30)
+        versionCode = 1
+        versionName = "1.0"
 
-        testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures.dataBinding = true
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        unitTests.isReturnDefaultValues = true
+    }
+
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
+    val kotlin = "1.6.10"
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlin")
 
-    implementation(BuildDependencies.KOTLIN)
-    implementation(BuildDependencies.KOTLIN_REFLECT)
-    implementation(BuildDependencies.ROOM_DB)
-    implementation(BuildDependencies.ROOM_KTX)
-    implementation(BuildDependencies.RETROFIT)
-    implementation(BuildDependencies.RETROFIT_GSON)
-    implementation(BuildDependencies.HTTP_LOGGING)
-    implementation(BuildDependencies.DAGGER_HILT)
+    implementation("androidx.room:room-runtime:2.4.1")
+    implementation("androidx.room:room-ktx:2.4.1")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+    implementation("com.google.dagger:hilt-android:2.41")
 
-    kapt(BuildDependencies.ROOM_KAPT)
-    kapt(BuildDependencies.DAGGER_HILT_KAPT)
+    kapt("androidx.room:room-compiler:2.4.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.41")
 
     // Tests
 
-    testImplementation( project(BuildModules.TEST_UTILS))
+    testImplementation( project(":shared:test_utils"))
 
-    testImplementation(TestDependencies.JUNIT5_API)
-    testImplementation(TestDependencies.JUNIT_PLATFORM)
-    testImplementation(TestDependencies.TRUTH)
-    testImplementation(TestDependencies.MOCKITO_)
-    testImplementation(TestDependencies.HAMCREST)
-    testImplementation(TestDependencies.COROUTINE_TEST)
-    testImplementation(TestDependencies.ARCH_CORE)
-    testImplementation(TestDependencies.ANDROIDX_TEST_CORE)
-    testImplementation(TestDependencies.ANDROIDX_JUNIT_RUNNER)
-    testImplementation(TestDependencies.ROBOLECTRIC)
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    testImplementation("org.junit.platform:junit-platform-launcher:1.7.0")
+    testImplementation("com.google.truth:truth:1.1")
+    testImplementation("org.mockito:mockito-core:2.2.0")
+    testImplementation("org.hamcrest:hamcrest:2.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("androidx.test:core:1.3.0")
+    testImplementation("androidx.test:runner:1.3.0")
+    testImplementation("org.robolectric:robolectric:4.4")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 
-    api(BuildDependencies.LIVEDATA_KTX)
+    api("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
 
-    testRuntimeOnly(TestDependencies.JUNIT5_ENGINE)
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 
 }

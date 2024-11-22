@@ -23,25 +23,24 @@
  */
 
 
-import dependencies.TestDependencies
 
 plugins {
-    id(BuildPlugins.ANDROID_LIBRARY)
-    kotlin(BuildPlugins.KOTLIN_ANDROID)
-    kotlin(BuildPlugins.KOTLIN_KAPT)
+    id("com.android.library")
+    kotlin("android")
+    kotlin("kapt")
 }
 
 android {
-    compileSdkVersion(BuildAndroidConfig.COMPILE_SDK_VERSION)
-    buildToolsVersion(BuildAndroidConfig.BUILD_TOOLS_VERSION)
+    compileSdkVersion(30)
+    buildToolsVersion("30.0.2")
 
     defaultConfig {
-        minSdkVersion(BuildAndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(BuildAndroidConfig.TARGET_SDK_VERSION)
-        versionCode = BuildAndroidConfig.VERSION_CODE
-        versionName = BuildAndroidConfig.VERSION_NAME
+        minSdkVersion(21)
+        targetSdkVersion(30)
+        versionCode = 1
+        versionName = "1.0"
 
-        testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
 
@@ -63,15 +62,32 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
-    buildFeatures.dataBinding = true
+//    buildFeatures.dataBinding = true
+
+    packagingOptions {
+        exclude("META-INF/LICENSE.md")
+        exclude("META-INF/LICENSE-notice.md")
+        exclude("META-INF/DEPENDENCIES")
+        exclude("META-INF/LICENSE")
+        exclude("META-INF/LICENSE.txt")
+        exclude("META-INF/license.txt")
+        exclude("META-INF/NOTICE")
+        exclude("META-INF/NOTICE.txt")
+        exclude("META-INF/notice.txt")
+        exclude("META-INF/ASL2.0")
+        exclude("META-INF/AL2.0")
+        exclude("META-INF/LGPL2.1")
+    }
 }
 
 dependencies {
+    val kotlin = "1.6.10"
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlin")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1")
+    implementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    implementation("org.junit.platform:junit-platform-launcher:1.7.0")
+    implementation("org.junit.vintage:junit-vintage-engine:5.7.0")
 
-    implementation(TestDependencies.COROUTINE_TEST)
-    implementation(TestDependencies.JUNIT5_API)
-    implementation(TestDependencies.JUNIT_PLATFORM)
-    implementation(TestDependencies.JUNIT_VINTAGE)
-
-    runtimeOnly(TestDependencies.JUNIT5_ENGINE)
+    runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 }

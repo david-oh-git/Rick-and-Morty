@@ -23,25 +23,23 @@
  */
 
 
-import dependencies.BuildDependencies
-import dependencies.TestDependencies
-import extentions.addTestsDependencies
 
 plugins {
-    id(BuildPlugins.ANDROID_LIBRARY)
+    id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
 }
 
 android {
-    compileSdkVersion(BuildAndroidConfig.COMPILE_SDK_VERSION)
-    buildToolsVersion(BuildAndroidConfig.BUILD_TOOLS_VERSION)
+    compileSdkVersion(30)
+    buildToolsVersion("30.0.2")
 
     defaultConfig {
-        minSdkVersion(BuildAndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(BuildAndroidConfig.TARGET_SDK_VERSION)
+        minSdkVersion(21)
+        targetSdkVersion(30)
 
-        testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
 
@@ -65,19 +63,57 @@ android {
 
     buildFeatures.dataBinding = true
 
+    packagingOptions {
+        exclude("META-INF/LICENSE.md")
+        exclude("META-INF/LICENSE-notice.md")
+        exclude("META-INF/DEPENDENCIES")
+        exclude("META-INF/LICENSE")
+        exclude("META-INF/LICENSE.txt")
+        exclude("META-INF/license.txt")
+        exclude("META-INF/NOTICE")
+        exclude("META-INF/NOTICE.txt")
+        exclude("META-INF/notice.txt")
+        exclude("META-INF/ASL2.0")
+    }
+
 }
 
 dependencies {
 
-    implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
-    implementation(BuildDependencies.TIMBER)
-    implementation(BuildDependencies.COIL)
-    implementation(BuildDependencies.RECYCLE_VIEW)
-    implementation(BuildDependencies.PAGING_KTX)
-    implementation(BuildDependencies.APPCOMPAT)
-    implementation(BuildDependencies.NAVIGATION_FRAGMENT)
-    implementation(BuildDependencies.MATERIAL_COMPONENTS)
+    val kotlin = "1.6.10"
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlin")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("com.jakewharton.timber:timber:4.7.1")
+    implementation("io.coil-kt:coil:1.0.0")
+    implementation("androidx.recyclerview:recyclerview:1.1.0")
+    implementation("androidx.paging:paging-runtime-ktx:2.1.2")
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.1")
+    implementation("com.google.android.material:material:1.2.1")
 
     // Tests
-    addTestsDependencies()
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    testImplementation("org.junit.platform:junit-platform-launcher:1.7.0")
+    testImplementation("com.google.truth:truth:1.1")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+    testImplementation("org.hamcrest:hamcrest:2.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("io.mockk:mockk:1.10.2")
+    testImplementation("org.robolectric:robolectric:4.4")
+    testImplementation("androidx.test:core:1.3.0")
+    testImplementation("androidx.test:runner:1.3.0")
+
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+
+    androidTestImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    androidTestImplementation("org.junit.platform:junit-platform-launcher:1.7.0")
+    androidTestImplementation("com.google.truth:truth:1.1")
+    androidTestImplementation("io.mockk:mockk:1.10.2")
+    androidTestImplementation("androidx.test:runner:1.3.0")
+    androidTestImplementation("androidx.test:rules:1.3.0")
+
+    androidTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 }

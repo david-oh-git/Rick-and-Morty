@@ -1,3 +1,5 @@
+
+
 /*
  * MIT License
  *
@@ -23,14 +25,11 @@
  */
 
 
-import dependencies.BuildDependencies
-
 plugins {
-    id("commons.android-dynamic-feature")
     id("com.android.dynamic-feature")
     id("kotlin-android")
     id("kotlin-kapt")
-    id(BuildPlugins.PARCELIZE_PLUGIN)
+    id("kotlin-parcelize")
     id("kotlin-allopen")
     id("androidx.navigation.safeargs.kotlin")
     id("dagger.hilt.android.plugin")
@@ -38,23 +37,108 @@ plugins {
 }
 
 android {
+    compileSdkVersion(30)
+    buildToolsVersion("30.0.2")
+
+    defaultConfig {
+        minSdkVersion(21)
+        targetSdkVersion(30)
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
     buildFeatures.dataBinding = true
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        unitTests.isReturnDefaultValues = true
+    }
+
+    lintOptions {
+        lintConfig = rootProject.file(".lint/config.xml")
+        isCheckAllWarnings = true
+        isWarningsAsErrors = true
+    }
+
+
+    packagingOptions {
+        exclude("META-INF/LICENSE.md")
+        exclude("META-INF/LICENSE-notice.md")
+        exclude("META-INF/DEPENDENCIES")
+        exclude("META-INF/LICENSE")
+        exclude("META-INF/LICENSE.txt")
+        exclude("META-INF/license.txt")
+        exclude("META-INF/NOTICE")
+        exclude("META-INF/NOTICE.txt")
+        exclude("META-INF/notice.txt")
+        exclude("META-INF/ASL2.0")
+    }
 }
 
 dependencies {
 
-    implementation( project(BuildModules.CORE))
+    implementation( project(":app"))
+    val kotlin = "1.6.10"
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlin")
+    implementation("com.google.android.material:material:1.2.1")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.1")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.3.1")
+    implementation("com.jakewharton.timber:timber:4.7.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
 
-    implementation(BuildDependencies.KOTLIN_COROUTINES_ANDROID)
-    implementation(BuildDependencies.KOTLIN_COROUTINES_CORE)
-    implementation(BuildDependencies.PAGING_KTX)
-    implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
-    implementation(BuildDependencies.VIEWMODEL)
-    implementation(BuildDependencies.SWIPE_REFRESH_LAYOUT)
-    implementation(BuildDependencies.LIFECYCLE_EXTENSIONS)
-    implementation(BuildDependencies.DAGGER_HILT)
 
-    kapt(BuildDependencies.HILT_VIEWMODEL_KAPT)
-    kapt(BuildDependencies.DAGGER_HILT_KAPT)
+    implementation( project(":core"))
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
+    implementation("androidx.paging:paging-runtime-ktx:2.1.2")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("com.google.dagger:hilt-android:2.41")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+
+//    kapt("androidx.hilt:hilt-compiler:1.0.0-alpha02")
+    kapt("com.google.dagger:hilt-android-compiler:2.41")
+
+
+    // Tests
+    testImplementation( project(":shared:test_utils"))
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    testImplementation("org.junit.platform:junit-platform-launcher:1.7.0")
+    testImplementation("com.google.truth:truth:1.1")
+    testImplementation("org.mockito:mockito-core:2.2.0")
+    testImplementation("org.hamcrest:hamcrest:2.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("io.mockk:mockk:1.10.2")
+
+
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+
+    androidTestImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    androidTestImplementation("org.junit.platform:junit-platform-launcher:1.7.0")
+    androidTestImplementation("com.google.truth:truth:1.1")
+    androidTestImplementation("io.mockk:mockk:1.10.2")
+    androidTestImplementation("androidx.test:runner:1.3.0")
+    androidTestImplementation("androidx.test:rules:1.3.0")
+    androidTestImplementation("org.objenesis:objenesis:3.1") {
+        exclude(module = "objenesis")
+    }
+
+    androidTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 
 }

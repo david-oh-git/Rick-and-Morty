@@ -25,8 +25,8 @@ package io.audioshinigami.projectm.di
 
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 
 @EntryPoint
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 interface AppComponent

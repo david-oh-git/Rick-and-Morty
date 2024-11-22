@@ -29,8 +29,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import io.audioshinigami.core.data.source.CharacterFavouriteDataSource
 import io.audioshinigami.core.data.source.CharacterFavouriteRepository
 import io.audioshinigami.core.data.source.CharacterFavouriteRepositoryImpl
@@ -40,12 +40,12 @@ import io.audioshinigami.core.data.source.local.RickAndMortyDatabase
 import io.audioshinigami.core.network.ApiFactory
 import io.audioshinigami.core.network.services.RickAndMortyService
 import io.audioshinigami.core.utils.CHARACTER_TABLE
-import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 interface CoreModuleBinds {
 
     @get:Binds
