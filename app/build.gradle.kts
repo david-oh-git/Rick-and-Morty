@@ -32,13 +32,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion(30)
+    namespace = "io.audioshinigami.projectm"
+    compileSdkVersion(31)
     buildToolsVersion("30.0.2")
 
     defaultConfig {
         applicationId = "io.audioshinigami.projectm"
         minSdkVersion(21)
-        targetSdkVersion(30)
+        targetSdkVersion(31)
         versionCode = 1
         versionName = "1.0"
 
@@ -61,9 +62,7 @@ android {
 
     }
 
-    buildFeatures {
-        dataBinding = true
-    }
+    android.dataBinding.isEnabled = true
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

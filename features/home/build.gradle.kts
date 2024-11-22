@@ -33,12 +33,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion(30)
+    namespace = "io.audioshinigami.home"
+    compileSdkVersion(31)
     buildToolsVersion("30.0.2")
 
     defaultConfig {
         minSdkVersion(21)
-        targetSdkVersion(30)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -63,7 +63,9 @@ android {
         unitTests.isReturnDefaultValues = true
     }
 
-    buildFeatures.dataBinding = true
+//    buildFeatures.dataBinding = true
+
+    android.dataBinding.isEnabled = true
 }
 
 dependencies {

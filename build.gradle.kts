@@ -40,7 +40,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.2")
+        classpath("com.android.tools.build:gradle:4.2.2")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
         classpath("org.jetbrains.kotlin:kotlin-allopen:1.6.10")
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.41")

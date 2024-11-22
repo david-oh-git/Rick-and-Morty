@@ -33,12 +33,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion(30)
+    namespace = "io.audioshinigami.favourites_list"
+    compileSdkVersion(31)
     buildToolsVersion("30.0.2")
 
     defaultConfig {
         minSdkVersion(21)
-        targetSdkVersion(30)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -63,19 +63,25 @@ android {
         unitTests.isReturnDefaultValues = true
     }
 
-    buildFeatures.dataBinding = true
+//    buildFeatures.dataBinding = true
+
+    android.dataBinding.isEnabled = true
 
     packagingOptions {
-        exclude("META-INF/LICENSE.md")
-        exclude("META-INF/LICENSE-notice.md")
-        exclude("META-INF/DEPENDENCIES")
-        exclude("META-INF/LICENSE")
-        exclude("META-INF/LICENSE.txt")
-        exclude("META-INF/license.txt")
-        exclude("META-INF/NOTICE")
-        exclude("META-INF/NOTICE.txt")
-        exclude("META-INF/notice.txt")
-        exclude("META-INF/ASL2.0")
+        resources {
+            excludes += setOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md",
+                "META-INF/DEPENDENCIES",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/license.txt",
+                "META-INF/NOTICE",
+                "META-INF/NOTICE.txt",
+                "META-INF/notice.txt",
+                "META-INF/ASL2.0"
+            )
+        }
     }
 }
 

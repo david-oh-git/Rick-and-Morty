@@ -37,19 +37,21 @@ allOpen{
 }
 
 android {
-    compileSdkVersion(30)
+    namespace = "io.audioshinigami.core"
+    compileSdkVersion(31)
     buildToolsVersion("30.0.2")
 
     defaultConfig {
         minSdkVersion(21)
-        targetSdkVersion(30)
-        versionCode = 1
-        versionName = "1.0"
+        targetSdkVersion(31)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildFeatures.dataBinding = true
+
+    buildFeatures {
+        dataBinding = true
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -96,7 +98,7 @@ dependencies {
     testImplementation("org.hamcrest:hamcrest:2.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
-    testImplementation("androidx.test:core:1.3.0")
+    testImplementation("androidx.test:core:1.5.0") // TODO check foreground
     testImplementation("androidx.test:runner:1.3.0")
     testImplementation("org.robolectric:robolectric:4.4")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
