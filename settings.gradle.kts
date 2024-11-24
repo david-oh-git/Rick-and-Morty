@@ -46,7 +46,7 @@ include(":app")
 include(":core")
 include(":features:home")
 include(":shared:ui")
-include(":features:characters_list")
+include(":features:characters")
 include(":shared:test_utils")
 include(":features:favourites")
 

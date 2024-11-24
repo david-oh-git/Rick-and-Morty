@@ -97,7 +97,7 @@ android {
     dynamicFeatures.addAll(
         mutableSetOf(
             ":features:home",
-            ":features:characters_list",
+            ":features:characters",
             ":features:favourites"
         )
     )

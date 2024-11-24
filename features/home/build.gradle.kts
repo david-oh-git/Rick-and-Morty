@@ -64,7 +64,7 @@ android {
 dependencies {
 
     implementation( project(":app"))
-    implementation( project(":features:characters_list"))
+    implementation(project(":features:characters"))
     implementation( project(":features:favourites"))
 
     implementation(libs.navigation.ui.ktx)
