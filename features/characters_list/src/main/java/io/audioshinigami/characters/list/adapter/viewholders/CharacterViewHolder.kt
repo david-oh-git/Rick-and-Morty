@@ -21,33 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.audioshinigami.home
+package io.audioshinigami.characters.list.adapter.viewholders
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import io.audioshinigami.characters.R.id.characters_list_fragment
-import io.audioshinigami.favourites.R.id.favouriteListFragment
+import android.view.LayoutInflater
+import android.widget.ImageView
+import io.audioshinigami.characters.databinding.ListItemCharacterBinding
+import io.audioshinigami.core.network.responses.characters.Character
+import io.audioshinigami.ui.base.BaseViewHolder
+import io.audioshinigami.ui.extentions.setImage
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-val NAV_FRAGMENTS_ID = setOf(
-    characters_list_fragment,
-    favouriteListFragment
-)
+/**
+ * View holder for RecyclerView item with [Character] data.
+ */
+class CharacterViewHolder(
+    inflater: LayoutInflater
+) : BaseViewHolder<ListItemCharacterBinding>(
+    ListItemCharacterBinding.inflate(inflater)
+) {
 
-class HomeViewModel @ViewModelInject constructor() : ViewModel() {
-
-    private val _state = MutableLiveData<HomeViewState>()
-    val state: LiveData<HomeViewState>
-        get() = _state
-
-    fun navigationControllerChanged(navController: NavController) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (NAV_FRAGMENTS_ID.contains(destination.id)) {
-                _state.postValue(HomeViewState.NavigationScreen)
-            } else {
-                _state.postValue(HomeViewState.FullScreen)
+    /**
+     * Bind data variables for view holder.
+     */
+    @ExperimentalCoroutinesApi
+    fun bind(onItemClickAction: (ImageView, Character) -> Unit, _character: Character) {
+        binding.apply {
+            characterName.text = _character.name
+            characterImage.apply {
+                transitionName = _character.image
+                setImage(_character.image, null)
+            }
+            cardViewContainer.setOnClickListener {
+                onItemClickAction.invoke(binding.characterImage, _character)
             }
         }
     }

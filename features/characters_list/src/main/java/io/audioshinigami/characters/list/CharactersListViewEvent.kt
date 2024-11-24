@@ -21,34 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.audioshinigami.home
+package io.audioshinigami.characters.list
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import io.audioshinigami.characters.R.id.characters_list_fragment
-import io.audioshinigami.favourites.R.id.favouriteListFragment
+import io.audioshinigami.core.network.responses.characters.Character
 
-val NAV_FRAGMENTS_ID = setOf(
-    characters_list_fragment,
-    favouriteListFragment
-)
+/**
+ *  Interaction events for [CharactersListFragment].
+ */
+sealed class CharactersListViewEvent {
 
-class HomeViewModel @ViewModelInject constructor() : ViewModel() {
-
-    private val _state = MutableLiveData<HomeViewState>()
-    val state: LiveData<HomeViewState>
-        get() = _state
-
-    fun navigationControllerChanged(navController: NavController) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (NAV_FRAGMENTS_ID.contains(destination.id)) {
-                _state.postValue(HomeViewState.NavigationScreen)
-            } else {
-                _state.postValue(HomeViewState.FullScreen)
-            }
-        }
-    }
+    /**
+     *  Open Character detail view.
+     *
+     *  @param character Unique to character.
+     */
+    data class OpenCharacterDetail(val character: Character) : CharactersListViewEvent()
 }

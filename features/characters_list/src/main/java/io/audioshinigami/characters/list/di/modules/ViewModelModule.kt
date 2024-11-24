@@ -21,34 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.audioshinigami.home
+package io.audioshinigami.characters.list.di.modules
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import io.audioshinigami.characters.R.id.characters_list_fragment
-import io.audioshinigami.favourites.R.id.favouriteListFragment
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.migration.DisableInstallInCheck
+import dagger.multibindings.IntoMap
+import io.audioshinigami.characters.list.CharactersListViewModel
+import io.audioshinigami.core.di.ViewModelKey
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-val NAV_FRAGMENTS_ID = setOf(
-    characters_list_fragment,
-    favouriteListFragment
-)
+@ExperimentalCoroutinesApi
+@DisableInstallInCheck
+@Module
+interface ViewModelModule {
 
-class HomeViewModel @ViewModelInject constructor() : ViewModel() {
-
-    private val _state = MutableLiveData<HomeViewState>()
-    val state: LiveData<HomeViewState>
-        get() = _state
-
-    fun navigationControllerChanged(navController: NavController) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (NAV_FRAGMENTS_ID.contains(destination.id)) {
-                _state.postValue(HomeViewState.NavigationScreen)
-            } else {
-                _state.postValue(HomeViewState.FullScreen)
-            }
-        }
-    }
+    @get:[Binds IntoMap ViewModelKey(CharactersListViewModel::class)]
+    val CharactersListViewModel.viewModel: ViewModel
 }

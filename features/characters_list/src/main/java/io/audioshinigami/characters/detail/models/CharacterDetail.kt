@@ -21,34 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.audioshinigami.home
+package io.audioshinigami.characters.detail.models
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import io.audioshinigami.characters.R.id.characters_list_fragment
-import io.audioshinigami.favourites.R.id.favouriteListFragment
-
-val NAV_FRAGMENTS_ID = setOf(
-    characters_list_fragment,
-    favouriteListFragment
-)
-
-class HomeViewModel @ViewModelInject constructor() : ViewModel() {
-
-    private val _state = MutableLiveData<HomeViewState>()
-    val state: LiveData<HomeViewState>
-        get() = _state
-
-    fun navigationControllerChanged(navController: NavController) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (NAV_FRAGMENTS_ID.contains(destination.id)) {
-                _state.postValue(HomeViewState.NavigationScreen)
-            } else {
-                _state.postValue(HomeViewState.FullScreen)
-            }
-        }
-    }
-}
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+/**
+ *  A [Parcelable] class with all of the character's details.
+ */
+@Parcelize
+class CharacterDetail(
+    val name: String,
+    val status: String,
+    val species: String,
+    val type: String,
+    val gender: String,
+    val originName: String,
+    val originUrl: String,
+    val locationName: String,
+    val locationUrl: String,
+    val image: String,
+    val episode: List<String>,
+    val characterUrl: String,
+    val created: String
+) : Parcelable

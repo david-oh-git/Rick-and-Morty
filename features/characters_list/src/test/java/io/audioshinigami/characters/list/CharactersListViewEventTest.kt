@@ -21,34 +21,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.audioshinigami.home
+package io.audioshinigami.characters.list
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import io.audioshinigami.characters.R.id.characters_list_fragment
-import io.audioshinigami.favourites.R.id.favouriteListFragment
+import com.google.common.truth.Truth.assertThat
+import io.audioshinigami.core.network.responses.characters.BaseLocation
+import io.audioshinigami.core.network.responses.characters.Character
+import org.junit.jupiter.api.Test
 
-val NAV_FRAGMENTS_ID = setOf(
-    characters_list_fragment,
-    favouriteListFragment
-)
+internal class CharactersListViewEventTest {
 
-class HomeViewModel @ViewModelInject constructor() : ViewModel() {
+    lateinit var event: CharactersListViewEvent
 
-    private val _state = MutableLiveData<HomeViewState>()
-    val state: LiveData<HomeViewState>
-        get() = _state
+    @Test
+    fun setEventOpenCharacterDetail_ShouldSettledCorrectly() {
+        val character = Character(
+            name = "Summer",
+            type = "lute",
+            gender = "Female",
+            species = "Human",
+            status = "null",
+            created = "18 of July",
+            episode = listOf("fake episode name"),
+            image = "http://upload.com/summer.jpg",
+            id = 45,
+            location = BaseLocation("Earth Bi15", "http'//"),
+            origin = BaseLocation("Earth Bi15", "http'//"),
+            url = "http://"
+        )
+        event = CharactersListViewEvent.OpenCharacterDetail(character)
 
-    fun navigationControllerChanged(navController: NavController) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (NAV_FRAGMENTS_ID.contains(destination.id)) {
-                _state.postValue(HomeViewState.NavigationScreen)
-            } else {
-                _state.postValue(HomeViewState.FullScreen)
-            }
-        }
+        val eventOpenDetail = event as CharactersListViewEvent.OpenCharacterDetail
+
+        assertThat(character).isEqualTo(eventOpenDetail.character)
     }
 }

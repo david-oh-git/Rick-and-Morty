@@ -30,7 +30,7 @@
 
         <variable
             name="viewState"
-            type="io.audioshinigami.characters_list.list.CharactersListViewState" />
+            type="io.audioshinigami.characters.list.CharactersListViewState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

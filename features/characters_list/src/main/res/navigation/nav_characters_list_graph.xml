@@ -35,7 +35,7 @@
     <fragment
         app:moduleName=""
         android:id="@+id/characters_list_fragment"
-        android:name="io.audioshinigami.characters_list.list.CharactersListFragment"
+        android:name="io.audioshinigami.characters.list.CharactersListFragment"
         android:label="Characters"
         tools:layout="@layout/fragment_characters_list"
         >
@@ -48,12 +48,12 @@
         app:moduleName=""
         tools:layout="@layout/fragment_character_detail"
         android:id="@+id/characterDetailFragment"
-        android:name="io.audioshinigami.characters_list.detail.CharacterDetailFragment"
+        android:name="io.audioshinigami.characters.detail.CharacterDetailFragment"
         android:label="CharacterDetailFragment">
 
         <argument
             android:name="character_detail"
-            app:argType="io.audioshinigami.characters_list.detail.models.CharacterDetail"
+            app:argType="io.audioshinigami.characters.detail.models.CharacterDetail"
             />
     </fragment>
 

@@ -21,34 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.audioshinigami.home
+package io.audioshinigami.characters.detail.di
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import io.audioshinigami.characters.R.id.characters_list_fragment
-import io.audioshinigami.favourites.R.id.favouriteListFragment
+import dagger.hilt.android.EntryPointAccessors
+import io.audioshinigami.characters.detail.CharacterDetailFragment
+import io.audioshinigami.core.di.CoreComponent
+import io.audioshinigami.projectm.di.AppComponent
 
-val NAV_FRAGMENTS_ID = setOf(
-    characters_list_fragment,
-    favouriteListFragment
-)
+internal fun inject(fragment: CharacterDetailFragment) =
+    DaggerCharacterDetailComponent
+        .factory()
+        .create(
+            appComponent(fragment),
+            coreComponent(fragment)
+        )
+        .inject(fragment)
 
-class HomeViewModel @ViewModelInject constructor() : ViewModel() {
+private fun appComponent(fragment: CharacterDetailFragment): AppComponent =
+    EntryPointAccessors.fromApplication(
+        fragment.requireActivity().applicationContext,
+        AppComponent::class.java
+    )
 
-    private val _state = MutableLiveData<HomeViewState>()
-    val state: LiveData<HomeViewState>
-        get() = _state
-
-    fun navigationControllerChanged(navController: NavController) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (NAV_FRAGMENTS_ID.contains(destination.id)) {
-                _state.postValue(HomeViewState.NavigationScreen)
-            } else {
-                _state.postValue(HomeViewState.FullScreen)
-            }
-        }
-    }
-}
+private fun coreComponent(fragment: CharacterDetailFragment): CoreComponent =
+    EntryPointAccessors.fromApplication(
+        fragment.requireContext().applicationContext,
+        CoreComponent::class.java
+    )

@@ -21,34 +21,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.audioshinigami.home
+package io.audioshinigami.characters.detail.models
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import io.audioshinigami.characters.R.id.characters_list_fragment
-import io.audioshinigami.favourites.R.id.favouriteListFragment
+import io.audioshinigami.core.mapper.Mapper
+import io.audioshinigami.core.network.responses.characters.Character
 
-val NAV_FRAGMENTS_ID = setOf(
-    characters_list_fragment,
-    favouriteListFragment
-)
+/**
+ * Helper class to transform [Character] input to [CharacterDetail] output.
+ */
+class CharacterDetailMapper : Mapper<Character, CharacterDetail> {
 
-class HomeViewModel @ViewModelInject constructor() : ViewModel() {
-
-    private val _state = MutableLiveData<HomeViewState>()
-    val state: LiveData<HomeViewState>
-        get() = _state
-
-    fun navigationControllerChanged(navController: NavController) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (NAV_FRAGMENTS_ID.contains(destination.id)) {
-                _state.postValue(HomeViewState.NavigationScreen)
-            } else {
-                _state.postValue(HomeViewState.FullScreen)
-            }
-        }
+    /**
+     * Transforms input to desired output.
+     *
+     * @param from A character.
+     * @return A characterDetail(parceble version) class
+     */
+    override suspend fun transform(from: Character): CharacterDetail {
+        return CharacterDetail(
+            name = from.name,
+            type = from.type,
+            gender = from.gender,
+            species = from.species,
+            status = from.status,
+            characterUrl = from.url,
+            created = from.created,
+            episode = from.episode,
+            image = from.image,
+            locationName = from.location.name,
+            locationUrl = from.location.url,
+            originName = from.origin.name,
+            originUrl = from.origin.url
+        )
     }
 }

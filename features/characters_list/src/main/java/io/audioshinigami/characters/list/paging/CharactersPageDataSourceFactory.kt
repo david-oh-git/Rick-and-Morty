@@ -21,34 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.audioshinigami.home
+package io.audioshinigami.characters.list.paging
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import io.audioshinigami.characters.R.id.characters_list_fragment
-import io.audioshinigami.favourites.R.id.favouriteListFragment
+import androidx.annotation.VisibleForTesting
+import androidx.paging.DataSource
+import io.audioshinigami.core.network.responses.characters.Character
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
+import javax.inject.Inject
+import javax.inject.Provider
 
-val NAV_FRAGMENTS_ID = setOf(
-    characters_list_fragment,
-    favouriteListFragment
-)
+/**
+ *  Factory for data source,
+ */
+@ExperimentalCoroutinesApi
+class CharactersPageDataSourceFactory @Inject constructor(
+    @get:VisibleForTesting
+    val providerDataSource: Provider<CharactersPageDataSource>
+) : DataSource.Factory<Int, Character>() {
 
-class HomeViewModel @ViewModelInject constructor() : ViewModel() {
+    var sourceFlow = MutableStateFlow<CharactersPageDataSource?>(null)
 
-    private val _state = MutableLiveData<HomeViewState>()
-    val state: LiveData<HomeViewState>
-        get() = _state
+    override fun create(): DataSource<Int, Character> {
+        val dataSource = providerDataSource.get()
+        sourceFlow.value = dataSource
+        return dataSource
+    }
 
-    fun navigationControllerChanged(navController: NavController) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (NAV_FRAGMENTS_ID.contains(destination.id)) {
-                _state.postValue(HomeViewState.NavigationScreen)
-            } else {
-                _state.postValue(HomeViewState.FullScreen)
-            }
-        }
+    /**
+     *  Refresh data source.
+     */
+    fun refresh() {
+        sourceFlow.value?.invalidate()
+    }
+
+    /**
+     * Force retry the last fetch on data source.
+     */
+    fun retry() {
+        sourceFlow.value?.retry()
     }
 }

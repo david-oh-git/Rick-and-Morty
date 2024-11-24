@@ -37,7 +37,7 @@ plugins {
 }
 
 android {
-    namespace = "io.audioshinigami.characters_list"
+    namespace = "io.audioshinigami.characters"
     compileSdk = 34
 
     defaultConfig {

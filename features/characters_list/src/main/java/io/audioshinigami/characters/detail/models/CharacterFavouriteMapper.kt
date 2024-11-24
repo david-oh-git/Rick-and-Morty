@@ -21,34 +21,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.audioshinigami.home
+package io.audioshinigami.characters.detail.models
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import io.audioshinigami.characters.R.id.characters_list_fragment
-import io.audioshinigami.favourites.R.id.favouriteListFragment
+import io.audioshinigami.core.data.CharacterFavourite
+import io.audioshinigami.core.mapper.Mapper
 
-val NAV_FRAGMENTS_ID = setOf(
-    characters_list_fragment,
-    favouriteListFragment
-)
+/**
+ * Helper to transform [CharacterDetail] input to [CharacterFavourite] output.
+ */
+class CharacterFavouriteMapper : Mapper<CharacterDetail, CharacterFavourite> {
 
-class HomeViewModel @ViewModelInject constructor() : ViewModel() {
-
-    private val _state = MutableLiveData<HomeViewState>()
-    val state: LiveData<HomeViewState>
-        get() = _state
-
-    fun navigationControllerChanged(navController: NavController) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (NAV_FRAGMENTS_ID.contains(destination.id)) {
-                _state.postValue(HomeViewState.NavigationScreen)
-            } else {
-                _state.postValue(HomeViewState.FullScreen)
-            }
-        }
+    /**
+     * Transforms input to output.
+     *
+     * @param from input [CharacterDetail] class.
+     * @return The desired output [CharacterFavourite].
+     */
+    override suspend fun transform(from: CharacterDetail): CharacterFavourite {
+        return CharacterFavourite(
+            name = from.name,
+            created = from.created,
+            gender = from.gender,
+            id = 0,
+            image = from.image,
+            locationName = from.locationName,
+            originName = from.originName,
+            species = from.species,
+            status = from.status,
+            type = from.type
+        )
     }
 }

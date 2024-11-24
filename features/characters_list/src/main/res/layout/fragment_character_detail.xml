@@ -32,7 +32,7 @@
 
         <variable
             name="viewModel"
-            type="io.audioshinigami.characters_list.detail.CharacterDetailViewModel" />
+            type="io.audioshinigami.characters.detail.CharacterDetailViewModel" />
 
     </data>
 

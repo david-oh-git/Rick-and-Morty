@@ -31,7 +31,7 @@
 
         <variable
             name="characterDetail"
-            type="io.audioshinigami.characters_list.detail.models.CharacterDetail" />
+            type="io.audioshinigami.characters.detail.models.CharacterDetail" />
 
     </data>
 
