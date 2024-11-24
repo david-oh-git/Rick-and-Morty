@@ -36,7 +36,7 @@ import kotlin.math.ceil
  * to specific item views from the adapter's data set. Support the grid and linear layout.
  */
 class RecyclerViewItemDecoration(
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    @get:VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     internal val spacingPx: Int
 ) : RecyclerView.ItemDecoration() {
 

@@ -35,9 +35,9 @@ import javax.inject.Inject
 import kotlinx.coroutines.launch
 
 class CharacterDetailViewModel @Inject constructor(
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    @get:VisibleForTesting
     val repository: CharacterFavouriteRepository,
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    @get:VisibleForTesting
     val characterFavouriteMapper: CharacterFavouriteMapper
 ) : ViewModel() {
 
@@ -49,7 +49,7 @@ class CharacterDetailViewModel @Inject constructor(
 
     private val _state = MutableLiveData<CharacterDetailViewState>()
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    @VisibleForTesting
     val state: LiveData<CharacterDetailViewState>
         get() = _state
 

@@ -35,8 +35,8 @@ import io.audioshinigami.characters.list.adapter.viewholders.ErrorViewHolder
 import io.audioshinigami.characters.list.adapter.viewholders.LoadingViewHolder
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.base.BasePagedListAdapter
-import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import javax.inject.Inject
 
 /**
  * Enum class representing all types of RecyclerView item.
@@ -58,7 +58,7 @@ internal enum class ItemView(val type: Int, val span: Int) {
  */
 @ExperimentalCoroutinesApi
 class CharactersListAdapter @Inject constructor(
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    @get:VisibleForTesting
     val viewModel: CharactersListViewModel,
     val onItemClickAction: (ImageView, Character) -> Unit
 ) : BasePagedListAdapter<Character>(
