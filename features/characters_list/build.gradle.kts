@@ -38,28 +38,24 @@ plugins {
 
 android {
     namespace = "io.audioshinigami.characters_list"
-    compileSdkVersion(31)
-    buildToolsVersion("30.0.2")
+    compileSdk = 34
 
     defaultConfig {
-        minSdkVersion(21)
+        minSdk = 21
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
     }
 
-
-//    buildFeatures.dataBinding = true
-
-    android.dataBinding.isEnabled = true
+    android.dataBinding.enable = true
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     testOptions {
@@ -67,12 +63,7 @@ android {
         unitTests.isReturnDefaultValues = true
     }
 
-    lintOptions {
-        lintConfig = rootProject.file(".lint/config.xml")
-        isCheckAllWarnings = true
-        isWarningsAsErrors = true
-    }
-    packagingOptions {
+    packaging {
         resources {
             excludes += setOf(
                 "META-INF/LICENSE.md",
@@ -88,62 +79,62 @@ android {
             )
         }
     }
+
 }
 
 dependencies {
 
     implementation( project(":app"))
-    val kotlin = "1.6.10"
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlin")
-    implementation("com.google.android.material:material:1.2.1")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.1")
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.3.1")
-    implementation("com.jakewharton.timber:timber:4.7.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+
+    implementation(libs.kotlin.reflect)
+    implementation(libs.material)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.dynamic.features.fragment)
+    implementation(libs.timber)
+    implementation(libs.constraintlayout)
 
 
     implementation( project(":core"))
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
-    implementation("androidx.paging:paging-runtime-ktx:2.1.2")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("com.google.dagger:hilt-android:2.41")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.jetbrains.kotlinx.coroutines.core)
+    implementation(libs.paging.runtime.ktx)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.swiperefreshlayout)
+    implementation(libs.hilt.android)
+    implementation(libs.constraintlayout)
 
 //    kapt("androidx.hilt:hilt-compiler:1.0.0-alpha02")
-    kapt("com.google.dagger:hilt-android-compiler:2.41")
+    kapt(libs.hilt.android.compiler)
+    kapt(libs.lifecycle.compiler)
 
 
     // Tests
     testImplementation( project(":shared:test_utils"))
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
-    testImplementation("org.junit.platform:junit-platform-launcher:1.7.0")
-    testImplementation("com.google.truth:truth:1.1")
-    testImplementation("org.mockito:mockito-core:2.2.0")
-    testImplementation("org.hamcrest:hamcrest:2.2")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1")
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
-    testImplementation("io.mockk:mockk:1.10.2")
+    testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.platform.launcher)
+    testImplementation(libs.truth)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.hamcrest)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.core.testing)
+    testImplementation(libs.mockk)
 
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    testRuntimeOnly(libs.junit.jupiter.engine)
 
-    androidTestImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
-    androidTestImplementation("org.junit.platform:junit-platform-launcher:1.7.0")
-    androidTestImplementation("com.google.truth:truth:1.1")
-    androidTestImplementation("io.mockk:mockk:1.10.2")
-    androidTestImplementation("androidx.test:runner:1.3.0")
-    androidTestImplementation("androidx.test:rules:1.3.0")
+    androidTestImplementation(libs.junit.jupiter.api)
+    androidTestImplementation(libs.junit.platform.launcher)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.mockk)
+    androidTestImplementation(libs.runner)
+    androidTestImplementation(libs.rules)
     androidTestImplementation("org.objenesis:objenesis:3.1") {
         exclude(module = "objenesis")
     }
 
-    androidTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    androidTestRuntimeOnly(libs.junit.jupiter.engine)
 
 }

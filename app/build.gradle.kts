@@ -33,13 +33,12 @@ plugins {
 
 android {
     namespace = "io.audioshinigami.projectm"
-    compileSdkVersion(31)
-    buildToolsVersion("30.0.2")
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "io.audioshinigami.projectm"
-        minSdkVersion(21)
-        targetSdkVersion(31)
+        minSdk = 21
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -48,29 +47,34 @@ android {
 
     buildTypes {
 
-        getByName("release"){
+        release {
             isMinifyEnabled = true
             proguardFiles( getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
 
-        getByName("debug"){
+        debug {
             applicationIdSuffix = ".debug"
             isMinifyEnabled = false
             versionNameSuffix = "-debug"
-            isTestCoverageEnabled = true
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
 
     }
 
-    android.dataBinding.isEnabled = true
+    buildFeatures {
+        buildConfig = true
+    }
+
+    android.dataBinding.enable = true
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     testOptions {
@@ -90,16 +94,23 @@ android {
         }
     }
 
-    dynamicFeatures = mutableSetOf(
-        ":features:home",
-        ":features:characters_list",
-        ":features:favourites_list"
+    dynamicFeatures.addAll(
+        mutableSetOf(
+            ":features:home",
+            ":features:characters_list",
+            ":features:favourites"
+        )
     )
 
-    lintOptions {
-        lintConfig = rootProject.file(".lint/config.xml")
-        isCheckAllWarnings = true
-        isWarningsAsErrors = true
+//    lintOptions {
+//        lintConfig = rootProject.file(".lint/config.xml")
+//        isCheckAllWarnings = true
+//        isWarningsAsErrors = true
+//    }
+    lint {
+        lintConfig = rootProject.file(".lint/lint.xml")
+        checkAllWarnings = true
+        warningsAsErrors = true
     }
 
     signingConfigs {
@@ -110,13 +121,11 @@ android {
             storeFile = file("rickandmorty_debug.jks")
             storePassword = "android"
 
-            isV2SigningEnabled = true
+            enableV2Signing = true
+
         }
     }
 
-//    packagingOptions {
-//        exclude("META-INF/LICENSE.md")
-//    }
 }
 
 dependencies {
@@ -125,18 +134,21 @@ dependencies {
     implementation( project(":core"))
     api( project(":shared:ui"))
 
-    val kotlin = "1.6.10"
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlin")
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.1")
-    implementation("com.google.android.play:core:1.8.0")
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.3.1")
-    implementation("com.google.android.material:material:1.2.1")
-    implementation("com.google.dagger:hilt-android:2.41")
-    implementation("com.jakewharton.timber:timber:4.7.1")
+    implementation(libs.kotlin.reflect)
+    implementation(libs.core.ktx)
+    implementation(libs.appcompat)
+    implementation(libs.constraintlayout)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.feature.delivery.ktx)
+    implementation(libs.navigation.dynamic.features.fragment)
+    implementation(libs.material)
+    implementation(libs.hilt.android)
+    implementation(libs.timber)
     
-    kapt("com.google.dagger:hilt-android-compiler:2.41")
+    kapt(libs.hilt.android.compiler)
+}
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }

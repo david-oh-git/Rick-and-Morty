@@ -32,12 +32,10 @@ plugins {
 
 android {
     namespace = "io.audioshinigami.test_utils"
-    compileSdkVersion(31)
-    buildToolsVersion("30.0.2")
+    compileSdk = 34
 
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(31)
+        minSdk = 21
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,14 +51,14 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
-    packagingOptions {
+    packaging {
         resources {
             excludes += setOf(
                 "META-INF/LICENSE.md",
@@ -83,9 +81,8 @@ android {
 }
 
 dependencies {
-    val kotlin = "1.6.10"
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlin")
+
+    implementation(libs.kotlin.reflect)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1")
     implementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
     implementation("org.junit.platform:junit-platform-launcher:1.7.0")

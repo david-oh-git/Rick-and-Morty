@@ -24,34 +24,33 @@
 package io.audioshinigami.characters_list.list.paging
 
 import androidx.annotation.VisibleForTesting
-import androidx.annotation.VisibleForTesting.PRIVATE
 import androidx.paging.PageKeyedDataSource
 import io.audioshinigami.characters_list.list.di.CorotineScopeIo
 import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.core.network.repositories.RickAndMortyRepository
 import io.audioshinigami.core.network.responses.characters.Character
-import javax.inject.Inject
-import kotlin.properties.Delegates
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import kotlin.properties.Delegates
 
 const val PAGE_INIT_ELEMENT = 1
 const val PAGE_MAX_ELEMENTS = 20
 
 @ExperimentalCoroutinesApi
 open class CharactersPageDataSource @Inject constructor(
-    @VisibleForTesting(otherwise = PRIVATE)
+    @get:VisibleForTesting
     val repository: RickAndMortyRepository,
-    @VisibleForTesting(otherwise = PRIVATE)
+    @get:VisibleForTesting
     @CorotineScopeIo val scope: CoroutineScope
 
 ) : PageKeyedDataSource<Int, Character>() {
 
     val networkStateFlow = MutableStateFlow<NetworkState>(NetworkState.Loading())
 
-    @VisibleForTesting(otherwise = PRIVATE)
+    @VisibleForTesting
     var retry: (() -> Unit)? = null
 
     var MAX_PAGE_NUMBER by Delegates.notNull<Int>()

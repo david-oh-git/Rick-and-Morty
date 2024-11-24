@@ -22,6 +22,5 @@
   ~ SOFTWARE.
   -->
 
-<manifest
-    package="io.audioshinigami.ui" />
+<manifest />
 

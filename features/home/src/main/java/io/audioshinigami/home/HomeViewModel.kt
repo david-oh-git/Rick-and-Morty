@@ -29,7 +29,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import io.audioshinigami.characters_list.R.id.characters_list_fragment
-import io.audioshinigami.favourites_list.R.id.favouriteListFragment
+import io.audioshinigami.favourites.R.id.favouriteListFragment
 
 val NAV_FRAGMENTS_ID = setOf(
     characters_list_fragment,

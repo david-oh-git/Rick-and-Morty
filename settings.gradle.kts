@@ -21,6 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+//enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(":app")
 include(":core")
@@ -28,7 +48,7 @@ include(":features:home")
 include(":shared:ui")
 include(":features:characters_list")
 include(":shared:test_utils")
-include(":features:favourites_list")
+include(":features:favourites")
 
 rootProject.name = "Project M"
 rootProject.buildFileName = "build.gradle.kts"

@@ -24,7 +24,6 @@
 package io.audioshinigami.core.network.repositories
 
 import androidx.annotation.VisibleForTesting
-import androidx.annotation.VisibleForTesting.PRIVATE
 import io.audioshinigami.core.annotations.OpenForTesting
 import io.audioshinigami.core.network.responses.BaseResponse
 import io.audioshinigami.core.network.responses.characters.Character
@@ -33,7 +32,7 @@ import javax.inject.Inject
 
 @OpenForTesting
 class RickAndMortyRepository @Inject constructor(
-    @VisibleForTesting(otherwise = PRIVATE)
+    @get:VisibleForTesting
     internal val service: RickAndMortyService
 ) {
 

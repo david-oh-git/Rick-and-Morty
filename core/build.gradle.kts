@@ -38,12 +38,10 @@ allOpen{
 
 android {
     namespace = "io.audioshinigami.core"
-    compileSdkVersion(31)
-    buildToolsVersion("30.0.2")
+    compileSdk = 34
 
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(31)
+        minSdk = 21
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -51,15 +49,16 @@ android {
 
     buildFeatures {
         dataBinding = true
+        buildConfig = true
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     testOptions {
@@ -73,38 +72,36 @@ android {
 }
 
 dependencies {
-    val kotlin = "1.6.10"
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlin")
+    implementation(libs.kotlin.reflect)
 
-    implementation("androidx.room:room-runtime:2.4.1")
-    implementation("androidx.room:room-ktx:2.4.1")
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
-    implementation("com.google.dagger:hilt-android:2.41")
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+    implementation(libs.hilt.android)
 
-    kapt("androidx.room:room-compiler:2.4.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.41")
+    kapt(libs.room.compiler)
+    kapt(libs.hilt.android.compiler)
 
     // Tests
 
     testImplementation( project(":shared:test_utils"))
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    testImplementation(libs.junit.jupiter.api)
     testImplementation("org.junit.platform:junit-platform-launcher:1.7.0")
-    testImplementation("com.google.truth:truth:1.1")
+    testImplementation(libs.truth)
     testImplementation("org.mockito:mockito-core:2.2.0")
     testImplementation("org.hamcrest:hamcrest:2.2")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1")
+    testImplementation(libs.kotlinx.coroutines.test)
     testImplementation("androidx.arch.core:core-testing:2.1.0")
-    testImplementation("androidx.test:core:1.5.0") // TODO check foreground
+    testImplementation("androidx.test:core:1.5.0")
     testImplementation("androidx.test:runner:1.3.0")
     testImplementation("org.robolectric:robolectric:4.4")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 
-    api("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
+    api(libs.lifecycle.livedata.ktx)
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    testRuntimeOnly(libs.junit.jupiter.engine)
 
 }

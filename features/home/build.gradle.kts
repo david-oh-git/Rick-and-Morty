@@ -34,28 +34,22 @@ plugins {
 
 android {
     namespace = "io.audioshinigami.home"
-    compileSdkVersion(31)
-    buildToolsVersion("30.0.2")
+    compileSdk = 34
 
     defaultConfig {
-        minSdkVersion(21)
+        minSdk = 21
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-    lintOptions {
-        lintConfig = rootProject.file(".lint/config.xml")
-        isCheckAllWarnings = true
-        isWarningsAsErrors = true
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     testOptions {
@@ -63,26 +57,25 @@ android {
         unitTests.isReturnDefaultValues = true
     }
 
-//    buildFeatures.dataBinding = true
+    android.dataBinding.enable = true
 
-    android.dataBinding.isEnabled = true
 }
 
 dependencies {
 
     implementation( project(":app"))
     implementation( project(":features:characters_list"))
-    implementation( project(":features:favourites_list"))
+    implementation( project(":features:favourites"))
 
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.1")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02")
-    implementation("com.google.dagger:hilt-android:2.41")
-    implementation("androidx.fragment:fragment-ktx:1.3.2")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation(libs.navigation.ui.ktx)
+    implementation(libs.appcompat)
+    implementation(libs.hilt.lifecycle.viewmodel)
+    implementation(libs.hilt.android)
+    implementation(libs.fragment.ktx)
+    implementation(libs.constraintlayout)
 
 //    kapt("androidx.hilt:hilt-compiler:1.0.0-alpha02")
-    kapt("com.google.dagger:hilt-android-compiler:2.41")
+    kapt(libs.hilt.android.compiler)
 
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")

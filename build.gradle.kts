@@ -23,28 +23,21 @@
  */
 
 
-//plugins.apply(BuildPlugins.GIT_HOOKS)
-//plugins.apply(BuildPlugins.UPDATE_DEPENDENCIES)
 
 plugins {
-//    `kotlin-dsl`
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.hilt) apply false
 }
 val kotlinVersion = "1.6.10"
 buildscript {
 
-
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-
     dependencies {
-        classpath("com.android.tools.build:gradle:4.2.2")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
-        classpath("org.jetbrains.kotlin:kotlin-allopen:1.6.10")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.41")
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.0")
+//        classpath("com.android.tools.build:gradle:7.4.2")
+//        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:1.9.23")
+//        classpath("com.google.dagger:hilt-android-gradle-plugin:2.50")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.0")
         classpath("com.diffplug.spotless:spotless-plugin-gradle:5.6.1")
         classpath("com.pinterest:ktlint:0.39.0")
     }
@@ -52,22 +45,16 @@ buildscript {
 
 allprojects {
 
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-
     configurations.all {
 
         resolutionStrategy {
             force(
-                "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}",
-                "org.jetbrains.kotlin:kotlin-stdlib-common:${kotlinVersion}",
-                "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}",
-                "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
-                "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
-                "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion",
+//                "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}",
+//                "org.jetbrains.kotlin:kotlin-stdlib-common:${kotlinVersion}",
+//                "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}",
+//                "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+//                "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+//                "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion",
                 "org.objenesis:objenesis:3.2"
             )
         }

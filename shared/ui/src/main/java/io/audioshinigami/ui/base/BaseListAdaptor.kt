@@ -40,10 +40,10 @@ abstract class BaseListAdaptor<T>(
     contentsSame: (T, T) -> Boolean
 ) : ListAdapter<T, RecyclerView.ViewHolder>(
     object : DiffUtil.ItemCallback<T>() {
-        override fun areItemsTheSame(oldItem: T, newItem: T): Boolean =
+        override fun areItemsTheSame(oldItem: T & Any, newItem: T & Any): Boolean =
             itemsSame(oldItem, newItem)
 
-        override fun areContentsTheSame(oldItem: T, newItem: T): Boolean =
+        override fun areContentsTheSame(oldItem: T & Any, newItem: T & Any): Boolean =
             contentsSame(oldItem, newItem)
     }
 ) {

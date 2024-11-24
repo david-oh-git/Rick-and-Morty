@@ -24,20 +24,19 @@
 package io.audioshinigami.characters_list.list.paging
 
 import androidx.annotation.VisibleForTesting
-import androidx.annotation.VisibleForTesting.PRIVATE
 import androidx.paging.DataSource
 import io.audioshinigami.core.network.responses.characters.Character
-import javax.inject.Inject
-import javax.inject.Provider
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
+import javax.inject.Inject
+import javax.inject.Provider
 
 /**
  *  Factory for data source,
  */
 @ExperimentalCoroutinesApi
 class CharactersPageDataSourceFactory @Inject constructor(
-    @VisibleForTesting(otherwise = PRIVATE)
+    @get:VisibleForTesting
     val providerDataSource: Provider<CharactersPageDataSource>
 ) : DataSource.Factory<Int, Character>() {
 

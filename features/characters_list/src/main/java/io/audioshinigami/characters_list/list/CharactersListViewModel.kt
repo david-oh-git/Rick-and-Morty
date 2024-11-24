@@ -24,12 +24,12 @@
 package io.audioshinigami.characters_list.list
 
 import androidx.annotation.VisibleForTesting
-import androidx.annotation.VisibleForTesting.PRIVATE
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
+import androidx.lifecycle.map
+import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import androidx.paging.LivePagedListBuilder
 import io.audioshinigami.characters_list.list.paging.CharactersPageDataSourceFactory
@@ -37,32 +37,29 @@ import io.audioshinigami.characters_list.list.paging.PAGE_MAX_ELEMENTS
 import io.audioshinigami.core.network.NetworkState
 import io.audioshinigami.core.network.responses.characters.Character
 import io.audioshinigami.ui.livedata.SingleLiveData
-import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 class CharactersListViewModel @Inject constructor(
-    @VisibleForTesting(otherwise = PRIVATE)
+    @get:VisibleForTesting
     val dataSourceFactory: CharactersPageDataSourceFactory
 ) : ViewModel() {
 
-    @VisibleForTesting(otherwise = PRIVATE)
+    @VisibleForTesting
     val source = liveData {
         dataSourceFactory.sourceFlow
             .collect { emit(it) }
     }
 
-    @VisibleForTesting(otherwise = PRIVATE)
-    val networkState: LiveData<NetworkState> = Transformations.switchMap(
-        source
-    ) {
+    @VisibleForTesting
+    val networkState: LiveData<NetworkState> = source.switchMap {
         it?.networkStateFlow?.asLiveData(viewModelScope.coroutineContext)
     }
 
     val event = SingleLiveData<CharactersListViewEvent>()
     val data = LivePagedListBuilder(dataSourceFactory, PAGE_MAX_ELEMENTS).build()
-    val state = Transformations.map(networkState) {
+    val state = networkState.map {
 
         when (it) {
 

@@ -95,6 +95,7 @@ class CharacterDetailFragment : Fragment() {
     private fun onViewStateChange(viewState: CharacterDetailViewState) {
         when (viewState) {
             is Dismiss -> findNavController().navigateUp()
+            else -> { }
         }
     }
 

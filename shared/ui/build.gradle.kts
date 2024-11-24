@@ -32,15 +32,12 @@ plugins {
 
 android {
     namespace = "io.audioshinigami.ui"
-    compileSdkVersion(31)
-    buildToolsVersion("30.0.2")
+    compileSdk = 34
 
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(31)
+        minSdk = 21
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
 
@@ -54,16 +51,17 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     buildFeatures.dataBinding = true
-    packagingOptions {
+
+    packaging {
         resources {
             excludes += setOf(
                 "META-INF/LICENSE.md",
@@ -84,17 +82,16 @@ android {
 
 dependencies {
 
-    val kotlin = "1.6.10"
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlin")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("com.jakewharton.timber:timber:4.7.1")
-    implementation("io.coil-kt:coil:1.0.0")
-    implementation("androidx.recyclerview:recyclerview:1.1.0")
-    implementation("androidx.paging:paging-runtime-ktx:2.1.2")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.1")
-    implementation("com.google.android.material:material:1.2.1")
+    implementation(libs.kotlin.reflect)
+    implementation(libs.timber)
+    implementation(libs.coil)
+    implementation(libs.recyclerview)
+    implementation(libs.paging.runtime.ktx)
+    implementation(libs.appcompat)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.material)
+
+    kapt(libs.lifecycle.compiler)
 
     // Tests
 
