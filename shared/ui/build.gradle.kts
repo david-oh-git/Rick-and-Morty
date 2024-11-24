@@ -23,7 +23,6 @@
  */
 
 
-
 plugins {
     id("com.android.library")
     id("kotlin-android")
@@ -95,26 +94,26 @@ dependencies {
 
     // Tests
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
-    testImplementation("org.junit.platform:junit-platform-launcher:1.7.0")
-    testImplementation("com.google.truth:truth:1.1")
-    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
-    testImplementation("org.hamcrest:hamcrest:2.2")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1")
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
-    testImplementation("io.mockk:mockk:1.10.2")
-    testImplementation("org.robolectric:robolectric:4.4")
-    testImplementation("androidx.test:core:1.5.0")
-    testImplementation("androidx.test:runner:1.3.0")
+    testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.platform.launcher)
+    testImplementation(libs.truth)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.hamcrest)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.core.testing)
+    testImplementation(libs.mockk)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.core)
+    testImplementation(libs.runner)
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    testRuntimeOnly(libs.junit.jupiter.engine)
 
-    androidTestImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
-    androidTestImplementation("org.junit.platform:junit-platform-launcher:1.7.0")
-    androidTestImplementation("com.google.truth:truth:1.1")
-    androidTestImplementation("io.mockk:mockk:1.10.2")
-    androidTestImplementation("androidx.test:runner:1.3.0")
-    androidTestImplementation("androidx.test:rules:1.3.0")
+    androidTestImplementation(libs.junit.jupiter.api)
+    androidTestImplementation(libs.junit.platform.launcher)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.mockk)
+    androidTestImplementation(libs.runner)
+    androidTestImplementation(libs.rules)
 
-    androidTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    androidTestRuntimeOnly(libs.junit.jupiter.engine)
 }

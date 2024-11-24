@@ -131,7 +131,7 @@ dependencies {
     androidTestImplementation(libs.mockk)
     androidTestImplementation(libs.runner)
     androidTestImplementation(libs.rules)
-    androidTestImplementation("org.objenesis:objenesis:3.1") {
+    androidTestImplementation(libs.objenesis) {
         exclude(module = "objenesis")
     }
 

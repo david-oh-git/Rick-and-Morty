@@ -78,16 +78,16 @@ dependencies {
     kapt(libs.hilt.android.compiler)
 
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
-    testImplementation("org.junit.platform:junit-platform-launcher:1.7.0")
-    testImplementation("com.google.truth:truth:1.1")
-    testImplementation("org.mockito:mockito-core:2.2.0")
-    testImplementation("org.hamcrest:hamcrest:2.2")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1")
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
-    testImplementation("io.mockk:mockk:1.10.2")
+    testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.platform.launcher)
+    testImplementation(libs.truth)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.hamcrest)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.core.testing)
+    testImplementation(libs.mockk)
 
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    testRuntimeOnly(libs.junit.jupiter.engine)
 
 }

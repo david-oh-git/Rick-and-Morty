@@ -83,10 +83,10 @@ android {
 dependencies {
 
     implementation(libs.kotlin.reflect)
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1")
-    implementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
-    implementation("org.junit.platform:junit-platform-launcher:1.7.0")
-    implementation("org.junit.vintage:junit-vintage-engine:5.7.0")
+    implementation(libs.kotlinx.coroutines.test)
+    implementation(libs.junit.jupiter.api)
+    implementation(libs.junit.platform.launcher)
+    implementation(libs.junit.vintage.engine)
 
-    runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    runtimeOnly(libs.junit.jupiter.engine)
 }

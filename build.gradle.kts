@@ -27,17 +27,13 @@
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.all.open) apply false
     alias(libs.plugins.hilt) apply false
 }
-val kotlinVersion = "1.6.10"
 buildscript {
 
     dependencies {
-//        classpath("com.android.tools.build:gradle:7.4.2")
-//        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10")
-        classpath("org.jetbrains.kotlin:kotlin-allopen:1.9.23")
-//        classpath("com.google.dagger:hilt-android-gradle-plugin:2.50")
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.0")
+        classpath(libs.navigation.safe.args.gradle.plugin)
         classpath("com.diffplug.spotless:spotless-plugin-gradle:5.6.1")
         classpath("com.pinterest:ktlint:0.39.0")
     }

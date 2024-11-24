@@ -1,7 +1,9 @@
 [versions]
 assetDeliveryKtx = "2.2.2"
 compileSdk = "34"
+core = "1.5.0"
 featureDeliveryKtx = "2.1.0"
+junitVintageEngine = "5.7.0"
 minSdk = "21"
 androidGradlePlugin = "8.7.2"
 kotlin = "1.9.23"
@@ -22,16 +24,19 @@ lifecycleExtensions = "2.8.7"
 loggingInterceptor = "4.9.0"
 material = "1.2.1"
 mockitoCore = "2.2.0"
+mockitoKotlin = "2.2.0"
 mockk = "1.10.2"
 navigationFragmentKtx = "2.8.4"
 pagingRuntimeKtx = "2.1.2"
 recyclerview = "1.1.0"
 retrofit = "2.9.0"
+robolectric = "4.4"
 roomRuntime = "2.6.1"
 runner = "1.3.0"
 swiperefreshlayout = "1.1.0"
 timber = "4.7.1"
 truth = "1.1"
+objenesis = "3.1"
 
 [libraries]
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -39,6 +44,7 @@ asset-delivery-ktx = { module = "com.google.android.play:asset-delivery-ktx", ve
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+core = { module = "androidx.test:core", version.ref = "core" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
 feature-delivery-ktx = { module = "com.google.android.play:feature-delivery-ktx", version.ref = "featureDeliveryKtx" }
@@ -51,6 +57,7 @@ jetbrains-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-co
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junitJupiterApi" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junitJupiterApi" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junitPlatformLauncher" }
+junit-vintage-engine = { module = "org.junit.vintage:junit-vintage-engine", version.ref = "junitVintageEngine" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
@@ -62,13 +69,16 @@ lifecycle-compiler = { module = "androidx.lifecycle:lifecycle-compiler", version
 logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+mockito-kotlin = { module = "com.nhaarman.mockitokotlin2:mockito-kotlin", version.ref = "mockitoKotlin" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 navigation-dynamic-features-fragment = { module = "androidx.navigation:navigation-dynamic-features-fragment", version.ref = "navigationFragmentKtx" }
 navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationFragmentKtx" }
 navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragmentKtx" }
 paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
@@ -77,9 +87,11 @@ runner = { module = "androidx.test:runner", version.ref = "runner" }
 swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
+objenesis = { module = "org.objenesis:objenesis", version.ref = "objenesis" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-all-open = { id = "org.jetbrains.kotlin.plugin.allopen", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
